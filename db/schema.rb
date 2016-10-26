@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016033957) do
+ActiveRecord::Schema.define(version: 20161026072055) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "action_type"
@@ -37,13 +37,10 @@ ActiveRecord::Schema.define(version: 20161016033957) do
   create_table "bookings", force: :cascade do |t|
     t.integer  "status"
     t.float    "total_price"
-    t.datetime "date"
     t.integer  "user_id"
     t.integer  "tour_id"
-    t.integer  "discount_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["discount_id"], name: "index_bookings_on_discount_id"
     t.index ["tour_id"], name: "index_bookings_on_tour_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -73,8 +70,12 @@ ActiveRecord::Schema.define(version: 20161016033957) do
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer  "booking_id"
+    t.integer  "tour_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["booking_id"], name: "index_discounts_on_booking_id"
+    t.index ["tour_id"], name: "index_discounts_on_tour_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -138,23 +139,46 @@ ActiveRecord::Schema.define(version: 20161016033957) do
     t.integer  "duration"
     t.float    "price"
     t.float    "rating"
-    t.integer  "discount_id"
+    t.datetime "startDate"
+    t.datetime "endDate"
+    t.integer  "status"
     t.integer  "place_id"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["category_id"], name: "index_tours_on_category_id"
-    t.index ["discount_id"], name: "index_tours_on_discount_id"
     t.index ["place_id"], name: "index_tours_on_place_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.boolean  "is_admin"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "visitors", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "password"
-    t.boolean  "is_admin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "address"
+    t.string   "phone_number"
+    t.boolean  "sex"
+    t.integer  "booking_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["booking_id"], name: "index_visitors_on_booking_id"
   end
 
 end
