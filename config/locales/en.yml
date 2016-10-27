@@ -4,7 +4,6 @@ en:
     home:
       title: "Home"
       sign_up_title: " Sign up !"
-      sign_up: "Sign up"
     contact:
       title: "Contact"
       contact_title: "Contact us"
@@ -15,6 +14,10 @@ en:
     header:
       logo: "TOURING"
       nav: "Toggle navigation"
+      noname: "NO NAME"
+      edit: "Edit"
+      logout: "Log out"
+      sign_up: "Sign up"
   login:
     title: "Log in"
     via: "Login via"
@@ -25,3 +28,12 @@ en:
     password: "Password"
     forget_password: "Forget the password ?"
     remember_me: " Remember me"
+  edit_user:
+    password: "(leave blank if you don't want to change it)"
+    current_password: "(we need your current password to confirm your changes)"
+    update: "Update"
+  delete_user:
+    unhappy: "Unhappy?"
+    cancel: "Cancel my account"
+    sure: "Are you sure?"
+    back: "Back"
