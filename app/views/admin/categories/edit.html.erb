@@ -22,5 +22,8 @@
     </div>
   </div>
 
-  <%= f.submit t("edit"), class: "btn btn-primary" %>
+  <div class="text-center">
+    <%= f.submit t("edit"), class: "btn btn-primary" %>
+    <%= link_to t("cancel"), admin_categories_path, class: "btn btn-danger" %>
+  </div>
 <% end %>
