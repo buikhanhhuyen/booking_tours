@@ -1,0 +1,33 @@
+<% provide :title, t("category.title") %>
+<h1 class="text-center"><%= t "category.title" %></h1><br>
+<div class="row">
+  <div class="col-md-6 center">
+    <%= link_to t("category.add"), new_admin_category_path,
+      class: "btn btn-success glyphicon glyphicon-plus" %>
+  </div>
+</div>
+<table class="table sortable table-bordered">
+  <thead>
+    <tr>
+      <th><%= t "category.id" %></th>
+      <th><%= t "category.name" %></th>
+      <th><%= t "category.description" %></th>
+      <th><%= t "category.action" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.id %></td>
+        <td><%= link_to category.title, admin_category_path(category) %></td>
+        <td><%= category.description %></td>
+        <td>
+          <%= link_to t("edit"), edit_admin_category_path(category),
+            class: "btn btn-primary" %>
+          <%= link_to t("delete"), [:admin, category], method: :delete,
+            data: {confirm: t("sure")}, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
