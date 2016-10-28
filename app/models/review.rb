@@ -1,5 +1,7 @@
 class Review < ApplicationRecord
-  belongs_to :users, :tours, :places
+  belongs_to :users
+  belongs_to :tours
+  belongs_to :places
 
   has_many :comment, dependent: :destroy
   has_many :likes, as: :likable, dependent: :destroy

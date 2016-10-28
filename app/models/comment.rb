@@ -1,5 +1,6 @@
 class Comment < ApplicationRecord
-  belongs_to :users, :reviews
+  belongs_to :users
+  belongs_to :reviews
   belongs_to :parent_comments, class_name: Comment.name
 
   has_many :likes, as: :likable, dependent: :destroy
