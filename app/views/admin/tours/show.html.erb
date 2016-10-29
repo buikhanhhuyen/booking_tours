@@ -1,0 +1,32 @@
+<% provide :title, @tour.name %>
+<div class="row">
+  <div>
+    <label><%= t "tour.name" %></label>
+    <%= @tour.name %>
+  </div>
+  <div>
+    <label><%= t "tour.description" %></label>
+    <%= @tour.description %>
+  </div>
+  <div>
+    <label><%= t "tour.price" %></label>
+    <%= @tour.price %>
+  </div>
+  <div>
+    <label><%= t "tour.rating" %></label>
+    <%= @tour.rating %>
+  </div>
+  <div>
+    <label><%= t "tour.start_date" %></label>
+    <%= @tour.startDate.to_time.strftime("%d-%m-%Y") %>
+  </div>
+  <div>
+    <label><%= t "tour.end_date" %></label>
+    <%= @tour.endDate.to_time.strftime("%d-%m-%Y") %>
+  </div>
+  <div>
+    <label><%= t "tour.status" %></label>
+    <%= @tour.status %>
+  </div>
+</div>
+

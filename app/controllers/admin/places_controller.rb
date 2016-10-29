@@ -15,7 +15,7 @@ class Admin::PlacesController < ApplicationController
   def create
     if @place.save
       flash[:notice] = t "place.create_success"
-      redirect_to admin_place_path @place
+      redirect_to admin_places_path
     else
       flash[:alert] = t "place.create_fail"
       redirect_to admin_places_path
