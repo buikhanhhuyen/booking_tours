@@ -135,8 +135,9 @@ ActiveRecord::Schema.define(version: 20161026072055) do
 
   create_table "tours", force: :cascade do |t|
     t.string   "name"
+    t.string   "startPlace"
+    t.string   "endPlace"
     t.text     "description"
-    t.integer  "duration"
     t.float    "price"
     t.float    "rating"
     t.datetime "startDate"

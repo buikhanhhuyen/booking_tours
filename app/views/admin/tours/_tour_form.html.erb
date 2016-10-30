@@ -1,0 +1,90 @@
+<%= form_for [:admin, @tour] do |f| %>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="name">
+      <%= t "tour.name" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_field :name, class: "form-control input-md", required: true,
+        placeholder: "Enter name ..." %>
+      <span class="help-block"><%= t "tour.enter_name" %></span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="startPlace">
+      <%= t "tour.start_place" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_field :startPlace, class: "form-control input-md",
+        required: true, placeholder: "Enter start place ..." %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="endPlace">
+      <%= t "tour.end_place" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_field :endPlace, class: "form-control input-md",
+        required: true, placeholder: "Enter end place ..." %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="description">
+      <%= t "tour.description" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_area :description, class: "form-control", required: true,
+        placeholder: "Enter description ..." %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="price">
+      <%= t "tour.price" %>
+    </label>
+
+    <div>
+      <div class="col-md-8">
+        <%= f.text_field :price, class: "form-control", required: true,
+          placeholder: "Enter price ..." %>
+      </div>
+      <select>
+        <option value="vnd"><%= t "tour.vnd" %></option>
+        <option value="usd"><%= t "tour.usd" %></option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="startDate">
+      <%= t "tour.start_date" %>
+    </label>
+    <div>
+      <div class="col-md-8">
+        <%= f.text_field :startDate, class: "form-control datetimepicker" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="endDate">
+      <%= t "tour.end_Date" %>
+    </label>
+    <div>
+      <div class="col-md-8">
+        <%= f.text_field :endDate, class: "form-control datetimepicker" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit t("save"), class: "btn btn-primary" %>
+    <%= link_to t("cancel"), admin_places_path, class: "btn btn-danger" %>
+  </div>
+<% end %>
