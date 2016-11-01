@@ -6,6 +6,7 @@ class Admin::PlacesController < ApplicationController
   end
 
   def show
+    @reviews = @place.reviews
   end
 
   def new

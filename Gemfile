@@ -14,6 +14,8 @@ gem "devise"
 gem "cancancan", "~> 1.15"
 gem "momentjs-rails", ">= 2.9.0"
 gem "bootstrap3-datetimepicker-rails", "~> 4.17.42"
+gem "ckeditor", github: "galetahub/ckeditor"
+gem "paperclip"
 
 group :development, :test do
   gem "byebug", platform: :mri

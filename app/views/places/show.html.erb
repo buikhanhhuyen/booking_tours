@@ -9,13 +9,17 @@
       <label><%= t "place.description" %></label>
       <%= @place.description %>
     </div>
+    <div>
+      <%= link_to "Add review", new_place_review_path(@place),
+        class: "btn btn-success glyphicon glyphicon-plus" %>
+    </div>
   </aside>
 
-  <div class="col-md-8">
+  <div class="col-md-4">
     <% if @place.reviews.any? %>
       <h3><%= t "review.title" %> (<%= @place.reviews.count %>)</h3>
         <ol class="reviews">
-          <%= render "admin/reviews/index" %>
+          <%= render "reviews/index" %>
         </ol>
     <% end %>
   </div>
