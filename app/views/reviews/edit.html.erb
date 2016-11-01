@@ -1,0 +1,9 @@
+<%= form_for [@place, @review] do |form| %>
+  <%= form.hidden_field :place_id, value: @place.id %>
+  <label><%= t "category.name" %></label>
+  <%= form.text_field :title, :class => "someclass",
+    :ckeditor => {:language => "vi"} %>
+  <%= form.cktext_area :content, :ckeditor => {:language => "vi"} %>
+  <%= form.submit t("save"), class: "btn btn-primary" %>
+  <%= link_to t("cancel"), place_path(@place), class: "btn btn-danger" %>
+<% end %>

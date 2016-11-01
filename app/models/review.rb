@@ -1,9 +1,12 @@
 class Review < ApplicationRecord
-  belongs_to :users
-  belongs_to :tours
-  belongs_to :places
+  belongs_to :user
+  belongs_to :place
 
-  has_many :comment, dependent: :destroy
+  default_scope -> { order(created_at: :desc) }
+
+  has_many :comments, dependent: :destroy
   has_many :likes, as: :likable, dependent: :destroy
   has_many :activites, as: :activable, dependent: :destroy
+
+  validates :content, presence: true
 end

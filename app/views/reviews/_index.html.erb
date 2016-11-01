@@ -1,0 +1,20 @@
+<% @reviews.each do |review| %>
+  <div>
+    <%= link_to review.title, place_review_path(review.place, review) %>
+    <br />
+    <span class="usertimestamp">
+      Posted by <%= review.user.username %>
+        <%= time_ago_in_words(review.created_at) %> ago.
+    </span>
+    <span class="content">
+      <%= review.content.html_safe %>
+    </span>
+    <br />
+    <div>
+      <%= link_to t("delete"), [review.place, review], method: :delete,
+        data: {confirm: t("sure")}, class: "btn btn-danger" %>
+      <%= link_to t("edit"), edit_place_review_path(review.place, review),
+        class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

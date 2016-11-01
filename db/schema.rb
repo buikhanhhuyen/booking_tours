@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026072055) do
+ActiveRecord::Schema.define(version: 20161101014955) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "action_type"
@@ -21,17 +21,6 @@ ActiveRecord::Schema.define(version: 20161026072055) do
     t.datetime "updated_at",     null: false
     t.index ["activable_type", "activable_id"], name: "index_activities_on_activable_type_and_activable_id"
     t.index ["user_id"], name: "index_activities_on_user_id"
-  end
-
-  create_table "bank_accounts", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password"
-    t.float    "balance"
-    t.string   "account_number"
-    t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["user_id"], name: "index_bank_accounts_on_user_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -50,6 +39,21 @@ ActiveRecord::Schema.define(version: 20161026072055) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+    t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -122,14 +126,13 @@ ActiveRecord::Schema.define(version: 20161026072055) do
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.integer  "tour_id"
     t.integer  "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_reviews_on_place_id"
-    t.index ["tour_id"], name: "index_reviews_on_tour_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
