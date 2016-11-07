@@ -2,6 +2,7 @@ class Admin::ReviewsController < ApplicationController
   load_and_authorize_resource
 
   def show
+    @comment = @review.comments
   end
 
   def destroy

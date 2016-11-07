@@ -7,12 +7,22 @@ Rails.application.routes.draw do
   resources :places do
     resources :reviews, except: :index
   end
+  resources :reviews do
+    resources :comments
+  end
+  resources :comments do
+    resources :comments
+  end
+
   namespace :admin do
     root "static_pages#home"
     resources :categories, except: :show
+    resources :tours
     resources :places do
       resources :reviews, only: [:show, :destroy]
     end
-    resources :tours
+    resources :reviews do
+      resources :comments, only: :destroy
+    end
   end
 end

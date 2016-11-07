@@ -1,10 +1,11 @@
 class Comment < ApplicationRecord
-  belongs_to :users
-  belongs_to :reviews
-  belongs_to :parent_comments, class_name: Comment.name
+  belongs_to :user
+  belongs_to :review
+  belongs_to :commentable, polymorphic: true, optional: true
 
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likable, dependent: :destroy
   has_many :activities, as: :activable, dependent: :destroy
-  has_many :sub_comments, class_name: Comment.name,
-    foreign_key: "parent_comment_id", dependent: :destroy
+
+  validates :content, presence: true, length: {maximum: 200}
 end
