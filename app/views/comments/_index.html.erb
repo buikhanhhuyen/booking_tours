@@ -1,0 +1,84 @@
+<div class="center">
+  <%= form_for [review, @comment] do |f| %>
+    <div class="col-md-4">
+      <%= f.text_field :content, class: "form-control input-md",
+        required: true %>
+    </div>
+    <%= f.submit t("comment.cmt"), class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<% @comments.each do |comment| %>
+  <div class="comments-list">
+    <div class="comment-main-level">
+      <div class="comment-box">
+        <div class="comment-head">
+          <h6 class="comment-name by-author"><%= comment.user.username %></h6>
+          <span><%= time_ago_in_words(comment.created_at) %> ago.</span>
+        </div>
+        <div class="comment-content">
+          <strong><%= comment.content %></strong>
+        </div>
+        <div>
+          <% if can? :destroy, comment %>
+            <%= link_to t("delete"), [comment.review, comment], method: :delete,
+              data: {confirm: t("sure")}, class: "btn btn-danger" %>
+          <% end %>
+
+          <button class="btn btn-primary" type="button" data-toggle="collapse"
+            data-target="#reply-<%= comment.id %>" aria-expanded="false"
+            aria-controls="reply-<%= comment.id %>"><%= t "comment.reply" %>
+          </button>
+          <div class="collapse" id="reply-<%= comment.id %>">
+            <div class="card card-block">
+              <%= form_for [comment, @comment] do |f| %>
+                <div class="col-md-4">
+                  <%= f.text_field :content, class: "form-control input-md",
+                    required: true %>
+                </div>
+                <%= f.submit t("comment.reply"), class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+
+          <% if can? :edit, comment %>
+            <button class="btn btn-success" type="button" data-toggle="collapse"
+              data-target="#edit-comment-<%= comment.id %>" aria-expanded="false"
+              aria-controls="edit-comment-<%= comment.id %>"><%= t ".edit" %>
+            </button>
+            <div class="collapse" id="edit-comment-<%= comment.id %>">
+              <div class="card card-block">
+                <%= form_for [review, comment] do |f| %>
+                  <div class="col-md-4">
+                    <%= f.text_field :content, class: "form-control input-md",
+                      required: true %>
+                  </div>
+                  <%= f.submit t("edit"), class: "btn btn-primary" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <% comment.comments.each do |cmt| %>
+      <div class="comments-list reply-list">
+        <div class="comment-box">
+          <div class="comment-head">
+            <h6 class="comment-name"><%= cmt.user.username %></h6>
+            <span><%= time_ago_in_words(cmt.created_at) %> ago.</span>
+          </div>
+          <div class="comment-content">
+            <strong><%= cmt.content %></strong><br />
+            <% if can? :destroy, cmt %>
+              <%= link_to t("delete"), [comment, cmt], method: :delete,
+                data: {confirm: t("sure")}, class: "btn btn-danger"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

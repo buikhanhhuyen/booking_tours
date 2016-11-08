@@ -108,4 +108,12 @@ en:
     update_fail: "Can't update review."
     delete_success: "Delete review successfully."
     delete_fail: "Can't delete review."
-    action: "Action"
+  comment:
+    cmt: "Comment"
+    reply: "Reply"
+    create_success: "Create comment successfully."
+    create_fail: "Can't create comment."
+    update_success: "Update comment successfully."
+    update_fail: "Can't update comment."
+    delete_success: "Delete comment successfully."
+    delete_fail: "Can't delete comment."

@@ -1,5 +1,5 @@
 class Rate < ApplicationRecord
-  belongs_to :users
-  belongs_to :tours
+  belongs_to :user
+  belongs_to :tour
   has_many :activies, as: :activable, dependent: :destroy
 end

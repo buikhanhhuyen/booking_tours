@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :bookings
   has_many :reviews, dependent: :destroy
-  has_many :comments
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes
   has_many :rates
   has_many :activities

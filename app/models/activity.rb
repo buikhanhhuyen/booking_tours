@@ -1,4 +1,4 @@
 class Activity < ApplicationRecord
   belongs_to :users
-  belongs_to :activable, polymorphic: true, option: true
+  belongs_to :activable, polymorphic: true, optional: true
 end

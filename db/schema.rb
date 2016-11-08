@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101014955) do
+ActiveRecord::Schema.define(version: 20161104033958) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "action_type"
@@ -63,7 +63,8 @@ ActiveRecord::Schema.define(version: 20161101014955) do
     t.integer  "review_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.integer  "parent_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.index ["review_id"], name: "index_comments_on_review_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end

@@ -5,10 +5,13 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.is_admin?
       can :manage, [Category, Place, Tour]
-      can :manage, [Review, Ckeditor::Picture]
+      can [:read, :destroy], [Review, Ckeditor::Picture]
+      can :manage, Comment
     else
-      can :manage, [Review, Ckeditor::Picture], :user_id => user.id
       can :show, Place
+      can :manage, [Review, Ckeditor::Picture], :user_id => user.id
+      can :show, Review
+      can :manage, Comment, :user_id => user.id
     end
   end
 end

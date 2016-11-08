@@ -2,6 +2,8 @@ class ReviewsController < ApplicationController
   load_and_authorize_resource params_method: :review_params
 
   def show
+    @comment = Comment.new
+    @comments = @review.comments
   end
 
   def new

@@ -4,7 +4,7 @@ class Review < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likable, dependent: :destroy
   has_many :activites, as: :activable, dependent: :destroy
 
