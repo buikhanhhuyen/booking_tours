@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   root "static_pages#home"
   get "/static_pages/:page" => "static_pages#show", as: "static_pages"
   resources :places do
+    collection {post :search, to: "places#index"}
     resources :reviews, except: :index
+  end
+  resources :tours do
+    collection {post :search, to: "tours#index"}
   end
   resources :reviews do
     resources :comments
@@ -16,9 +20,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "static_pages#home"
-    resources :categories, except: :show
-    resources :tours
+    get "static_pages/:page" => "static_pages#show", as: "static_pages"
+    resources :categories do
+      resources :tours
+    end
+    resources :tours do
+        collection {post :search, to: "tours#index"}
+      end
     resources :places do
+      collection {post :search, to: "places#index"}
       resources :reviews, only: [:show, :destroy]
     end
     resources :reviews do

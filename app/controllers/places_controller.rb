@@ -2,7 +2,8 @@ class PlacesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @places = Place.all
+    @search = Place.search params[:q]
+    @places = @search.result
   end
 
   def show

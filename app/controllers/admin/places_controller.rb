@@ -2,7 +2,8 @@ class Admin::PlacesController < ApplicationController
   load_and_authorize_resource params_method: :place_params
 
   def index
-    @places = Place.all
+    @search = Place.search params[:q]
+    @places = @search.result
   end
 
   def show
@@ -29,7 +30,7 @@ class Admin::PlacesController < ApplicationController
   def update
     if @place.update_attributes place_params
       flash[:notice] = t "place.update_success"
-      redirect_to admin_place_path @place
+      redirect_to admin_places_path
     else
       flash[:alert] = t "place.update_fail"
       render :edit

@@ -8,7 +8,8 @@ class Ability
       can [:read, :destroy], [Review, Ckeditor::Picture]
       can :manage, Comment
     else
-      can :show, Place
+      can [:show, :index], Place
+      can [:show, :index, :search], Tour
       can :manage, [Review, Ckeditor::Picture], :user_id => user.id
       can :show, Review
       can :manage, Comment, :user_id => user.id

@@ -1,7 +1,7 @@
 <% provide :title, t("tour.title") %>
 <h1 class="text-center"><%= t "tour.title" %></h1><br>
 
-<%= search_form_for [:admin, @search], url: search_admin_tours_path, method: :post do |f| %>
+<%= search_form_for @search, url: search_tours_path, method: :post do |f| %>
   <%= f.condition_fields do |c| %>
     <%= render "condition_fields", f: c %>
   <% end %>
@@ -15,12 +15,6 @@
   <div class="actions"><%= f.submit t "search" %></div>
 <% end %>
 
-<div class="row">
-  <div class="col-md-6 center">
-    <%= link_to t("tour.add"), new_admin_tour_path,
-      class: "btn btn-success glyphicon glyphicon-plus" %>
-  </div>
-</div>
 <table class="table sortable table-bordered">
   <thead>
     <tr>
@@ -34,14 +28,13 @@
       <th><%= t "tour.startDate" %></th>
       <th><%= t "tour.endDate" %></th>
       <th><%= t "tour.status" %></th>
-      <th><%= t "tour.action" %></th>
     </tr>
   </thead>
   <tbody>
     <% @tours.each do |tour| %>
       <tr>
         <td><%= tour.id %></td>
-        <td><%= link_to tour.name, admin_tour_path(tour) %></td>
+        <td><%= link_to tour.name, tour_path(tour) %></td>
         <td><%= tour.startPlace %></td>
         <td><%= tour.endPlace %></td>
         <td><%= truncate(tour.description, length: 15) %></td>
@@ -50,12 +43,6 @@
         <td><%= tour.startDate.to_time.strftime("%d-%m-%Y") %></td>
         <td><%= tour.endDate.to_time.strftime("%d-%m-%Y") %></td>
         <td><%= tour.status %></td>
-        <td>
-          <%= link_to t("edit"), edit_admin_tour_path(tour),
-            class: "btn btn-primary" %>
-          <%= link_to t("delete"), [:admin, tour], method: :delete,
-            data: {confirm: t("sure")}, class: "btn btn-danger" %>
-        </td>
       </tr>
     <% end %>
   </tbody>

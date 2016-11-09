@@ -5,6 +5,10 @@ class Admin::CategoriesController < ApplicationController
     @categories = Category.all
   end
 
+  def show
+    @tour = @category.tours
+  end
+
   def new
     @category = Category.new
   end
