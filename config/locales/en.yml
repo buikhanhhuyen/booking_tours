@@ -49,6 +49,10 @@ en:
   sure: "Are you sure?"
   save: "Save"
   cancel: "Cancel"
+  search: "Search"
+  add_condition: "Add condition"
+  name_cont: "Name contains"
+  user: "User"
   category:
     title: "Category"
     id: "ID"
@@ -117,3 +121,5 @@ en:
     update_fail: "Can't update comment."
     delete_success: "Delete comment successfully."
     delete_fail: "Can't delete comment."
+  discount:
+    title: "Discount"

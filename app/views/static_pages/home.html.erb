@@ -1,1 +1,9 @@
 <% provide :title, t(".title") %>
+
+<%= search_form_for @search, url: search_tours_path, method: :post  do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, t("name_cont") %>
+    <%= f.text_field :name_cont %>
+  </div>
+  <div class="action"><%= f.submit t "search" %></div>
+<% end %>

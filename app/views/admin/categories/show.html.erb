@@ -1,0 +1,28 @@
+<% provide :title, @category.title %>
+<div class="row">
+  <aside class="col-md-4">
+    <div>
+      <label><%= t "category.name" %></label>
+      <%= @category.title %>
+    </div>
+    <div>
+      <label><%= t "category.description" %></label>
+      <%= @category.description %>
+    </div>
+  </aside>
+
+  <div class="col-md-8">
+    <div class="row">
+  <div class="col-md-6 center">
+    <%= link_to t("tour.add"), new_admin_tour_path,
+      class: "btn btn-success glyphicon glyphicon-plus" %>
+  </div>
+</div>
+    <% if @category.tours.any? %>
+      <h3><%= t "tour.title" %> (<%= @category.tours.count %>)</h3>
+        <ol class="tours">
+          <%= render "admin/tours/index" %>
+        </ol>
+    <% end %>
+  </div>
+</div>

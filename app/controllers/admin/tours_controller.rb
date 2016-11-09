@@ -2,13 +2,17 @@ class Admin::ToursController < ApplicationController
   load_and_authorize_resource params_method: :tour_params
 
   def index
-    @tours = Tour.all
+    @search = Tour.search params[:q]
+    @tours = @search.result
+    @search.build_condition if @search.conditions.empty?
+    @search.build_sort if @search.sorts.empty?
   end
 
   def show
   end
 
   def new
+    @category = Category.find_by_id params[:category_id]
     @tour = Tour.new
   end
 
@@ -23,6 +27,7 @@ class Admin::ToursController < ApplicationController
   end
 
   def edit
+    @category = Category.find_by_id params[:category_id]
   end
 
   def update
@@ -48,6 +53,6 @@ class Admin::ToursController < ApplicationController
   private
   def tour_params
     params.require(:tour).permit :name, :startPlace, :endPlace, :description,
-      :price, :startDate, :endDate
+      :price, :startDate, :endDate, :category_id
   end
 end

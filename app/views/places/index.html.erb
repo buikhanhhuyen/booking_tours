@@ -1,7 +1,7 @@
 <% provide :title, t("place.title") %>
 <h1 class="text-center"><%= t "place.title" %></h1><br>
 
-<%= search_form_for [:admin, @search], url: search_admin_places_path, method: :post  do |f| %>
+<%= search_form_for @search, url: search_places_path, method: :post  do |f| %>
   <div class="field">
     <%= f.label :name_cont, t("name_cont") %>
     <%= f.text_field :name_cont %>
@@ -9,33 +9,20 @@
   <div class="action"><%= f.submit t "search" %></div>
 <% end %>
 
-<div class="row">
-  <div class="col-md-6 center">
-    <%= link_to t("place.add"), new_admin_place_path,
-      class: "btn btn-success glyphicon glyphicon-plus" %>
-  </div>
-</div>
 <table class="table sortable table-bordered">
   <thead>
     <tr>
       <th><%= t "place.id" %></th>
       <th><%= t "place.name" %></th>
       <th><%= t "place.description" %></th>
-      <th><%= t "place.action" %></th>
     </tr>
   </thead>
   <tbody>
     <% @places.each do |place| %>
       <tr>
         <td><%= place.id %></td>
-        <td><%= link_to place.name, admin_place_path(place) %></td>
+        <td><%= link_to place.name, place_path(place) %></td>
         <td><%= place.description %></td>
-        <td>
-          <%= link_to t("edit"), edit_admin_place_path(place),
-            class: "btn btn-primary" %>
-          <%= link_to t("delete"), [:admin, place], method: :delete,
-            data: {confirm: t("sure")}, class: "btn btn-danger" %>
-        </td>
       </tr>
     <% end %>
   </tbody>
