@@ -56,7 +56,7 @@
             placeholder: "Enter price ..." %>
         </div>
         <div class="col-md-3">
-          <select>
+          <select name="currency">
             <option value="vnd"><%= t "tour.vnd" %></option>
             <option value="usd"><%= t "tour.usd" %></option>
           </select>
@@ -66,25 +66,25 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="startDate">
+    <label class="col-md-4 control-label" for="start_date">
       <%= t "tour.start_date" %>
     </label>
     <div>
       <div class="col-md-8">
-        <%= f.text_field :startDate, class: "form-control datetimepicker",
-          placeholder: "#{@tour.startDate.to_time.strftime("%d-%m-%Y")}" %>
+        <%= f.text_field :start_date, class: "form-control datetimepicker",
+          value: "#{f.object.start_date.strftime("%d-%m-%Y")}" %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="endDate">
-      <%= t "tour.end_Date" %>
+    <label class="col-md-4 control-label" for="end_date">
+      <%= t "tour.end_date" %>
     </label>
     <div>
       <div class="col-md-8">
-        <%= f.text_field :endDate, class: "form-control datetimepicker",
-          placeholder: "#{@tour.endDate.to_time.strftime("%d-%m-%Y")}" %>
+        <%= f.text_field :end_date,class: "form-control datetimepicker",
+          value: "#{f.object.end_date.strftime("%d-%m-%Y")}" %>
       </div>
     </div>
   </div>

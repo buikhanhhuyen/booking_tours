@@ -6,9 +6,10 @@ class CreateTours < ActiveRecord::Migration[5.0]
       t.string :endPlace
       t.text :description
       t.float :price
+      t.integer :currency
       t.float :rating
-      t.datetime :startDate
-      t.datetime :endDate
+      t.datetime :start_date
+      t.datetime :end_date
       t.integer :status
       t.references :place, foreign_key: true
       t.references :category, foreign_key: true

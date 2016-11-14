@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_search
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = "You don't have permissions to be here"
     redirect_to root_url
+  end
+
+  def set_search
+    @search = Tour.search params[:q]
   end
 
   protected
