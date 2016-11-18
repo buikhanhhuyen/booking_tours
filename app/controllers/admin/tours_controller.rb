@@ -17,6 +17,8 @@ class Admin::ToursController < ApplicationController
   end
 
   def create
+    @tour.category_id = params[:category_id]
+    @category = Category.find_by_id params[:category_id]
     if @tour.save
       flash[:notice] = t "tour.create_success"
       redirect_to admin_tours_path

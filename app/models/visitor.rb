@@ -1,5 +1,5 @@
 class Visitor < ApplicationRecord
-  enum :gender => [:male, :female]
+  enum :genders => [:male, :female]
 
   belongs_to :booking
 end

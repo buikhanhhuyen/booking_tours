@@ -53,3 +53,6 @@
     <%= @tour.additional_services %>
   </div>
 </div>
+
+<%= link_to t("booking.title"), new_tour_booking_path(@tour),
+  class: "btn btn-primary" %>

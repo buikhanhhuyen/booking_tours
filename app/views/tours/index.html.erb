@@ -5,7 +5,7 @@
   <%= f.condition_fields do |c| %>
     <%= render "condition_fields", f: c %>
   <% end %>
-  <p><%= link_to_add_fields t("add_condition"), f, :condition %></p>
+  <p><%= link_to_add_conditions t("add_condition"), f, :condition %></p>
   <div class="field">
     Sort:
     <%= f.sort_fields do |s| %>
@@ -41,10 +41,10 @@
         <td><%= tour.start_place %></td>
         <td><%= tour.end_place %></td>
         <td>
-          <% if tour.currency == "vnd" %>
-            <%= tour.price.round %> <%= tour.currency %>
+          <% if tour.currency.vnd? %>
+            <%= tour.price.round %> <% t "tour.vnd" %>
           <% else %>
-            <%= tour.price.round(2) %> <%= tour.currency %>
+            <%= tour.price.round(2) %> <% t "tour.usd" %>
           <% end %>
         </td>
         <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
@@ -53,7 +53,7 @@
         <td><%= tour.max_visitors %></td>
         <td><%= truncate(tour.accommodation, length: 100) %></td>
         <td><%= tour.meals %></td>
-        <td><%= tour.transport %></td>
+        <td><%= truncate(tour.transport, length: 100) %></td>
         <td><%= truncate(tour.additional_services, length: 100) %></td>
       </tr>
     <% end %>

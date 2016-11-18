@@ -7,16 +7,47 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create! username: "admin", email: "admin@email.com",
-  password: "123456", password_confirmation: "123456", is_admin: true
+  password: "123456", password_confirmation: "123456", role: :admin
 User.create! username: "user", email: "user@email.com",
-  password: "123456", password_confirmation: "123456", is_admin: false
+  password: "123456", password_confirmation: "123456"
 
 Category.create! title: "Du lich trong nuoc", description: "day la description rat la dai"
 Category.create! title: "Du lich ngoai nuoc", description: "day la description rat la dai"
 Category.create! title: "Du lich sinh thai", description: "day la description rat la dai"
 
-Place.create! name: "Da Lat", description: "Dia danh noi tieng nhat Da Lat"
-Place.create! name: "Ha Noi", description: "Dia danh noi tieng nhat Ha Noi"
-Place.create! name: "TP HCM", description: "Dia danh noi tieng nhat Ho Chi Minh"
-Place.create! name: "Thai Lan", description: "bla bla bla"
-Place.create! name: "Da Nang", description: "bla bla bla"
+Place.create! name: "London", description: "The City of London is a city and county within London. It constituted most of London from its settlement by the Romans in the 1st century AD to the Middle Ages, but the agglomeration has since grown far beyond the City's borders. The City is now only a tiny part of the metropolis of London, though it remains a notable part of central London. Administratively, it forms one of the 33 local authority districts of Greater London; however, the City of London is not a London borough, a status reserved for the other 32 districts (including London's only other city, the City of Westminster)."
+Place.create! name: "Bangkok", description: "Bangkok is the capital and most populous city of Thailand. It is known in Thai as Krung Thep Maha Nakhon. The city occupies 1,568.7 square kilometres (605.7 sq mi) in the Chao Phraya River delta in Central Thailand, and has a population of over 8 million, or 12.6 percent of the country's population. Over 14 million people (22.2 percent) live within the surrounding Bangkok Metropolitan Region, making Bangkok an extreme primate city, significantly dwarfing Thailand's other urban centres in terms of importance. There are 581 high-rise buildings in the city, ranking number 5 in the world."
+Place.create! name: "Siem Reap", description: "Siem Reap International Airport is Cambodia's busiest airport serving Siem Reap, a popular tourist destination due to nearby Angkor Wat. It is the busiest airport in Cambodia in terms of passenger traffic. The airport's new terminal was inaugurated on 28 August 2006. The Cambodian government has plans to replace the airport with a new one, 60 km from Siem Reap."
+Place.create! name: "Puerto Princesa", description: "Palawan officially the Province of Palawan, is an archipelagic province of the Philippines that is located in the Mimaropa region. It is the largest province in the country in terms of total area of jurisdiction. Its capital is the City of Puerto Princesa, but it is governed independently from the province as a highly urbanized city."
+
+Tour.create! name: "Europe Escape - 12 Days",
+  category_id: "1", start_place: "London", end_place: "London", price: "1275",
+  currency: "usd", start_date: "10/12/2016", end_date: "22/12/2016",
+  min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
+  accommodation: "11 nights' accommodation in twin rooms",
+  transport: "Modern air conditioned coach with reclining seats, TV for showing DVDs, and toilet",
+  additional_services: "
+    Free Wi-fi in all hotels
+    All taxes and fees
+    Any public transport used as part of the tour (excludes free days)
+    Free Expat Explore tour souvenir"
+
+Tour.create! name: "One Life Adventures - Philippines",
+  category_id: "1", start_place: "Manila", end_place: "Puerto Princesa",
+  price: "1007", currency: "usd", start_date: "05/12/2016", end_date: "15/12/2016",
+  min_visitors: "7", max_visitors: "15",
+  meals: "Most breakfasts + 3 lunches + 3 dinners
+    * The island hopping trip in El Nido also includes beer and rum",
+  accommodation: "1 night in Manila at a boutique hostel
+    1 night in Puerto Princesa at a beautiful new boutique hotel
+    2 nights in Port Barton in beachfront bungalows
+    1 night in beachfront tents on our Islander Experience
+    4 nights in El Nido at a boutique hostel or guesthouse",
+  transport: "All transport including taxis, domestic flights, buses, vans, and tricycles",
+  additional_services: "
+    International flights to/from the Philippines
+    Travel Insurance
+    Airport pickup if not arriving on the first day of tour
+    Visas (if required)
+    Flights back from Puerto Princesa to anywhere else in the Philippines
+    Ziplining local payment (PHP500)"

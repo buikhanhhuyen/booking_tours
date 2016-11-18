@@ -14,7 +14,7 @@
   </div>
   <div>
     <label><%= t "tour.price" %></label>
-    <% if @tour.currency == "vnd" %>
+    <% if @tour.currency.vnd? %>
       <%= @tour.price.round %> <%= @tour.currency %>
     <% else %>
       <%= @tour.price %> <%= @tour.currency %>
