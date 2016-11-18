@@ -1,6 +1,6 @@
 <%= form_for [:admin, @tour] do |f| %>
   <div class="form-group">
-    <label class="col-md-4 control-label" for="name">
+    <label class="col-md-4 control-label" for="tour_name">
       <%= t "tour.name" %>
     </label>
 
@@ -17,7 +17,7 @@
     </label>
 
     <div class="col-md-8">
-      <%= f.text_field :startPlace, class: "form-control input-md",
+      <%= f.text_field :start_place, class: "form-control input-md",
         required: true, placeholder: "Enter start place ..." %>
     </div>
   </div>
@@ -28,7 +28,7 @@
     </label>
 
     <div class="col-md-8">
-      <%= f.text_field :endPlace, class: "form-control input-md",
+      <%= f.text_field :end_place, class: "form-control input-md",
         required: true, placeholder: "Enter end place ..." %>
     </div>
   </div>
@@ -86,6 +86,26 @@
         <%= f.text_field :end_date,class: "form-control datetimepicker",
           value: "#{f.object.end_date.strftime("%d-%m-%Y")}" %>
       </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="tour_min_visitors">
+      <%= t "tour.min_visitors" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_field :min_visitors, class: "form-control input-md", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="tour_min_visitors">
+      <%= t "tour.max_visitors" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_field :max_visitors, class: "form-control input-md", required: true %>
     </div>
   </div>
 

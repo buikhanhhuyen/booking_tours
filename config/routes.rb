@@ -19,11 +19,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root "static_pages#home", as: "static_pages"
+    root "static_pages#home"
     get "static_pages/:page" => "static_pages#show"
-    resources :categories do
-      resources :tours
-    end
+    resources :categories
     resources :tours do
         collection {post :search, to: "tours#index"}
       end
