@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => "/ckeditor"
 
-  devise_for :users
+  devise_for :users, :controllers => {:sessions => "my_devise/sessions"}
   root "static_pages#home"
   get "/static_pages/:page" => "static_pages#show", as: "static_pages"
   resources :places do
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root "static_pages#home"
-    get "static_pages/:page" => "static_pages#show", as: "static_pages"
+    root "static_pages#home", as: "static_pages"
+    get "static_pages/:page" => "static_pages#show"
     resources :categories do
       resources :tours
     end
