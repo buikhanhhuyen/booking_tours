@@ -1,0 +1,20 @@
+<% provide :title, t("booking.title") %>
+<h1><%= t "booking.title" %></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>My Trip</h1>
+    <div>
+      <h4>Tour: <%= @tour.name %></h4>
+      <h4>Starts in <%= @tour.start_place %> on <%= @tour.start_date %></h4>
+      <h4>Ends in <%= @tour.end_place %> on <%= @tour.end_date %></h4>
+    </div>
+    <%= form_for @booking do |f| %>
+      <%= render "shared/error_messages", object: @booking %>
+
+      <%#= render "booking_fields", f: f %>
+      <%= f.fields_for :visitors do |builder| %>
+        <%= render "visitor_fields", f: builder %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

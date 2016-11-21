@@ -6,10 +6,10 @@ class Tour < ApplicationRecord
   belongs_to :place
 
   has_many :bookings, dependent: :destroy
-  has_many :reviews, dependent: :destroy
-  has_many :rates, dependent: :destroy
-  has_many :reviews, dependent: :destroy
 
-  validates :end_date, presence: true
-  validates :start_date, presence: true
+  validates :end_date, presence: true, date: { after: :start_date,
+    message: "must after Start date" }
+  validates :start_date, presence: true,
+    date: { after_or_equal_to: Proc.new { Date.today },
+    message: "must be at least #{(Date.today + 1).to_s}" }, on: :create
 end

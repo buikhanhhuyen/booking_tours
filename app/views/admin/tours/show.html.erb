@@ -13,10 +13,6 @@
     <%= @tour.end_place %>
   </div>
   <div>
-    <label><%= t "tour.description" %></label>
-    <%= @tour.description %>
-  </div>
-  <div>
     <label><%= t "tour.price" %></label>
     <% if @tour.currency == "vnd" %>
       <%= @tour.price.round %> <%= @tour.currency %>
@@ -40,5 +36,20 @@
     <label><%= t "tour.max_visitors" %></label>
     <%= @tour.max_visitors %>
   </div>
+  <div>
+    <label><%= t "tour.accommodation" %></label>
+    <%= @tour.accommodation %>
+  </div>
+  <div>
+    <label><%= t "tour.meals" %></label>
+    <%= @tour.meals %>
+  </div>
+  <div>
+    <label><%= t "tour.transport" %></label>
+    <%= @tour.transport %>
+  </div>
+  <div>
+    <label><%= t "tour.services" %></label>
+    <%= @tour.additional_services %>
+  </div>
 </div>
-

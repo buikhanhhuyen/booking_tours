@@ -36,7 +36,6 @@ class Admin::ToursController < ApplicationController
       flash[:notice] = t "tour.update_success"
       redirect_to admin_tours_path
     else
-      byebug
       flash[:alert] = t "tour.update_fail"
       render :edit
     end
@@ -54,7 +53,8 @@ class Admin::ToursController < ApplicationController
 
   private
   def tour_params
-    params.require(:tour).permit :name, :start_place, :end_place, :description,
-      :price, :currency, :start_date, :end_date, :category_id
+    params.require(:tour).permit :name, :start_place, :end_place, :price,
+      :currency, :start_date, :end_date, :min_visitors, :max_visitors,
+      :accommodation, :meals, :transport, :additional_services, :category_id
   end
 end
