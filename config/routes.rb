@@ -11,19 +11,19 @@ Rails.application.routes.draw do
   resources :tours do
     collection {post :search, to: "tours#index"}
   end
+  resources :bookings, except: [:edit, :update]
   resources :reviews do
     resources :comments
   end
   resources :comments do
     resources :comments
   end
+  resources :users
 
   namespace :admin do
     root "static_pages#home", as: "static_pages"
     get "static_pages/:page" => "static_pages#show"
-    resources :categories do
-      resources :tours
-    end
+    resources :categories
     resources :tours do
         collection {post :search, to: "tours#index"}
       end
@@ -33,6 +33,10 @@ Rails.application.routes.draw do
     end
     resources :reviews do
       resources :comments, only: :destroy
+    end
+    resources :bookings, except: [:new, :create, :destroy]
+    resources :users do
+      collection {post :search, to: "users#index"}
     end
   end
 end

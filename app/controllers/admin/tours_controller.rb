@@ -12,7 +12,7 @@ class Admin::ToursController < ApplicationController
   end
 
   def new
-    @category = Category.find_by_id params[:category_id]
+    @categories = Category.all
     @tour = Tour.new
   end
 
@@ -22,12 +22,13 @@ class Admin::ToursController < ApplicationController
       redirect_to admin_tours_path
     else
       flash[:alert] = t "tour.create_fail"
-      redirect_to admin_tours_path
+      @categories = Category.all
+      render :new
     end
   end
 
   def edit
-    @category = Category.find_by_id params[:category_id]
+    @categories = Category.all
   end
 
   def update
@@ -53,7 +54,7 @@ class Admin::ToursController < ApplicationController
 
   private
   def tour_params
-    params.require(:tour).permit :name, :startPlace, :endPlace, :description,
+    params.require(:tour).permit :name, :start_place, :end_place, :description,
       :price, :currency, :start_date, :end_date, :category_id
   end
 end

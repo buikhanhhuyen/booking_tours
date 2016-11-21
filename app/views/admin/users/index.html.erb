@@ -1,0 +1,32 @@
+<% provide :title, t("user.title") %>
+<h1><% t("user.title") %></h1>
+
+<%= search_form_for [:admin, @search], url: search_admin_users_path, method: :post  do |f| %>
+  <div class="field">
+    <%= f.label :username_cont, t("name_cont") %>
+    <%= f.text_field :username_cont %>
+  </div>
+  <div class="action"><%= f.submit t "search" %></div>
+<% end %>
+
+
+<table class="table sortable table-bordered">
+  <thead>
+    <tr>
+      <th><%= t "user.id" %></th>
+      <th><%= t "user.username" %></th>
+      <th><%= t "category.action" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.username, user %></td>
+        <td>
+          <%= link_to t("delete"), [:admin, user], method: :delete,
+            data: {confirm: t("sure")}, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>

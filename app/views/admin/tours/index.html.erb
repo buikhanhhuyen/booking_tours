@@ -26,14 +26,14 @@
     <tr>
       <th><%= t "tour.id" %></th>
       <th><%= t "tour.name" %></th>
-      <th><%= t "tour.start_Place" %></th>
-      <th><%= t "tour.end_Place" %></th>
+      <th><%= t "tour.start_place" %></th>
+      <th><%= t "tour.end_place" %></th>
       <th><%= t "tour.description" %></th>
       <th><%= t "tour.price" %></th>
-      <th><%= t "tour.rating" %></th>
       <th><%= t "tour.start_date" %></th>
       <th><%= t "tour.end_date" %></th>
-      <th><%= t "tour.status" %></th>
+      <th><%= t "tour.min_visitors" %></th>
+      <th><%= t "tour.max_visitors" %></th>
       <th><%= t "tour.action" %></th>
     </tr>
   </thead>
@@ -42,8 +42,8 @@
       <tr>
         <td><%= tour.id %></td>
         <td><%= link_to tour.name, admin_tour_path(tour) %></td>
-        <td><%= tour.startPlace %></td>
-        <td><%= tour.endPlace %></td>
+        <td><%= tour.start_place %></td>
+        <td><%= tour.end_place %></td>
         <td><%= truncate(tour.description, length: 15) %></td>
         <td>
           <% if tour.currency == "vnd" %>
@@ -52,10 +52,11 @@
             <%= tour.price.round(2) %> <%= tour.currency %>
           <% end %>
         </td>
-        <td><%= tour.rating %></td>
         <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
         <td><%= tour.end_date.strftime("%d-%m-%Y") %></td>
-        <td><%= tour.status %></td>
+        <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
+        <td><%= tour.min_visitors %></td>
+        <td><%= tour.max_visitors %></td>
         <td>
           <%= link_to t("edit"), edit_admin_tour_path(tour),
             class: "btn btn-primary" %>
