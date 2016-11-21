@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_filter :set_search
+  before_action :set_search
 
   def show
     if valid_page?

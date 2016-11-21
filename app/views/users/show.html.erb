@@ -1,0 +1,4 @@
+<h4><%= @user.username %></h4>
+<h4><%= @user.email %></h4>
+<%= link_to t("delete"), @user, method: :delete, data: {confirm: t("sure")},
+  class: "btn btn-danger" if @user == current_user %>

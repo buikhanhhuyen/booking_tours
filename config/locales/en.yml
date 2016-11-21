@@ -29,6 +29,7 @@ en:
     forget_password: "Forget the password ?"
     remember_me: " Remember me"
   edit_user:
+    title: "Edit profile"
     password: "(leave blank if you don't want to change it)"
     current_password: "(we need your current password to confirm your changes)"
     update: "Update"
@@ -53,7 +54,6 @@ en:
   search: "Search"
   add_condition: "Add condition"
   name_cont: "Name contains"
-  user: "User"
   category:
     title: "Category"
     id: "ID"
@@ -125,3 +125,14 @@ en:
     delete_fail: "Can't delete comment."
   discount:
     title: "Discount"
+  booking:
+    title: "Book tour"
+    create_success: "Booking tour successfully."
+    create_fail: "Can't book tour."
+    delete_success: "Cancel booking successfully."
+    delete_fail: "Can't cancel booking tour."
+  user:
+    title: "Users"
+    id: "ID"
+    delete_success: "Delete user successfully."
+    delete_fail: "Can't delete user."
