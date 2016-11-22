@@ -17,6 +17,7 @@ gem "bootstrap3-datetimepicker-rails", "~> 4.17.42"
 gem "ckeditor", github: "galetahub/ckeditor"
 gem "paperclip"
 gem "ransack"
+gem "date_validator"
 
 group :development, :test do
   gem "byebug", platform: :mri

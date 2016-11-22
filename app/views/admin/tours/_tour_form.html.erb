@@ -44,17 +44,6 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_description">
-      <%= t "tour.description" %>
-    </label>
-
-    <div class="col-md-8">
-      <%= f.text_area :description, class: "form-control", required: true,
-        placeholder: "Enter description ..." %>
-    </div>
-  </div>
-
-  <div class="form-group">
     <label class="col-md-4 control-label" for="price">
       <%= t "tour.price" %>
     </label>
@@ -99,7 +88,8 @@
     </label>
 
     <div class="col-md-8">
-      <%= f.text_field :min_visitors, class: "form-control input-md", required: true %>
+      <%= f.text_field :min_visitors, class: "form-control input-md",
+        required: true %>
     </div>
   </div>
 
@@ -109,7 +99,52 @@
     </label>
 
     <div class="col-md-8">
-      <%= f.text_field :max_visitors, class: "form-control input-md", required: true %>
+      <%= f.text_field :max_visitors, class: "form-control input-md",
+      required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="tour_accommodation">
+      <%= t "tour.tour_accommodation" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_area :accommodation, class: "form-control", required: true,
+        placeholder: "Enter accommodation ..." %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="tour_meals">
+      <%= t "tour.tour_meals" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_area :meals, class: "form-control", required: true,
+        placeholder: "Enter meals ..." %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="tour_transport">
+      <%= t "tour.tour_transport" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_area :transport, class: "form-control", required: true,
+        placeholder: "Enter transport ..." %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="tour_additional_services">
+      <%= t "tour.tour_services" %>
+    </label>
+
+    <div class="col-md-8">
+      <%= f.text_area :additional_services, class: "form-control",
+        required: true, placeholder: "Enter additional services ..." %>
     </div>
   </div>
 

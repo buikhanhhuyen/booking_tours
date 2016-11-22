@@ -21,6 +21,7 @@
       class: "btn btn-success glyphicon glyphicon-plus" %>
   </div>
 </div>
+
 <table class="table sortable table-bordered">
   <thead>
     <tr>
@@ -28,12 +29,15 @@
       <th><%= t "tour.name" %></th>
       <th><%= t "tour.start_place" %></th>
       <th><%= t "tour.end_place" %></th>
-      <th><%= t "tour.description" %></th>
       <th><%= t "tour.price" %></th>
       <th><%= t "tour.start_date" %></th>
       <th><%= t "tour.end_date" %></th>
       <th><%= t "tour.min_visitors" %></th>
       <th><%= t "tour.max_visitors" %></th>
+      <th><%= t "tour.accommodation" %></th>
+      <th><%= t "tour.meals" %></th>
+      <th><%= t "tour.transport" %></th>
+      <th><%= t "tour.services" %></th>
       <th><%= t "tour.action" %></th>
     </tr>
   </thead>
@@ -44,7 +48,6 @@
         <td><%= link_to tour.name, admin_tour_path(tour) %></td>
         <td><%= tour.start_place %></td>
         <td><%= tour.end_place %></td>
-        <td><%= truncate(tour.description, length: 15) %></td>
         <td>
           <% if tour.currency == "vnd" %>
             <%= tour.price.round %> <%= tour.currency %>
@@ -54,9 +57,12 @@
         </td>
         <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
         <td><%= tour.end_date.strftime("%d-%m-%Y") %></td>
-        <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
         <td><%= tour.min_visitors %></td>
         <td><%= tour.max_visitors %></td>
+        <td><%= truncate(tour.accommodation, length: 100) %></td>
+        <td><%= tour.meals %></td>
+        <td><%= tour.transport %></td>
+        <td><%= truncate(tour.additional_services, length: 100) %></td>
         <td>
           <%= link_to t("edit"), edit_admin_tour_path(tour),
             class: "btn btn-primary" %>

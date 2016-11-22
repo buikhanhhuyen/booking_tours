@@ -1,0 +1,9 @@
+<p>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email %>
+  <%= f.label :birthday, "Birthday" %>
+  <%= f.text_field :birthday %>
+  <%= f.select :gender, Visitor.genders %>
+</p>

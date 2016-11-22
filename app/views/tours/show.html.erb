@@ -1,40 +1,55 @@
 <% provide :title, @tour.name %>
-<div class="row col-md-4">
+<div class="row">
   <div>
     <label><%= t "tour.name" %></label>
     <%= @tour.name %>
   </div>
   <div>
     <label><%= t "tour.start_place" %></label>
-    <%= @tour.startPlace %>
+    <%= @tour.start_place %>
   </div>
   <div>
     <label><%= t "tour.end_place" %></label>
-    <%= @tour.endPlace %>
-  </div>
-  <div>
-    <label><%= t "tour.description" %></label>
-    <%= @tour.description %>
+    <%= @tour.end_place %>
   </div>
   <div>
     <label><%= t "tour.price" %></label>
-    <%= @tour.price %>
-  </div>
-  <div>
-    <label><%= t "tour.rating" %></label>
-    <%= @tour.rating %>
+    <% if @tour.currency == "vnd" %>
+      <%= @tour.price.round %> <%= @tour.currency %>
+    <% else %>
+      <%= @tour.price %> <%= @tour.currency %>
+    <% end %>
   </div>
   <div>
     <label><%= t "tour.start_date" %></label>
-    <%= @tour.start_date.to_time.strftime("%d-%m-%Y") %>
+    <%= @tour.start_date.strftime("%d-%m-%Y") %>
   </div>
   <div>
     <label><%= t "tour.end_date" %></label>
-    <%= @tour.end_date.to_time.strftime("%d-%m-%Y") %>
+    <%= @tour.end_date.strftime("%d-%m-%Y") %>
   </div>
   <div>
-    <label><%= t "tour.status" %></label>
-    <%= @tour.status %>
+    <label><%= t "tour.min_visitors" %></label>
+    <%= @tour.min_visitors %>
+  </div>
+  <div>
+    <label><%= t "tour.max_visitors" %></label>
+    <%= @tour.max_visitors %>
+  </div>
+  <div>
+    <label><%= t "tour.accommodation" %></label>
+    <%= @tour.accommodation %>
+  </div>
+  <div>
+    <label><%= t "tour.meals" %></label>
+    <%= @tour.meals %>
+  </div>
+  <div>
+    <label><%= t "tour.transport" %></label>
+    <%= @tour.transport %>
+  </div>
+  <div>
+    <label><%= t "tour.services" %></label>
+    <%= @tour.additional_services %>
   </div>
 </div>
-
