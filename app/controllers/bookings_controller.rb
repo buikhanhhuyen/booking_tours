@@ -3,24 +3,30 @@ class BookingsController < ApplicationController
   before_action :check_booking, only: :destroy
 
   def index
+    @bookings = current_user.bookings.all
+    @bookings.each do |booking|
+      booking.total_price = (booking.tour.price)*(booking.visitors.count)
+    end
   end
 
   def show
+    @visitors = @booking.visitors
+    @booking.total_price = (@booking.tour.price)*(@booking.visitors.count)
   end
 
   def new
     @tour = Tour.find_by_id params[:tour_id]
     @booking = Booking.new
+    @booking.visitors.build
   end
 
   def create
     @booking = current_user.bookings.build booking_params
-    @booking.user = current_user
-    @booking.tour_id = params[tour_id]
+    @booking.tour_id = params[:tour_id]
     @tour = Tour.find_by_id params[:tour_id]
     if @booking.save
       flash[:notice] = t "booking.create_success"
-      redirect booking_path @booking
+      redirect_to tour_booking_path(@tour, @booking)
     else
       flash[:alert] = t "booking.create_fail"
       render :new
@@ -40,8 +46,8 @@ class BookingsController < ApplicationController
 
   private
   def booking_params
-    params.require(:booking).permit :total_price, :user_id, :tour_id,
-      visitors_attributes: [:id, :name, :email, :birthday, :sex, :address, :phone_number]
+    params.require(:booking).permit visitors_attributes: [:id, :name, :email,
+      :birthday, :gender, :address, :phone_number, :_destroy]
   end
 
   def check_booking

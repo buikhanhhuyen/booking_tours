@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   end
   resources :tours do
     collection {post :search, to: "tours#index"}
+    resources :bookings, except: [:edit, :update, :index]
   end
-  resources :bookings, except: [:edit, :update]
+  resources :bookings, only: :index
   resources :reviews do
     resources :comments
   end
@@ -25,7 +26,8 @@ Rails.application.routes.draw do
     get "static_pages/:page" => "static_pages#show"
     resources :categories
     resources :tours do
-        collection {post :search, to: "tours#index"}
+      collection {post :search, to: "tours#index"}
+      resources :bookings, except: [:new, :create, :destroy]
       end
     resources :places do
       collection {post :search, to: "places#index"}
@@ -34,7 +36,6 @@ Rails.application.routes.draw do
     resources :reviews do
       resources :comments, only: :destroy
     end
-    resources :bookings, except: [:new, :create, :destroy]
     resources :users do
       collection {post :search, to: "users#index"}
     end
