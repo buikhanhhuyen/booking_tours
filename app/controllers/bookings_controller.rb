@@ -4,14 +4,10 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = current_user.bookings.all
-    @bookings.each do |booking|
-      booking.total_price = (booking.tour.price)*(booking.visitors.count)
-    end
   end
 
   def show
     @visitors = @booking.visitors
-    @booking.total_price = (@booking.tour.price)*(@booking.visitors.count)
   end
 
   def new
@@ -25,6 +21,8 @@ class BookingsController < ApplicationController
     @booking.tour_id = params[:tour_id]
     @tour = Tour.find_by_id params[:tour_id]
     if @booking.save
+      total_price = (@booking.tour.price)*(@booking.visitors.count)
+      @booking.update_attributes total_price: total_price
       flash[:notice] = t "booking.create_success"
       redirect_to tour_booking_path(@tour, @booking)
     else

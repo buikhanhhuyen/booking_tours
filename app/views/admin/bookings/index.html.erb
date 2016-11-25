@@ -1,0 +1,48 @@
+<% provide :title, t("booking.all") %>
+<h1 class="text-center"><%= t "booking.all" %></h1>
+
+<%= search_form_for [:admin, @search], url: search_admin_bookings_path, method: :post do |f| %>
+  <%= f.condition_fields do |c| %>
+    <%= render "condition_fields", f: c %>
+  <% end %>
+  <p><%= link_to_add_conditions t("add_condition"), f, :condition %></p>
+  <div class="field">
+    Sort:
+    <%= f.sort_fields do |s| %>
+      <%= s.sort_select %>
+    <% end %>
+  </div>
+  <div class="actions"><%= f.submit t "search" %></div>
+<% end %>
+
+<table class="table sortable table-bordered">
+  <thead>
+    <tr>
+      <th><%= t "booking.id" %></th>
+      <th><%= t "booking.status" %></th>
+      <th><%= t "tour.name" %></th>
+      <th><%= t "tour.start_date" %></th>
+      <th><%= t "tour.end_date" %></th>
+      <th><%= t "visitor.number" %></th>
+      <th><%= t "booking.total_price" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= link_to booking.id, admin_tour_booking_path(booking.tour, booking) %></td>
+        <td><%= booking.status %></td>
+        <td><%= booking.tour.name %></td>
+        <td><%= booking.tour.start_date.strftime("%d-%m-%Y") %></td>
+        <td><%= booking.tour.end_date.strftime("%d-%m-%Y") %></td>
+        <td><%= booking.visitors.count %></td>
+        <td>
+          <% if booking.tour.vnd? %>
+            <%= booking.total_price.round %> <%= t "tour.vnd" %>
+          <% else %>
+            <%= booking.total_price %> <%= t "tour.usd" %>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
