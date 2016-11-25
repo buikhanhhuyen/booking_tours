@@ -22,7 +22,7 @@
           <td><%= booking.tour.start_date.strftime("%d-%m-%Y") %></td>
           <td><%= booking.tour.end_date.strftime("%d-%m-%Y") %></td>
           <td>
-            <% if booking.tour.currency == "vnd" %>
+            <% if booking.tour.vnd? %>
               <%= booking.tour.price.round %> <% t "tour.vnd" %>
             <% else %>
               <%= booking.tour.price.round(2) %> <% t "tour.usd" %>

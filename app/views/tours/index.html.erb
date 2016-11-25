@@ -41,7 +41,7 @@
         <td><%= tour.start_place %></td>
         <td><%= tour.end_place %></td>
         <td>
-          <% if tour.currency.vnd? %>
+          <% if tour.vnd? %>
             <%= tour.price.round %> <% t "tour.vnd" %>
           <% else %>
             <%= tour.price.round(2) %> <% t "tour.usd" %>

@@ -16,6 +16,6 @@ class StaticPagesController < ApplicationController
   end
 
   def set_search
-    @search=Tour.search(params[:q])
+    @search = Tour.search params[:q]
   end
 end
