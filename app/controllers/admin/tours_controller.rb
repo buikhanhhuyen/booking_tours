@@ -57,6 +57,7 @@ class Admin::ToursController < ApplicationController
   def tour_params
     params.require(:tour).permit :name, :start_place, :end_place, :price,
       :currency, :start_date, :end_date, :min_visitors, :max_visitors,
-      :accommodation, :meals, :transport, :additional_services, :category_id
+      :accommodation, :meals, :transport, :additional_services, :category_id,
+      :discount_id
   end
 end

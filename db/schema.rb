@@ -89,12 +89,8 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "booking_id"
-    t.integer  "tour_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["booking_id"], name: "index_discounts_on_booking_id"
-    t.index ["tour_id"], name: "index_discounts_on_tour_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -131,9 +127,11 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.string   "additional_services"
     t.integer  "place_id"
     t.integer  "category_id"
+    t.integer  "discount_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["category_id"], name: "index_tours_on_category_id"
+    t.index ["discount_id"], name: "index_tours_on_discount_id"
     t.index ["place_id"], name: "index_tours_on_place_id"
   end
 

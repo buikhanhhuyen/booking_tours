@@ -1,0 +1,50 @@
+<%= form_for [:admin, @discount] do |f| %>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="name">
+      <%= t "discount.name" %>
+    </label>
+    <div class="col-md-8">
+      <%= f.text_field :name, class: "form-control input-md", required: true,
+        placeholder: "Enter discount name..." %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="percent">
+      <%= t "discount.percent" %>
+    </label>
+    <div class="col-md-8">
+      <%= f.text_field :percent, class: "form-control input-md", required: true,
+        placeholder: "Enter discount percent..." %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="description">
+      <%= t "discount.description" %>
+    </label>
+    <div class="col-md-8">
+      <%= f.text_area :description, class: "form-control", required: true,
+        placeholder: "Enter discount description..." %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="start_date">
+      <%= t "tour.start_date" %>
+    </label>
+    <div class="col-md-8">
+      <%= f.text_field :start_date, class: "form-control datetimepicker" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="end_date">
+      <%= t "tour.end_date" %>
+    </label>
+    <div class="col-md-8">
+      <%= f.text_field :end_date, class: "form-control datetimepicker" %>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit t("save"), class: "btn btn-primary" %>
+    <%= link_to t("cancel"), admin_discounts_path, class: "btn btn-primary" %>
+  </div>
+<% end %>

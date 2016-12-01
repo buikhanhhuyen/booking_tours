@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :users
+  resources :discounts, only: [:show, :index]
 
   namespace :admin do
     root "static_pages#home", as: "static_pages"
@@ -41,6 +42,9 @@ Rails.application.routes.draw do
     end
     resources :users do
       collection {post :search, to: "users#index"}
+    end
+    resources :discounts do
+      collection {post :search, to: "discounts#index"}
     end
   end
 end
