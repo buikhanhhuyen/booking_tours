@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @search = User.search params[:q]
+    @search = User.where.not(role: 0).search params[:q]
     @users = @search.result
   end
 

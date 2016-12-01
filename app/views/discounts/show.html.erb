@@ -1,0 +1,17 @@
+<% provide :title, @discount.name %>
+<div class="row">
+  <aside class="col-md-4">
+    <div>
+      <label><%= t "discount.name" %></label>
+      <%= @discount.name %>
+    </div>
+    <div>
+      <label><%= t "discount.percent" %></label>
+      <%= @discount.percent %>
+    </div>
+    <div>
+      <label><%= t "discount.description" %></label>
+      <%= @discount.description %>
+    </div>
+  </aside>
+</div>

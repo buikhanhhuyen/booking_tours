@@ -1,0 +1,23 @@
+<% provide :title, t("discount.title") %>
+<h1 class="text-center"><%= t "discount.title" %></h1><br>
+
+<table class="table sortable table-bordered">
+  <thead>
+    <tr>
+      <th><%= t "discount.id" %></th>
+      <th><%= t "discount.name" %></th>
+      <th><%= t"discount.percent" %></th>
+      <th><%= t "place.description" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @discounts.each do |discount| %>
+      <tr>
+        <td><%= discount.id %></td>
+        <td><%= link_to discount.name, admin_discount_path(discount) %></td>
+        <td><%= discount.percent %> %</td>
+        <td><%= discount.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

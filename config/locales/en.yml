@@ -155,3 +155,17 @@ en:
     id: "ID"
     delete_success: "Delete user successfully."
     delete_fail: "Can't delete user."
+  discount:
+    title: "Discount"
+    id: "ID"
+    name: "Name"
+    percent: "Percent"
+    description: "Description"
+    add: "Add discount"
+    create_success: "Create discount successfully."
+    create_fail: "Can't create discount."
+    update_success: "Update discount successfully."
+    update_fail: "Can't update discount."
+    delete_success: "Delete discount successfully."
+    delete_fail: "Can't delete discount."
+

@@ -16,6 +16,7 @@ class CreateTours < ActiveRecord::Migration[5.0]
       t.string :additional_services
       t.references :place, foreign_key: true
       t.references :category, foreign_key: true
+      t.references :discount, foreign_key: true
 
       t.timestamps
     end
