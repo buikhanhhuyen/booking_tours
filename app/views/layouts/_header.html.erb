@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-inverse" role="navigation">
+<nav class="navbar navbar-default navbar-inverse hide" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="container">
@@ -45,3 +45,62 @@
     </div>
   </div><!-- /.container-fluid -->
 </nav>
+
+<!-- header-starts -->
+<div class="page-header">
+  <div class="container">
+    <div class="page-header-info">
+      <!-- start h_menu4 -->
+        <div class="h_menu4">
+        <a class="toggleMenu" href="">Menu</a>
+        <ul class="nav p-nav">
+          <li class="active">
+            <%= link_to root_path do %>
+              HOME
+            <% end %>
+          </li>
+          <li><a>Categories</a>
+            <ul>
+              <% @categories.each do |category| %>
+                <li>
+                  <%= link_to category.title, category %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li><%= link_to "Places", places_path %>
+            <ul>
+              <% @places.each do |place| %>
+                <li><%= link_to place.name, place %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li><a href="destination.html">Hot deal</a>
+          </li>
+          <li><%= link_to t("static_pages.contact.contact_title"),
+              static_pages_path(:contact) %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to current_user.username, user_path(current_user) %></a>
+              <ul>
+                <li>
+                  <%= link_to t("static_pages.header.edit"),
+                    edit_user_registration_path %>
+                </li>
+                <li>
+                  <%= link_to t("static_pages.header.logout"),
+                    destroy_user_session_path, method: :delete %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to t("static_pages.header.sign_up"),
+              new_user_registration_path %></li>
+            <li><%= link_to t("login.title"), new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      <!-- end h_menu4 -->
+    </div>
+  </div>
+</div>
+<!-- header-ends -->

@@ -1,5 +1,5 @@
 class Booking < ApplicationRecord
-  enum :status => [:uncheck, :checked, :rejected]
+  enum :status => [:unpaid, :paid]
 
   belongs_to :user
   belongs_to :tour

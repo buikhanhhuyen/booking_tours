@@ -10,6 +10,7 @@ class CreateTours < ActiveRecord::Migration[5.0]
       t.datetime :end_date
       t.integer :min_visitors
       t.integer :max_visitors
+      t.integer :status, default: 0
       t.string :accommodation
       t.string :meals
       t.string :transport

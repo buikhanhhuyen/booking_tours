@@ -1,5 +1,6 @@
 class Tour < ApplicationRecord
   enum :currency => [:vnd, :usd]
+  enum :status => [:ongoing, :happened, :expried]
 
   belongs_to :category
   belongs_to :discount

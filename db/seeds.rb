@@ -22,7 +22,7 @@ Place.create! name: "Puerto Princesa", description: "Palawan officially the Prov
 
 Tour.create! name: "Europe Escape - 12 Days",
   category_id: "1", start_place: "London", end_place: "London", price: "1275",
-  currency: "usd", start_date: "10/12/2016", end_date: "22/12/2016",
+  currency: "usd", start_date: "22/12/2016", end_date: "03/01/2017",
   min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
   accommodation: "11 nights' accommodation in twin rooms",
   transport: "Modern air conditioned coach with reclining seats, TV for showing DVDs, and toilet",
@@ -34,7 +34,7 @@ Tour.create! name: "Europe Escape - 12 Days",
 
 Tour.create! name: "One Life Adventures - Philippines",
   category_id: "1", start_place: "Manila", end_place: "Puerto Princesa",
-  price: "1007", currency: "usd", start_date: "05/12/2016", end_date: "15/12/2016",
+  price: "1007", currency: "usd", start_date: "10/12/2016", end_date: "15/12/2016",
   min_visitors: "7", max_visitors: "15",
   meals: "Most breakfasts + 3 lunches + 3 dinners
     * The island hopping trip in El Nido also includes beer and rum",

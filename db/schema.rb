@@ -85,10 +85,11 @@ ActiveRecord::Schema.define(version: 20161104033958) do
 
   create_table "discounts", force: :cascade do |t|
     t.string   "name"
-    t.float    "percent"
+    t.integer  "percent"
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer  "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.datetime "end_date"
     t.integer  "min_visitors"
     t.integer  "max_visitors"
+    t.integer  "status"
     t.string   "accommodation"
     t.string   "meals"
     t.string   "transport"
