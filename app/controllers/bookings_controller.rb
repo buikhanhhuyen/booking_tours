@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
     @booking.tour_id = params[:tour_id]
     @tour = Tour.find_by_id params[:tour_id]
     if @booking.save
-      total_price = (@booking.tour.price)*(@booking.visitors.count)
+      total_price = (@booking.tour.price)*(100 - @booking.tour.discount.percent)*(@booking.visitors.count)/100
       @booking.update_attributes total_price: total_price
       flash[:notice] = t "booking.create_success"
       redirect_to tour_booking_path(@tour, @booking)

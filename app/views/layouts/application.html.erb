@@ -8,23 +8,29 @@
       "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "application",
       "data-turbolinks-track": "reload" %>
-
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-      rel="stylesheet">
   </head>
 
   <body>
-    <header>
-      <%= render "layouts/header" %>
-    </header>
-    <div class="container">
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
+    <% if user_signed_in? && current_user.admin? %>
+      giao dien admin
+    <% else %>
+      <% if current_page?(root_path) %>
+        <%= render "static_pages/home_page" %>
+      <% else %>
+        <header>
+          <%= render "layouts/header" %>
+        </header>
+        <div class="container cnt">
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+        </div>
+        <%= render "layouts/footer" %>
       <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-      <%= yield %>
-    </div>
+    <% end %>
   </body>
 </html>

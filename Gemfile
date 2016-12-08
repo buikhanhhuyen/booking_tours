@@ -18,6 +18,7 @@ gem "ckeditor", github: "galetahub/ckeditor"
 gem "paperclip"
 gem "ransack"
 gem "date_validator"
+gem 'font-awesome-sass', '~> 4.7.0'
 
 group :development, :test do
   gem "byebug", platform: :mri

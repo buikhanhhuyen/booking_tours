@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :discounts, only: [:show, :index]
+  resources :categories, only: [:show, :index]
 
   namespace :admin do
     root "static_pages#home", as: "static_pages"

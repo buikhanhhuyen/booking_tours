@@ -1,0 +1,44 @@
+<table class="table sortable table-bordered">
+  <thead>
+    <tr>
+      <th><%= t "tour.id" %></th>
+      <th><%= t "tour.name" %></th>
+      <th><%= t "tour.start_place" %></th>
+      <th><%= t "tour.end_place" %></th>
+      <th><%= t "tour.price" %></th>
+      <th><%= t "tour.start_date" %></th>
+      <th><%= t "tour.end_date" %></th>
+      <th><%= t "tour.min_visitors" %></th>
+      <th><%= t "tour.max_visitors" %></th>
+      <th><%= t "tour.accommodation" %></th>
+      <th><%= t "tour.meals" %></th>
+      <th><%= t "tour.transport" %></th>
+      <th><%= t "tour.services" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tours.each do |tour| %>
+      <tr>
+        <td><%= tour.id %></td>
+        <td><%= link_to tour.name, tour_path(tour) %></td>
+        <td><%= tour.start_place %></td>
+        <td><%= tour.end_place %></td>
+        <td>
+          <% if tour.vnd? %>
+            <%= tour.price.round %> <% t "tour.vnd" %>
+          <% else %>
+            <%= tour.price.round(2) %> <% t "tour.usd" %>
+          <% end %>
+        </td>
+        <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
+        <td><%= tour.end_date.strftime("%d-%m-%Y") %></td>
+        <td><%= tour.min_visitors %></td>
+        <td><%= tour.max_visitors %></td>
+        <td><%= truncate(tour.accommodation, length: 100) %></td>
+        <td><%= tour.meals %></td>
+        <td><%= truncate(tour.transport, length: 100) %></td>
+        <td><%= truncate(tour.additional_services, length: 100) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
