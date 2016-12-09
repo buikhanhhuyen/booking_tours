@@ -28,5 +28,9 @@
       <%= @booking.total_price %> <%= t "tour.usd" %>
     <% end %>
   </div>
+  <%= link_to t("edit"), edit_admin_booking_path(@booking),
+    class: "btn btn-primary" %>
+  <%= link_to t("delete"), [:admin, @booking], method: :delete,
+    data: {confirm: t("sure")}, class: "btn btn-danger" %>
   <%= link_to t("booking.all"), admin_bookings_path, class: "btn btn-primary" %>
 </div>

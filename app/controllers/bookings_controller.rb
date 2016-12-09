@@ -21,7 +21,11 @@ class BookingsController < ApplicationController
     @booking.tour_id = params[:tour_id]
     @tour = Tour.find_by_id params[:tour_id]
     if @booking.save
-      total_price = (@booking.tour.price)*(100 - @booking.tour.discount.percent)*(@booking.visitors.count)/100
+      if @tour.discount
+        total_price = (@tour.price)*(100 - @tour.discount.percent)*(@booking.visitors.count)/100
+      else
+        total_price = (@tour.price)*(@booking.visitors.count)
+      end
       @booking.update_attributes total_price: total_price
       flash[:notice] = t "booking.create_success"
       redirect_to tour_booking_path(@tour, @booking)
@@ -29,17 +33,6 @@ class BookingsController < ApplicationController
       flash[:alert] = t "booking.create_fail"
       render :new
     end
-  end
-
-  def destroy
-    @booking.tour_id = params[:tour_id]
-    @tour = Tour.find_by_id params[:tour_id]
-    if @booking.destroy
-      flash[:notice] = t "booking.delete_success"
-    else
-      flash[:alert] = t "booking.delete_fail"
-    end
-    redirect_to :back
   end
 
   private

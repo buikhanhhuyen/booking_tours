@@ -89,9 +89,9 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "status",      default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "places", force: :cascade do |t|
@@ -122,7 +122,8 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.datetime "end_date"
     t.integer  "min_visitors"
     t.integer  "max_visitors"
-    t.integer  "status"
+    t.integer  "seat"
+    t.integer  "status",              default: 0
     t.string   "accommodation"
     t.string   "meals"
     t.string   "transport"
@@ -130,8 +131,8 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.integer  "place_id"
     t.integer  "category_id"
     t.integer  "discount_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["category_id"], name: "index_tours_on_category_id"
     t.index ["discount_id"], name: "index_tours_on_discount_id"
     t.index ["place_id"], name: "index_tours_on_place_id"

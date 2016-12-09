@@ -7,6 +7,7 @@ class Tour < ApplicationRecord
   belongs_to :place
 
   has_many :bookings, dependent: :destroy
+  has_many :visitors, through: :bookings
 
   validates :end_date, presence: true, date: { after: :start_date,
     message: "must after Start date" }

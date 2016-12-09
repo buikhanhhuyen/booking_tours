@@ -25,12 +25,13 @@
       <th><%= t "tour.end_date" %></th>
       <th><%= t "visitor.number" %></th>
       <th><%= t "booking.total_price" %></th>
+      <th><%= t "action" %></th>
     </tr>
   </thead>
   <tbody>
     <% @bookings.each do |booking| %>
       <tr>
-        <td><%= link_to booking.id, admin_tour_booking_path(booking.tour, booking) %></td>
+        <td><%= link_to booking.id, admin_booking_path(booking) %></td>
         <td><%= booking.status %></td>
         <td><%= booking.tour.name %></td>
         <td><%= booking.tour.start_date.strftime("%d-%m-%Y") %></td>
@@ -42,6 +43,13 @@
           <% else %>
             <%= booking.total_price %> <%= t "tour.usd" %>
           <% end %>
+        </td>
+        <td>
+          <%= link_to t("edit"), edit_admin_booking_path(booking),
+            class: "btn btn-primary" %>
+          <%= link_to t("delete"), [:admin, booking], method: :delete,
+            data: {confirm: t("sure")}, class: "btn btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

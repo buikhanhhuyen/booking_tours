@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     collection {post :search, to: "tours#index"}
     resources :bookings, except: [:edit, :update, :index]
   end
-  resources :bookings, only: :index
+  resources :bookings, except: [:edit, :update, :destroy]
   resources :reviews do
     resources :comments
   end
@@ -29,9 +29,8 @@ Rails.application.routes.draw do
     resources :categories
     resources :tours do
       collection {post :search, to: "tours#index"}
-      resources :bookings, only: [:show, :update]
     end
-    resources :bookings, only: :index do
+    resources :bookings, except: [:new, :create] do
       collection {post :search, to: "bookings#index"}
     end
     resources :places do

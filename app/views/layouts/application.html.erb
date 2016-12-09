@@ -12,7 +12,19 @@
 
   <body>
     <% if user_signed_in? && current_user.admin? %>
-      giao dien admin
+      <header>
+        <%= render "layouts/header" %>
+      </header>
+      <div class="container cnt">
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+        <%= yield %>
+      </div>
+      <%= render "layouts/footer" %>
     <% else %>
       <% if current_page?(root_path) %>
         <%= render "static_pages/home_page" %>

@@ -1,0 +1,28 @@
+<div id="visitor">
+  <div class="form-group">
+    <%= f.label :name, t("visitor.name") %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :gender, t("visitor.gender") %>
+    <%= f.select :gender, Visitor.genders %>
+  </div>
+  <div class="form-group">
+    <%= f.label :birthday, t("visitor.birthday") %>
+    <%= f.text_field :birthday, class: "form-control datetimepicker",
+      value: "#{f.object.birthday.strftime("%d-%m-%Y") if f.object.birthday}" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone_number, t("visitor.phone_number") %>
+    <%= f.text_field :phone_number, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address, t("visitor.address") %>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, t("visitor.email") %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <%= link_to_remove_fields t(".remove"), f %>
+</div>
