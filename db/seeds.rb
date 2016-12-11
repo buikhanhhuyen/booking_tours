@@ -29,7 +29,7 @@ Place.create! name: "TP Ho Chi Minh", description: "The City of London is a city
 Place.create! name: "Da Lat", description: "The City of London is a city and county within London. It constituted most of London from its settlement by the Romans in the 1st century AD to the Middle Ages, but the agglomeration has since grown far beyond the City's borders. The City is now only a tiny part of the metropolis of London, though it remains a notable part of central London. Administratively, it forms one of the 33 local authority districts of Greater London; however, the City of London is not a London borough, a status reserved for the other 32 districts (including London's only other city, the City of Westminster)."
 
 Tour.create! name: "Europe Escape - 12 Days",
-  category_id: "1", start_place: "London", end_place: "London", price: "1275",
+  category_id: "1", start_place_id: rand(11) + 1, end_place_id: rand(11) + 1, price: "1275",
   currency: "usd", start_date: "22/12/2016", end_date: "03/01/2017", discount_id: "1",
   min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
   accommodation: "11 nights' accommodation in twin rooms",
@@ -41,7 +41,7 @@ Tour.create! name: "Europe Escape - 12 Days",
     Free Expat Explore tour souvenir"
 
 Tour.create! name: "Trip on Vietnam",
-  category_id: "1", start_place: "Ha Noi", end_place: "TP HCM", price: "3576",
+  category_id: "1", start_place_id: rand(11) + 1, end_place_id: rand(11) + 1, price: "3576",
   currency: "usd", start_date: "03/02/2017", end_date: "10/02/2017", discount_id: "4",
   min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
   accommodation: "11 nights' accommodation in twin rooms",
@@ -53,7 +53,7 @@ Tour.create! name: "Trip on Vietnam",
     Free Expat Explore tour souvenir"
 
 Tour.create! name: "Japan Advanture",
-  category_id: "1", start_place: "Japan", end_place: "Japan", price: "1759",
+  category_id: "1", start_place_id: rand(11) + 1, end_place_id: rand(11) + 1, price: "1759",
   currency: "usd", start_date: "22/12/2016", end_date: "03/01/2017",
   min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
   accommodation: "11 nights' accommodation in twin rooms",
@@ -65,7 +65,7 @@ Tour.create! name: "Japan Advanture",
     Free Expat Explore tour souvenir"
 
 Tour.create! name: "One Life Adventures - Tokyo",
-  category_id: "1", start_place: "Tokyo", end_place: "Tokyo",
+  category_id: "1", start_place_id: rand(11) + 1, end_place_id: rand(11) + 1,
   price: "2507", currency: "usd", start_date: "22/12/2016", end_date: "05/01/2017",
   min_visitors: "7", max_visitors: "15", discount_id: "5",
   meals: "Most breakfasts + 3 lunches + 3 dinners

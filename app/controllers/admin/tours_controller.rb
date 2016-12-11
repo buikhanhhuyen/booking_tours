@@ -1,5 +1,5 @@
 class Admin::ToursController < ApplicationController
-  load_and_authorize_resource params_method: :tour_params
+  load_and_authorize_resource
 
   def index
     @search = Tour.search params[:q]
@@ -60,9 +60,9 @@ class Admin::ToursController < ApplicationController
 
   private
   def tour_params
-    params.require(:tour).permit :name, :start_place, :end_place, :price,
+    params.require(:tour).permit :name, :price, :category_id,
       :currency, :start_date, :end_date, :min_visitors, :max_visitors,
-      :accommodation, :meals, :transport, :additional_services, :category_id,
-      :discount_id, :place_id
+      :accommodation, :meals, :transport, :additional_services,
+      :discount_id, :start_place_id, :end_place_id
   end
 end

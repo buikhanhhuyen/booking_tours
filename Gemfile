@@ -20,6 +20,7 @@ gem "ransack"
 gem "date_validator"
 gem "font-awesome-sass", "~> 4.7.0"
 gem "stripe"
+gem "whenever", :require => false
 
 group :development, :test do
   gem "byebug", platform: :mri

@@ -3,7 +3,6 @@ class Payment < ApplicationRecord
 
   belongs_to :booking
 
-
   def process_payment
       byebug
     customer = Stripe::Customer.create email: email

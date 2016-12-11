@@ -1,10 +1,11 @@
 class Tour < ApplicationRecord
   enum :currency => [:vnd, :usd]
-  enum :status => [:ongoing, :happened, :expried]
+  enum :status => [:ongoing, :expried]
 
   belongs_to :category
   belongs_to :discount
-  belongs_to :place
+  belongs_to :start_place, class_name: 'Place', foreign_key: 'start_place_id'
+  belongs_to :end_place, class_name: 'Place', foreign_key: 'end_place_id'
 
   has_many :bookings, dependent: :destroy
   has_many :visitors, through: :bookings

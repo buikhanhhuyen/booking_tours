@@ -13,7 +13,7 @@
   <body>
     <% if user_signed_in? && current_user.admin? %>
       <header>
-        <%= render "layouts/header" %>
+        <%= render "admin/layouts/header" %>
       </header>
       <div class="container cnt">
         <% if notice %>
@@ -24,7 +24,7 @@
         <% end %>
         <%= yield %>
       </div>
-      <%= render "layouts/footer" %>
+      <%#= render "admin/layouts/footer" %>
     <% else %>
       <% if current_page?(root_path) %>
         <%= render "static_pages/home_page" %>
