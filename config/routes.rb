@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     collection {post :search, to: "places#index"}
     resources :reviews, except: :index
   end
-  resources :tours do
+  resources :tours, except: :index do
     collection {post :search, to: "tours#index"}
     resources :bookings, except: [:edit, :update, :index]
   end
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :users
   resources :discounts, only: [:show, :index]
   resources :categories, only: [:show, :index]
+  resources :payments, only: [:show, :index]
 
   namespace :admin do
     root "static_pages#home", as: "static_pages"
@@ -46,5 +47,6 @@ Rails.application.routes.draw do
     resources :discounts do
       collection {post :search, to: "discounts#index"}
     end
+    resources :payments, except: [:edit, :destroy]
   end
 end

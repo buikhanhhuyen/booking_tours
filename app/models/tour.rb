@@ -14,4 +14,11 @@ class Tour < ApplicationRecord
   validates :start_date, presence: true,
     date: { after_or_equal_to: Proc.new { Date.today },
     message: "must be at least #{(Date.today + 1).to_s}" }, on: :create
+  # validate :check_discount
+
+  # def check_discount
+  #   if self.start_date < self.discount.start_date || self.end_date > self.discount.end_date
+  #     errors.add :discount, message: "Tour must be happened on duration of discount"
+  #   end
+  # end
 end

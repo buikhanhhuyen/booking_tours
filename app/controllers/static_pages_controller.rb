@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :set_search
+  before_action :set_search, :get_random
 
   def show
     if valid_page?
@@ -17,5 +17,10 @@ class StaticPagesController < ApplicationController
 
   def set_search
     @search = Tour.search params[:q]
+  end
+
+  def get_random
+    @places = Place.order("RANDOM()").limit(5)
+    @discounts = Discount.order("RANDOM()").limit(5)
   end
 end

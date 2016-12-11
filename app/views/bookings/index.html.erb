@@ -15,29 +15,27 @@
   </thead>
   <tbody>
     <% @bookings.each do |booking| %>
-      <% if booking.uncheck? %>
-        <tr>
-          <td><%= booking.id %></td>
-          <td><%= link_to booking.tour.name, tour_path(booking.tour) %></td>
-          <td><%= booking.tour.start_date.strftime("%d-%m-%Y") %></td>
-          <td><%= booking.tour.end_date.strftime("%d-%m-%Y") %></td>
-          <td>
-            <% if booking.tour.vnd? %>
-              <%= booking.tour.price.round %> <% t "tour.vnd" %>
-            <% else %>
-              <%= booking.tour.price.round(2) %> <% t "tour.usd" %>
-            <% end %>
-          </td>
-          <td><%= booking.visitors.count %></td>
-          <td>
-            <% if booking.tour.vnd? %>
-              <%= booking.total_price.round %> <%= t "tour.vnd" %>
-            <% else %>
-              <%= booking.total_price %> <%= t "tour.usd" %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+      <tr>
+        <td><%= booking.id %></td>
+        <td><%= link_to booking.tour.name, tour_path(booking.tour) %></td>
+        <td><%= booking.tour.start_date.strftime("%d-%m-%Y") %></td>
+        <td><%= booking.tour.end_date.strftime("%d-%m-%Y") %></td>
+        <td>
+          <% if booking.tour.vnd? %>
+            <%= booking.tour.price.round %> <% t "tour.vnd" %>
+          <% else %>
+            <%= booking.tour.price.round(2) %> <% t "tour.usd" %>
+          <% end %>
+        </td>
+        <td><%= booking.visitors.count %></td>
+        <td>
+          <% if booking.tour.vnd? %>
+            <%= booking.total_price.round %> <%= t "tour.vnd" %>
+          <% else %>
+            <%= booking.total_price %> <%= t "tour.usd" %>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>

@@ -23,20 +23,6 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
-  create_table "bills", force: :cascade do |t|
-    t.string   "content"
-    t.float    "amount"
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.integer  "booking_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["booking_id"], name: "index_bills_on_booking_id"
-    t.index ["receiver_id"], name: "index_bills_on_receiver_id"
-    t.index ["sender_id", "receiver_id"], name: "index_bills_on_sender_id_and_receiver_id", unique: true
-    t.index ["sender_id"], name: "index_bills_on_sender_id"
-  end
-
   create_table "bookings", force: :cascade do |t|
     t.integer  "status",      default: 0
     t.float    "total_price"
@@ -92,6 +78,15 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.integer  "status",      default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "content"
+    t.float    "amount"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_payments_on_booking_id"
   end
 
   create_table "places", force: :cascade do |t|

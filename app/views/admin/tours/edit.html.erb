@@ -11,6 +11,24 @@
     </div>
   </div>
 
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="category_id">
+      <%= t "category.title" %>
+    </label>
+    <div class="col-md-8">
+      <%= f.select :category_id, @categories.collect{|c| [c.title, c.id]} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="discount_id">
+      <%= t "discount.title" %>
+    </label>
+    <div class="col-md-8">
+      <%= f.select :discount_id, @discounts.collect{|d| [d.name, d.id]} %>
+    </div>
+  </div>
+
   <div class="form-group">
     <label class="col-md-4 control-label" for="startPlace">
       <%= t "tour.start_place" %>
