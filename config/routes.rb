@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :users
   resources :discounts, only: [:show, :index]
   resources :categories, only: [:show, :index]
+  resources :payments, only: [:show, :index]
 
   namespace :admin do
     root "static_pages#home", as: "static_pages"
