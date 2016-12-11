@@ -1,9 +1,10 @@
 en:
-  base_title: "Touring"
+  base_title: "Travel"
   static_pages:
     home:
       title: "Home"
       sign_up_title: " Sign up !"
+      welcome: "Plan your Perfect trip with us"
     contact:
       title: "Contact"
       contact_title: "Contact us"
@@ -14,10 +15,11 @@ en:
     header:
       logo: "TOURING"
       nav: "Toggle navigation"
-      noname: "NO NAME"
-      edit: "Edit"
       logout: "Log out"
       sign_up: "Sign up"
+      categories: "Categories"
+      places: "Places"
+      deal: "Hot deals"
   login:
     title: "Log in"
     via: "Login via"
@@ -45,11 +47,16 @@ en:
   forget_password:
     title: "Forgot your password?"
     submit: "Send me reset password instructions"
+  menu: "Menu"
+  destination: "Destinations"
+  tour: "Hot Deals"
+  discount: "Discounts"
   remove: "Remove"
   edit: "Edit"
   delete: "Delete"
   sure: "Are you sure?"
   save: "Save"
+  submit: "Submit"
   cancel: "Cancel"
   search: "Search"
   add_condition: "Add condition"
@@ -133,6 +140,8 @@ en:
     create_fail: "Can't book tour."
     delete_success: "Cancel booking successfully."
     delete_fail: "Can't cancel booking tour."
+    update_success: "Update booking successfully."
+    update_fail: "Can't update booking."
     infor: "Booking Information"
     id: "ID"
     status: "Status"
@@ -150,6 +159,7 @@ en:
     title: "Visitors"
     male: "Male"
     female: "Female"
+    add: "Add vistor"
   user:
     title: "Users"
     id: "ID"

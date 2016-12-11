@@ -22,24 +22,29 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_startPlace">
-      <%= t "tour.start_place" %>
+    <label class="col-md-4 control-label" for="discount_id">
+      <%= t "discount.title" %>
     </label>
-
     <div class="col-md-8">
-      <%= f.text_field :start_place, class: "form-control input-md",
-        required: true, placeholder: "Enter start place ..." %>
+      <%= f.select :discount_id, @discounts.collect{|d| [d.name, d.id]} %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_endPlace">
+    <label class="col-md-4 control-label" for="place_id">
+      <%= t "tour.start_place" %>
+    </label>
+    <div class="col-md-8">
+      <%= f.select :place_id, @places.collect{|p| [p.name, p.id]} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="place_id">
       <%= t "tour.end_place" %>
     </label>
-
     <div class="col-md-8">
-      <%= f.text_field :end_place, class: "form-control input-md",
-        required: true, placeholder: "Enter end place ..." %>
+      <%= f.select :place_id, @places.collect{|p| [p.name, p.id]} %>
     </div>
   </div>
 

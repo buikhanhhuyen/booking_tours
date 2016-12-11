@@ -23,20 +23,6 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
-  create_table "bills", force: :cascade do |t|
-    t.string   "content"
-    t.float    "amount"
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.integer  "booking_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["booking_id"], name: "index_bills_on_booking_id"
-    t.index ["receiver_id"], name: "index_bills_on_receiver_id"
-    t.index ["sender_id", "receiver_id"], name: "index_bills_on_sender_id_and_receiver_id", unique: true
-    t.index ["sender_id"], name: "index_bills_on_sender_id"
-  end
-
   create_table "bookings", force: :cascade do |t|
     t.integer  "status",      default: 0
     t.float    "total_price"
@@ -89,9 +75,22 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer  "status",      default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "description"
+    t.float    "amount"
+    t.string   "email"
+    t.string   "customer_token"
+    t.string   "charge_token"
     t.integer  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "booking_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["booking_id"], name: "index_payments_on_booking_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -122,7 +121,8 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.datetime "end_date"
     t.integer  "min_visitors"
     t.integer  "max_visitors"
-    t.integer  "status"
+    t.integer  "seat"
+    t.integer  "status",              default: 0
     t.string   "accommodation"
     t.string   "meals"
     t.string   "transport"
@@ -130,8 +130,8 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.integer  "place_id"
     t.integer  "category_id"
     t.integer  "discount_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["category_id"], name: "index_tours_on_category_id"
     t.index ["discount_id"], name: "index_tours_on_discount_id"
     t.index ["place_id"], name: "index_tours_on_place_id"

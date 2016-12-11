@@ -9,7 +9,8 @@
   </div>
   <div class="form-group">
     <%= f.label :birthday, t("visitor.birthday") %>
-    <%= f.text_field :birthday, class: "form-control" %>
+    <%= f.text_field :birthday, class: "form-control datetimepicker",
+      value: "#{f.object.birthday.strftime("%d-%m-%Y") if f.object.birthday}" %>
   </div>
   <div class="form-group">
     <%= f.label :phone_number, t("visitor.phone_number") %>

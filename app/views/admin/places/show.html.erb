@@ -10,6 +10,12 @@
       <%= @place.description %>
     </div>
   </aside>
+  <div>
+    <%= link_to t("edit"), edit_admin_place_path(@place),
+      class: "btn btn-primary" %>
+    <%= link_to t("delete"), [:admin, @place], method: :delete,
+      data: {confirm: t("sure")}, class: "btn btn-danger" %>
+  </div>
 
   <div class="col-md-8">
     <% if @place.reviews.any? %>

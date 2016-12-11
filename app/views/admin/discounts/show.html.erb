@@ -22,4 +22,10 @@
       <%= @discount.description %>
     </div>
   </aside>
+  <div>
+    <%= link_to t("edit"), edit_admin_discount_path(@discount),
+      class: "btn btn-primary" %>
+    <%= link_to t("delete"), [:admin, @discount], method: :delete,
+      data: {confirm: t("sure")}, class: "btn btn-danger" %>
+  </div>
 </div>

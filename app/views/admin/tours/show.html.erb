@@ -14,7 +14,7 @@
   </div>
   <div>
     <label><%= t "tour.price" %></label>
-    <% if @tour.currency.vnd? %>
+    <% if @tour.vnd? %>
       <%= @tour.price.round %> <%= @tour.currency %>
     <% else %>
       <%= @tour.price %> <%= @tour.currency %>
@@ -37,6 +37,14 @@
     <%= @tour.max_visitors %>
   </div>
   <div>
+    <label><%= t "category.title" %></label>
+    <%= @tour.category.title %>
+  </div>
+  <% if @tour.discount %>
+    <label><%= t "discount.title" %></label>
+    <%= @tour.discount.name %> - <%= @tour.discount.percent %>%
+  <% end %>
+  <div>
     <label><%= t "tour.accommodation" %></label>
     <%= @tour.accommodation %>
   </div>
@@ -51,5 +59,11 @@
   <div>
     <label><%= t "tour.services" %></label>
     <%= @tour.additional_services %>
+  </div>
+  <div>
+    <%= link_to t("edit"), edit_admin_tour_path(@tour),
+      class: "btn btn-primary" %>
+    <%= link_to t("delete"), [:admin, @tour], method: :delete,
+      data: {confirm: t("sure")}, class: "btn btn-danger" %>
   </div>
 </div>

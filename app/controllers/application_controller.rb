@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
   def before_show
     @categories = Category.all
     @places = Place.all
+    @tours = Tour.all
+    @discounts = Discount.all
   end
 
   protected

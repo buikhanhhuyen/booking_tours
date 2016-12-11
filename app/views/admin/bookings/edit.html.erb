@@ -2,14 +2,14 @@
 <h1><%= t "booking.title" %></h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3" id="booking_form">
-    <h2>My Trip</h1>
     <div>
-      <h4>Tour: <%= @tour.name %></h4>
-      <h4>Starts in <%= @tour.start_place %> on <%= @tour.start_date.strftime("%d-%m-%Y") %></h4>
-      <h4>Ends in <%= @tour.end_place %> on <%= @tour.end_date.strftime("%d-%m-%Y") %></h4>
+      <h4>Booking: <%= @booking.id %></h4>
+      <h4>Tour: <%= @booking.tour.name %></h4>
+      <h4>Start at <%= @booking.tour.start_date.strftime("%d-%m-%Y") %> on <%= @booking.tour.start_place %></h4>
+      <h4>End at <%= @booking.tour.end_date.strftime("%d-%m-%Y") %> on <%= @booking.tour.end_place %></h4>
     </div>
     <h3>Visitor Information</h3>
-    <%= form_for [@tour, @booking] do |f| %>
+    <%= form_for [:admin, @booking] do |f| %>
       <%= render "shared/error_messages", object: @booking %>
 
       <%= f.fields_for :visitors do |builder| %>

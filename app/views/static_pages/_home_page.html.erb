@@ -3,12 +3,13 @@
   <div class="container">
     <div class="header-info">
       <div class="header-info-head text-center">
-        <a href="index.html"><h1>Travelica</h1></a>
-        <h2>Plan your Perfect trip with us</h2>
+        <a href="index.html"><h1><%= t "base_title" %></h1></a>
+        <h2><%= t "static_pages.home.welcome" %></h2>
       </div>
       <div class="top-search">
         <%= search_form_for @search, url: search_tours_path, method: :post  do |f| %>
-          <%= f.text_field :name_cont, class: "text", value: "Tour or place ...", onfocus: "this.value = '';", onblur:"if (this.value == '') {this.value = 'Tour or place ...';}" %>
+          <%= f.text_field :name_cont, class: "text", value: "Search tour ...",
+          onfocus: "this.value = '';", onblur:"if (this.value == '') {this.value = 'Tour or place ...';}" %>
         <% end %>
       </div>
       <div class="dropdown-button">
@@ -17,11 +18,11 @@
           <option value="1">Australia</option>
           <option value="2">Sri Lanka</option>
           <option value="3">Newziland</option>
-          <option value="4">Pakistan</option>
-          <option value="5">United Kingdom</option>
-          <option value="6">United states</option>
-          <option value="7">Russia</option>
-          <option value="8">Mirum</option>
+          <option value="4">Newziland</option>
+          <option value="5">Newziland</option>
+          <option value="6">Newziland</option>
+          <option value="7">Newziland</option>
+          <option value="8">Newziland</option>
         </select>
       </div>
       <div class="clearfix"></div>
@@ -29,34 +30,42 @@
         <div class="h_menu4">
         <a class="toggleMenu" href="">Menu</a>
         <ul class="nav">
-          <li class="active"><a href="index.html">HOME</a></li>
+          <li class="active">
+            <%= link_to t("static_pages.home.title"), root_path %>
+          </li>
           <li>
-            <a href="booking.html">Hotels</a>
+            <%= link_to t("header.categories"), categories_path %>
             <ul>
-              <li><a href="booking.html">booking</a></li>
-              <li><a href="rooms.html">rooms</a></li>
-              <li><a href="reservation.html">reservation</a></li>
-              <li><a href="booking.html">large city hotels</a></li>
-              <li><a href="booking.html">small city hotels</a></li>
+              <% @categories.each do |category| %>
+                <li><%= link_to category.title, category_path(category) %></li>
+              <% end %>
             </ul>
           </li>
           <li>
-            <a href="payment.html">Flights</a>
+            <%= link_to t("destination"), places_path %>
             <ul>
-              <li><a href="payment.html">payment</a></li>
-              <li><a href="search.html">search</a></li>
-              <li><a href="search.html">list</a></li>
+              <% @places.each do |place| %>
+                <li><%= link_to place.name, place_path(place) %></li>
+              <% end %>
             </ul>
           </li>
           <li>
-            <a href="destination.html" class="root">Destinations</a>
+            <%= link_to t(".tour"), tours_path %>
             <ul>
-              <li><a href="destination.html">philippines</a></li>
-              <li><a href="destination.html">brazil</a></li>
-              <li><a href="destination.html">new york</a></li>
+              <% @tours.each do |tour| %>
+                <li><%= link_to tour.name, tour_path(tour) %></li>
+              <% end %>
             </ul>
           </li>
-            <li><a href="contact.html">Contact</a></li>
+          <li>
+            <%= link_to t(".discount"), discounts_path %>
+            <ul>
+              <% @discounts.each do |discount| %>
+                <li><%= link_to discount.name, discount_path(discount) %></li>
+              <% end %>
+            </ul>
+          </li>
+            <li><a href="static_pages/contact">Contact</a></li>
           </ul>
       </div>
       <!-- end h_menu4 -->

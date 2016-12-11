@@ -10,6 +10,7 @@ class Ability
       can :manage, Booking
       can :manage, User
       can :manage, Discount
+      can :manage, Payment
     elsif user.member?
       can :manage, Comment, :user_id => user.id
       can [:show, :destroy], User, :id => user.id
@@ -20,6 +21,7 @@ class Ability
       can :show, Review
       can [:show, :index], Discount
       can [:show, :index], Category
+      can :manage, Payment
     else
       can [:show, :index], Place
       can [:show, :index, :search], Tour
