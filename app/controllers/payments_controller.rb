@@ -1,39 +1,27 @@
 class PaymentsController < ApplicationController
-  load_and_authorize_resource params_method: payment_params
-  before_action :update, only: :show
-  protect_from_forgery except: :update
-
-  def show
-    if payment.nil?
-      redirect_to root_path
-    end
-  end
+  load_and_authorize_resource params_method: :payment_params
 
   def new
     @payment = Payment.new
+    @booking = Booking.find_by_id params[:booking_id]
   end
 
   def create
-    @payment = Payment.new payment_params
-    if @payment.save
-    redirect_to @payment.paypal_url(payment_path(@payment))
-    else
-      render :new
-    end
-  end
-
-  def update
-    params.permit!
-    status = params[:payment_status]
-    if status == "Completed"
-      @payment = Payment.find params[:invoice]
-      @payment.update_attributes status: status, transaction_id: params[:txn_id],
-        purchased_at: Time.now
-    end
+    byebug
+    @payment = Payment.new payment_params.merge(email: params["stripeEmail"])
+    @payment.process_payment
+    @payment.save
+    @payment.booking.update_attributes status: Booking.statuses[:paid]
+    flash[:success] = "success"
+    byebug
+    redirect_to root_path
+    rescue Stripe::CardError
+      flash[:error] = "error"
+      redirect_to new_booking_payment_path
   end
 
   private
   def payment_params
-    params.require(:payment).permit :booking_id, :user_id, :status
+    params.require(:payment).permit :booking_id
   end
 end

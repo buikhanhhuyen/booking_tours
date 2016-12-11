@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
       end
       @booking.update_attributes total_price: total_price
       flash[:notice] = t "booking.create_success"
-      redirect_to tour_booking_path(@tour, @booking)
+      redirect_to new_booking_payment_path(@booking)
     else
       flash[:alert] = t "booking.create_fail"
       render :new

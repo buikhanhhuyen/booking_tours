@@ -3,18 +3,19 @@ class Payment < ApplicationRecord
 
   belongs_to :booking
 
-  def paypal_url return_path
-    values = {
-      business: ENV["facilitator_paypal"],
-      return: "#{Rails.application.secrets.app_host}#{return_path}",
-      notify_url: "#{Rails.application.secrets.app_host}/update",
-      invoice: id,
-      cmd: "_xclick",
+
+  def process_payment
+      byebug
+    customer = Stripe::Customer.create email: email
+    charge = Stripe::Charge.create customer: customer.id,
       amount: booking.total_price,
-      tour_id: tour.id,
-      tour_name: tour.name,
-      quantity: "1",
-    }
-    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+      currency: "usd"
+    self.charge_token = charge.id
+    self.customer_token = customer.id
+    byebug
+  end
+
+  def process_refund
+    Stripe::Refund.create charge: self.charge_token
   end
 end

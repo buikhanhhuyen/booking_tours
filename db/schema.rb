@@ -81,11 +81,15 @@ ActiveRecord::Schema.define(version: 20161104033958) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.string   "content"
+    t.string   "description"
     t.float    "amount"
+    t.string   "email"
+    t.string   "customer_token"
+    t.string   "charge_token"
+    t.integer  "status"
     t.integer  "booking_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.index ["booking_id"], name: "index_payments_on_booking_id"
   end
 
