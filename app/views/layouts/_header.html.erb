@@ -68,14 +68,24 @@
               <% end %>
             </ul>
           </li>
-          <li><%= link_to t("header.places"), places_path %>
+          <li>
+            <%= link_to t("destination"), places_path %>
             <ul>
               <% @places.each do |place| %>
-                <li><%= link_to place.name, place %></li>
+                <li><%= link_to place.name, place_path(place) %></li>
               <% end %>
             </ul>
           </li>
-          <li><a>Hot deal</a>
+          <li>
+            <%= link_to t("discount-header"), discounts_path %>
+            <ul>
+              <% @discounts.each do |discount| %>
+                <li><%= link_to discount.name, discount_path(discount) %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li>
+            <a>Hot deal</a>
           </li>
           <li><%= link_to t("static_pages.contact.contact_title"),
               static_pages_path(:contact) %></li>

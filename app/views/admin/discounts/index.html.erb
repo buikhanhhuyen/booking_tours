@@ -1,48 +1,65 @@
 <% provide :title, t("discount.title") %>
-<h1 class="text-center"><%= t "discount.title" %></h1><br>
-
-<%= search_form_for [:admin, @search], url: search_admin_discounts_path, method: :post  do |f| %>
-  <div class="field">
-    <%= f.label :name_cont, t("name_cont") %>
-    <%= f.text_field :name_cont %>
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Discounts Management</h3>
+    </div>
   </div>
-  <div class="action"><%= f.submit t "search" %></div>
-<% end %>
+  <div class="clearfix"></div>
 
-<div class="row">
-  <div class="col-md-6 center">
-    <%= link_to t("discount.add"), new_admin_discount_path,
-      class: "btn btn-success glyphicon glyphicon-plus" %>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>All Discounts  <%= link_to t("discount.add"), new_admin_discount_path,
+            class: "btn btn-success btn-xs glyphicon glyphicon-plus" %></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <table id="categories-table" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th><%= t "discount.id" %></th>
+                <th><%= t "discount.name" %></th>
+                <th><%= t"discount.percent" %></th>
+                <th><%= t "tour.start_date" %></th>
+                <th><%= t "tour.end_date" %></th>
+                <th><%= t "place.description" %></th>
+                <th><%= t "place.action" %></th>
+            </thead>
+            <tbody>
+              <% @discounts.each do |discount| %>
+                <tr>
+                  <td><%= discount.id %></td>
+                  <td><%= link_to discount.name, admin_discount_path(discount) %></td>
+                  <td><%= discount.percent %> %</td>
+                  <td><%= discount.start_date.strftime("%d-%m-%Y") %></td>
+                  <td><%= discount.end_date.strftime("%d-%m-%Y") %></td>
+                  <td><%= discount.description %></td>
+                  <td>
+                    <%= link_to edit_admin_discount_path(discount), class: "btn btn-round btn-info btn-xs" do %>
+                      <i class="fa fa-pencil-square-o "></i>  Edit
+                    <% end %>
+                    <%= link_to [:admin, discount], method: :delete, class: "btn btn-round btn-danger btn-xs" do %>
+                      <i class="fa fa-times"></i>  Delete
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<table class="table sortable table-bordered">
-  <thead>
-    <tr>
-      <th><%= t "discount.id" %></th>
-      <th><%= t "discount.name" %></th>
-      <th><%= t"discount.percent" %></th>
-      <th><%= t "tour.start_date" %></th>
-      <th><%= t "tour.end_date" %></th>
-      <th><%= t "place.description" %></th>
-      <th><%= t "place.action" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @discounts.each do |discount| %>
-      <tr>
-        <td><%= discount.id %></td>
-        <td><%= link_to discount.name, admin_discount_path(discount) %></td>
-        <td><%= discount.percent %> %</td>
-        <td><%= discount.start_date.strftime("%d-%m-%Y") %></td>
-        <td><%= discount.end_date.strftime("%d-%m-%Y") %></td>
-        <td><%= discount.description %></td>
-        <td>
-          <%= link_to t("edit"), edit_admin_discount_path(discount),
-            class: "btn btn-primary" %>
-          <%= link_to t("delete"), [:admin, discount], method: :delete,
-            data: {confirm: t("sure")}, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script type="text/javascript">
+  $(document).ready(function () {
+    //DataTable
+    $('#categories-table').DataTable();
+  })
+</script>
