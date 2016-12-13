@@ -12,17 +12,18 @@
 
   <body>
     <% if user_signed_in? && current_user.admin? %>
-      <header>
-        <%= render "admin/layouts/header" %>
-      </header>
-      <div class="container cnt">
+      <%= render "admin/layouts/header" %>
+      <%= render "admin/layouts/bar_menu" %>
+      <div class="container">
         <% if notice %>
           <p class="alert alert-success"><%= notice %></p>
         <% end %>
         <% if alert %>
           <p class="alert alert-danger"><%= alert %></p>
         <% end %>
-        <%= yield %>
+        <div class="admin-ctn">
+          <%= yield %>
+        </div>
       </div>
       <%#= render "admin/layouts/footer" %>
     <% else %>

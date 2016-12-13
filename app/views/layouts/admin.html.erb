@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title yield :title %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag "application", media: "all",
+      "data-turbolinks-track": "reload" %>
+    <link rel="stylesheet" type="text/css" href="/css/admin_main.css">
+    <link rel="stylesheet" type="text/css" href="/css/dataTables.bootstrap.css">
+
+    <%= javascript_include_tag "application",
+      "data-turbolinks-track": "reload" %>
+    
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <%= render "admin/layouts/bar_menu" %>
+
+        <!-- top navigation -->
+        <%= render "admin/layouts/header" %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+          <div class="row">
+            <%= yield %>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/bootstrap-progressbar.js"></script>
+    <script type="text/javascript" src="/js/smartresize.js"></script>
+    <script type="text/javascript" src="/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="/js/admin_main.js"></script>
+  </body>
+</html>

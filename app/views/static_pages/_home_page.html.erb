@@ -12,19 +12,6 @@
           onfocus: "this.value = '';", onblur:"if (this.value == '') {this.value = 'Tour or place ...';}" %>
         <% end %>
       </div>
-      <div class="dropdown-button">
-        <select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
-          <option value="0">Find Hotel</option>
-          <option value="1">Australia</option>
-          <option value="2">Sri Lanka</option>
-          <option value="3">Newziland</option>
-          <option value="4">Newziland</option>
-          <option value="5">Newziland</option>
-          <option value="6">Newziland</option>
-          <option value="7">Newziland</option>
-          <option value="8">Newziland</option>
-        </select>
-      </div>
       <div class="clearfix"></div>
       <!-- start h_menu4 -->
         <div class="h_menu4">
@@ -34,7 +21,7 @@
             <%= link_to t("static_pages.home.title"), root_path %>
           </li>
           <li>
-            <%= link_to t("header.categories"), categories_path %>
+            <%= link_to t("static_pages.header.categories"), categories_path %>
             <ul>
               <% @categories.each do |category| %>
                 <li><%= link_to category.title, category_path(category) %></li>
@@ -50,26 +37,33 @@
             </ul>
           </li>
           <li>
-            <%= link_to t(".tour"), tours_path %>
-            <ul>
-              <% @tours.each do |tour| %>
-                <li><%= link_to tour.name, tour_path(tour) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li>
-            <%= link_to t(".discount"), discounts_path %>
+            <%= link_to t("discount-header"), discounts_path %>
             <ul>
               <% @discounts.each do |discount| %>
                 <li><%= link_to discount.name, discount_path(discount) %></li>
               <% end %>
             </ul>
           </li>
-            <li><a href="static_pages/contact">Contact</a></li>
-          </ul>
+          <li><%= link_to t("static_pages.contact.title"), static_pages_path(:contact) %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to current_user.username, user_path(current_user) %></a>
+              <ul>
+                <li>
+                  <%= link_to t("static_pages.header.edit"),
+                    edit_user_registration_path %>
+                </li>
+                <li>
+                  <%= link_to t("static_pages.header.logout"),
+                    destroy_user_session_path, method: :delete %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to t("login.title"), new_user_session_path %></li>
+          <% end %>
+        </ul>
       </div>
       <!-- end h_menu4 -->
-      <i class="flow"></i>
     </div>
   </div>
 </div>

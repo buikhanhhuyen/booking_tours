@@ -1,56 +1,72 @@
 <% provide :title, t("booking.all") %>
-<h1 class="text-center"><%= t "booking.all" %></h1>
-
-<%= search_form_for [:admin, @search], url: search_admin_bookings_path, method: :post do |f| %>
-  <%= f.condition_fields do |c| %>
-    <%= render "condition_fields", f: c %>
-  <% end %>
-  <p><%= link_to_add_conditions t("add_condition"), f, :condition %></p>
-  <div class="field">
-    Sort:
-    <%= f.sort_fields do |s| %>
-      <%= s.sort_select %>
-    <% end %>
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Bookings Management</h3>
+    </div>
   </div>
-  <div class="actions"><%= f.submit t "search" %></div>
-<% end %>
+  <div class="clearfix"></div>
 
-<table class="table sortable table-bordered">
-  <thead>
-    <tr>
-      <th><%= t "booking.id" %></th>
-      <th><%= t "booking.status" %></th>
-      <th><%= t "tour.name" %></th>
-      <th><%= t "tour.start_date" %></th>
-      <th><%= t "tour.end_date" %></th>
-      <th><%= t "visitor.number" %></th>
-      <th><%= t "booking.total_price" %></th>
-      <th><%= t "action" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= link_to booking.id, admin_booking_path(booking) %></td>
-        <td><%= booking.status %></td>
-        <td><%= booking.tour.name %></td>
-        <td><%= booking.tour.start_date.strftime("%d-%m-%Y") %></td>
-        <td><%= booking.tour.end_date.strftime("%d-%m-%Y") %></td>
-        <td><%= booking.visitors.count %></td>
-        <td>
-          <% if booking.tour.vnd? %>
-            <%= booking.total_price.round %> <%= t "tour.vnd" %>
-          <% else %>
-            <%= booking.total_price %> <%= t "tour.usd" %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to t("edit"), edit_admin_booking_path(booking),
-            class: "btn btn-primary" %>
-          <%= link_to t("delete"), [:admin, booking], method: :delete,
-            data: {confirm: t("sure")}, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>All Bookings</h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <table id="categories-table" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th><%= t "booking.id" %></th>
+                <th><%= t "booking.status" %></th>
+                <th><%= t "tour.name" %></th>
+                <th><%= t "tour.start_date" %></th>
+                <th><%= t "tour.end_date" %></th>
+                <th><%= t "visitor.number" %></th>
+                <th><%= t "booking.total_price" %></th>
+                <th><%= t "action" %></th>
+            </thead>
+            <tbody>
+              <% @bookings.each do |booking| %>
+                <tr>
+                  <td><%= link_to booking.id, admin_booking_path(booking) %></td>
+                  <td><%= booking.status %></td>
+                  <td><%= booking.tour.name %></td>
+                  <td><%= booking.tour.start_date.strftime("%d-%m-%Y") %></td>
+                  <td><%= booking.tour.end_date.strftime("%d-%m-%Y") %></td>
+                  <td><%= booking.visitors.count %></td>
+                  <td>
+                    <% if booking.tour.vnd? %>
+                      <%= booking.total_price.round %> <%= t "tour.vnd" %>
+                    <% else %>
+                      <%= booking.total_price %> <%= t "tour.usd" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to edit_admin_booking_path(booking), class: "btn btn-round btn-info btn-xs" do %>
+                      <i class="fa fa-pencil-square-o "></i>  Edit
+                    <% end %>
+                    <%= link_to [:admin, booking], method: :delete, class: "btn btn-round btn-danger btn-xs" do %>
+                      <i class="fa fa-times"></i>  Delete
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    //DataTable
+    $('#categories-table').DataTable();
+  })
+</script>

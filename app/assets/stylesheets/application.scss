@@ -14,8 +14,12 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-datetimepicker";
+@import "bootstrap-sprockets";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+.admin-ctn {
+  margin: 30px 50px;
+}
