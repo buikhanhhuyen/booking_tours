@@ -1,8 +1,12 @@
 class Admin::ReviewsController < ApplicationController
   load_and_authorize_resource
 
+  def index
+  end
+
   def show
-    @comment = @review.comments
+    @comment = Comment.new
+    @comments = @review.comments
   end
 
   def destroy
