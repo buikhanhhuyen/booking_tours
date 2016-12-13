@@ -40,8 +40,8 @@ Rails.application.routes.draw do
       collection {post :search, to: "places#index"}
       resources :reviews, only: [:show, :destroy]
     end
-    resources :reviews do
-      resources :comments, only: :destroy
+    resources :reviews, only: [:show, :index, :destroy] do
+      resources :comments, only: [:show, :destroy]
     end
     resources :users do
       collection {post :search, to: "users#index"}

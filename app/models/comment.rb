@@ -4,7 +4,6 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true, optional: true
 
   has_many :comments, as: :commentable, dependent: :destroy
-  has_many :likes, as: :likable, dependent: :destroy
   has_many :activities, as: :activable, dependent: :destroy
 
   validates :content, presence: true, length: {maximum: 200}

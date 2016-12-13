@@ -1,0 +1,40 @@
+<% @comments.each do |comment| %>
+  <div class="comments-list">
+    <div class="comment-main-level">
+      <div class="comment-box">
+        <div class="comment-head">
+          <h6 class="comment-name by-author"><%= comment.user.username %></h6>
+          <span><%= time_ago_in_words(comment.created_at) %> ago.</span>
+        </div>
+        <div class="comment-content">
+          <strong><%= comment.content %></strong>
+        </div>
+        <div>
+          <% if can? :destroy, comment %>
+            <%= link_to t("delete"), [comment.review, comment], method: :delete,
+              data: {confirm: t("sure")}, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <% comment.comments.each do |cmt| %>
+      <div class="comments-list reply-list">
+        <div class="comment-box">
+          <div class="comment-head">
+            <h6 class="comment-name"><%= cmt.user.username %></h6>
+            <span><%= time_ago_in_words(cmt.created_at) %> ago.</span>
+          </div>
+          <div class="comment-content">
+            <strong><%= cmt.content %></strong><br />
+            <% if can? :destroy, cmt %>
+              <%= link_to t("delete"), [comment, cmt], method: :delete,
+                data: {confirm: t("sure")}, class: "btn btn-danger"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

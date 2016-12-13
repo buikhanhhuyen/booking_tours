@@ -4,8 +4,6 @@ class CreateVisitors < ActiveRecord::Migration[5.0]
       t.string :name
       t.datetime :birthday
       t.string :email
-      t.string :address
-      t.string :phone_number
       t.boolean :gender
       t.references :booking, foreign_key: true
 

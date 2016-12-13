@@ -1,5 +1,6 @@
 en:
   base_title: "Travel"
+  slogan: "Making tour awesome!"
   static_pages:
     home:
       title: "Home"
@@ -22,6 +23,7 @@ en:
       places: "Places"
       deal: "Hot deals"
   login:
+    form: "Login Form"
     title: "Log in"
     via: "Login via"
     facebook: " Facebook"
@@ -29,8 +31,12 @@ en:
     or: "or"
     email: "Email address"
     password: "Password"
-    forget_password: "Forget the password ?"
+    forget_password: "Lost your password"
     remember_me: " Remember me"
+    show: "Already a member?"
+  signup:
+    show: "New to site?"
+    title: "Create Account"
   edit_user:
     title: "Edit profile"
     password: "(leave blank if you don't want to change it)"
@@ -52,6 +58,7 @@ en:
   destination: "Destinations"
   tour: "Hot Deals"
   discount-header: "Discounts"
+  action: "Action"
   remove: "Remove"
   edit: "Edit"
   delete: "Delete"
@@ -117,13 +124,15 @@ en:
     delete_fail: "Can't delete tour."
     action: "Action"
   review:
-    title: "Review"
+    title: "Reviews"
     create_success: "Create review successfully."
     create_fail: "Can't create review."
     update_success: "Update review successfully."
     update_fail: "Can't update review."
     delete_success: "Delete review successfully."
     delete_fail: "Can't delete review."
+    id: "ID"
+    name: "Title"
   comment:
     cmt: "Comment"
     reply: "Reply"

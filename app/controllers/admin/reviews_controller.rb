@@ -5,7 +5,6 @@ class Admin::ReviewsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
     @comments = @review.comments
   end
 
@@ -13,10 +12,9 @@ class Admin::ReviewsController < ApplicationController
     @place = @review.place
     if @review.delete
       flash[:notice] = t "review.delete_success"
-      redirect_to admin_place_path @place
     else
       flash[:alert] = t "review.delete_fail"
-      redirect_to admin_place_path @place
     end
+    redirect_to :back
   end
 end

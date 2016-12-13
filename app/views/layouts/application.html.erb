@@ -10,40 +10,39 @@
       "data-turbolinks-track": "reload" %>
   </head>
 
+  <% if user_signed_in? && current_user.admin? %>
   <body>
-    <% if user_signed_in? && current_user.admin? %>
-      <%= render "admin/layouts/header" %>
-      <%= render "admin/layouts/bar_menu" %>
-      <div class="container">
+    <%= render "admin/layouts/header" %>
+    <%= render "admin/layouts/bar_menu" %>
+    <div class="container">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      <div class="admin-ctn">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+  <% else %>
+  <body class="login">
+    <% if current_page?(root_path) %>
+      <%= render "static_pages/home_page" %>
+    <% elsif current_page?(new_user_session_path) %>
+      <div class="container cnt">
         <% if notice %>
           <p class="alert alert-success"><%= notice %></p>
         <% end %>
         <% if alert %>
           <p class="alert alert-danger"><%= alert %></p>
         <% end %>
-        <div class="admin-ctn">
-          <%= yield %>
-        </div>
+        <%= yield %>
       </div>
-      <%#= render "admin/layouts/footer" %>
     <% else %>
-      <% if current_page?(root_path) %>
-        <%= render "static_pages/home_page" %>
-      <% else %>
-        <header>
-          <%= render "layouts/header" %>
-        </header>
-        <div class="container cnt">
-          <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <p class="alert alert-danger"><%= alert %></p>
-          <% end %>
-          <%= yield %>
-        </div>
-        <%= render "layouts/footer" %>
-      <% end %>
+      <%= yield %>
     <% end %>
   </body>
+  <% end %>
 </html>
