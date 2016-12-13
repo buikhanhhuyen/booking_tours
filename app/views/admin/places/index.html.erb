@@ -1,42 +1,59 @@
 <% provide :title, t("place.title") %>
-<h1 class="text-center"><%= t "place.title" %></h1><br>
-
-<%= search_form_for [:admin, @search], url: search_admin_places_path, method: :post  do |f| %>
-  <div class="field">
-    <%= f.label :name_cont, t("name_cont") %>
-    <%= f.text_field :name_cont %>
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Places Management</h3>
+    </div>
   </div>
-  <div class="action"><%= f.submit t "search" %></div>
-<% end %>
+  <div class="clearfix"></div>
 
-<div class="row">
-  <div class="col-md-6 center">
-    <%= link_to t("place.add"), new_admin_place_path,
-      class: "btn btn-success glyphicon glyphicon-plus" %>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>All Places  <%= link_to t("place.add"), new_admin_place_path,
+            class: "btn btn-success btn-xs glyphicon glyphicon-plus" %></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <table id="places-table" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th><%= t "place.id" %></th>
+                <th><%= t "place.name" %></th>
+                <th><%= t "place.description" %></th>
+                <th><%= t "place.action" %></th>
+            </thead>
+            <tbody>
+              <% @places.each do |place| %>
+                <tr>
+                  <td><%= place.id %></td>
+                  <td><%= link_to place.name, admin_place_path(place) %></td>
+                  <td><%= place.description %></td>
+                  <td>
+                    <%= link_to edit_admin_place_path(place), class: "btn btn-round btn-info btn-xs" do %>
+                      <i class="fa fa-pencil-square-o "></i>  Edit
+                    <% end %>
+                    <%= link_to [:admin, place], method: :delete, data: {confirm: t("sure")}, class: "btn btn-round btn-danger btn-xs" do %>
+                      <i class="fa fa-times"></i>  Delete
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<table class="table sortable table-bordered">
-  <thead>
-    <tr>
-      <th><%= t "place.id" %></th>
-      <th><%= t "place.name" %></th>
-      <th><%= t "place.description" %></th>
-      <th><%= t "place.action" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @places.each do |place| %>
-      <tr>
-        <td><%= place.id %></td>
-        <td><%= link_to place.name, admin_place_path(place) %></td>
-        <td><%= place.description %></td>
-        <td>
-          <%= link_to t("edit"), edit_admin_place_path(place),
-            class: "btn btn-primary" %>
-          <%= link_to t("delete"), [:admin, place], method: :delete,
-            data: {confirm: t("sure")}, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script type="text/javascript">
+  $(document).ready(function () {
+    //DataTable
+    $('#places-table').DataTable();
+  })
+</script>

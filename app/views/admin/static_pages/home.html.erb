@@ -1,46 +1,32 @@
 <% provide :title, t("static_pages.home.title") %>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
-      <div id="sidebar" class="well sidebar-nav">
-        <h5><i class="glyphicon glyphicon-home"></i>
-          <small><b>MANAGEMENT</b></small>
-        </h5>
-        <ul class="nav nav-pills nav-stacked">
-          <li>
-            <%= link_to t("category.title"), admin_categories_path,
-              class: "btn btn-primary" %>
-          </li>
-          <li>
-            <%= link_to t("place.title"), admin_places_path,
-              class: "btn btn-primary" %>
-          </li>
-          <li>
-            <%= link_to t("tour.title"), admin_tours_path,
-              class: "btn btn-primary" %>
-          </li>
-          <li>
-            <%= link_to t("booking.title"), admin_bookings_path,
-              class: "btn btn-primary" %>
-          </li>
-          <li>
-            <%= link_to t("discount.title"), admin_discounts_path,
-              class: "btn btn-primary" %>
-          </li>
-        </ul>
-        <h5><i class="glyphicon glyphicon-user"></i>
-          <small><b>USERS</b></small>
-        </h5>
-        <ul class="nav nav-pills nav-stacked">
-          <li><%= link_to t("user.title"), admin_users_path, class: "btn btn-primary" %></li>
-          <li><%= link_to t("review.title"), admin_reviews_path, class: "btn btn-primary" %></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-8">
-        <!-- Content Here -->
-    </div>
+<!-- top tiles -->
+<div class="row tile_count">
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+    <div class="count green"><%= User.all.count %></div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="fa fa-clock-o"></i> Total Categories</span>
+    <div class="count"><%= Category.all.count %></div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="fa fa-user"></i> Total Places</span>
+    <div class="count green"><%= Place.all.count %></div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="fa fa-user"></i> Total Tours</span>
+    <div class="count"><%= Tour.all.count %></div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="fa fa-user"></i> Total Bookings</span>
+    <div class="count"><%= Booking.all.count %></div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="fa fa-user"></i> Total Discounts</span>
+    <div class="count"><%= Discount.all.count %></div>
   </div>
 </div>
+<div class="row" style="margin-top: 15%;">
+  <h1 class="text-center">Welcome to admin's dashbourd.</h1>
+</div>
+<!-- /top tiles -->

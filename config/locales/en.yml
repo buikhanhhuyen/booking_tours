@@ -17,6 +17,7 @@ en:
       nav: "Toggle navigation"
       logout: "Log out"
       sign_up: "Sign up"
+      sign_in: "Sign in"
       categories: "Categories"
       places: "Places"
       deal: "Hot deals"
@@ -50,7 +51,7 @@ en:
   menu: "Menu"
   destination: "Destinations"
   tour: "Hot Deals"
-  discount: "Discounts"
+  discount-header: "Discounts"
   remove: "Remove"
   edit: "Edit"
   delete: "Delete"
@@ -133,7 +134,7 @@ en:
     delete_success: "Delete comment successfully."
     delete_fail: "Can't delete comment."
   discount:
-    title: "Discount"
+    title: "Discounts"
   booking:
     title: "Book tour"
     create_success: "Booking tour successfully."
@@ -166,7 +167,7 @@ en:
     delete_success: "Delete user successfully."
     delete_fail: "Can't delete user."
   discount:
-    title: "Discount"
+    title: "Discounts"
     id: "ID"
     name: "Name"
     percent: "Percent"

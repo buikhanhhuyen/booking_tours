@@ -1,75 +1,79 @@
 <% provide :title, t("tour.title") %>
-<h1 class="text-center"><%= t "tour.title" %></h1><br>
-
-<%= search_form_for [:admin, @search], url: search_admin_tours_path, method: :post do |f| %>
-  <%= f.condition_fields do |c| %>
-    <%= render "condition_fields", f: c %>
-  <% end %>
-  <p><%= link_to_add_conditions t("add_condition"), f, :condition %></p>
-  <div class="field">
-    Sort:
-    <%= f.sort_fields do |s| %>
-      <%= s.sort_select %>
-    <% end %>
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Tours Management</h3>
+    </div>
   </div>
-  <div class="actions"><%= f.submit t "search" %></div>
-<% end %>
+  <div class="clearfix"></div>
 
-<div class="row">
-  <div class="col-md-6 center">
-    <%= link_to t("tour.add"), new_admin_tour_path,
-      class: "btn btn-success glyphicon glyphicon-plus" %>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>All Tours  <%= link_to t("tour.add"), new_admin_tour_path,
+            class: "btn btn-success btn-xs glyphicon glyphicon-plus" %></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <table id="categories-table" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th><%= t "tour.id" %></th>
+                <th><%= t "tour.name" %></th>
+                <th><%= t "tour.start_place" %></th>
+                <th><%= t "tour.end_place" %></th>
+                <th><%= t "tour.price" %></th>
+                <th><%= t "tour.start_date" %></th>
+                <th><%= t "tour.end_date" %></th>
+                <th><%= t "tour.min_visitors" %></th>
+                <th><%= t "tour.max_visitors" %></th>
+                <th><%= t "tour.transport" %></th>
+                <th><%= t "tour.action" %></th>
+            </thead>
+            <tbody>
+              <% @tours.each do |tour| %>
+                <tr>
+                  <td><%= tour.id %></td>
+                  <td><%= link_to tour.name, admin_tour_path(tour) %></td>
+                  <td><%= tour.start_place.name %></td>
+                  <td><%= tour.end_place.name %></td>
+                  <td>
+                    <% if tour.vnd? %>
+                      <%= tour.price.round %> <%= tour.currency %>
+                    <% else %>
+                      <%= tour.price.round(2) %> <%= tour.currency %>
+                    <% end %>
+                  </td>
+                  <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
+                  <td><%= tour.end_date.strftime("%d-%m-%Y") %></td>
+                  <td><%= tour.min_visitors %></td>
+                  <td><%= tour.max_visitors %></td>
+                  <td><%= truncate(tour.transport, length: 100) %></td>
+                  <td>
+                    <%= link_to edit_admin_tour_path(tour), class: "btn btn-round btn-info btn-xs" do %>
+                      <i class="fa fa-pencil-square-o "></i>  Edit
+                    <% end %>
+                    <%= link_to [:admin, tour], method: :delete, class: "btn btn-round btn-danger btn-xs" do %>
+                      <i class="fa fa-times"></i>  Delete
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<table class="table sortable table-bordered">
-  <thead>
-    <tr>
-      <th><%= t "tour.id" %></th>
-      <th><%= t "tour.name" %></th>
-      <th><%= t "tour.start_place" %></th>
-      <th><%= t "tour.end_place" %></th>
-      <th><%= t "tour.price" %></th>
-      <th><%= t "tour.start_date" %></th>
-      <th><%= t "tour.end_date" %></th>
-      <th><%= t "tour.min_visitors" %></th>
-      <th><%= t "tour.max_visitors" %></th>
-      <th><%= t "tour.accommodation" %></th>
-      <th><%= t "tour.meals" %></th>
-      <th><%= t "tour.transport" %></th>
-      <th><%= t "tour.services" %></th>
-      <th><%= t "tour.action" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tours.each do |tour| %>
-      <tr>
-        <td><%= tour.id %></td>
-        <td><%= link_to tour.name, admin_tour_path(tour) %></td>
-        <td><%= tour.start_place.name %></td>
-        <td><%= tour.end_place.name %></td>
-        <td>
-          <% if tour.vnd? %>
-            <%= tour.price.round %> <%= tour.currency %>
-          <% else %>
-            <%= tour.price.round(2) %> <%= tour.currency %>
-          <% end %>
-        </td>
-        <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
-        <td><%= tour.end_date.strftime("%d-%m-%Y") %></td>
-        <td><%= tour.min_visitors %></td>
-        <td><%= tour.max_visitors %></td>
-        <td><%= truncate(tour.accommodation, length: 100) %></td>
-        <td><%= tour.meals %></td>
-        <td><%= truncate(tour.transport, length: 100) %></td>
-        <td><%= truncate(tour.additional_services, length: 100) %></td>
-        <td>
-          <%= link_to t("edit"), edit_admin_tour_path(tour),
-            class: "btn btn-primary" %>
-          <%= link_to t("delete"), [:admin, tour], method: :delete,
-            data: {confirm: t("sure")}, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script type="text/javascript">
+  $(document).ready(function () {
+    //DataTable
+    $('#categories-table').DataTable();
+  })
+</script>
