@@ -140,6 +140,8 @@ ActiveRecord::Schema.define(version: 20161104033958) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.integer  "role",                   default: 1
+    t.string   "address"
+    t.string   "phone_number"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -160,12 +162,10 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.string   "name"
     t.datetime "birthday"
     t.string   "email"
-    t.string   "address"
-    t.string   "phone_number"
     t.boolean  "gender"
     t.integer  "booking_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["booking_id"], name: "index_visitors_on_booking_id"
   end
 

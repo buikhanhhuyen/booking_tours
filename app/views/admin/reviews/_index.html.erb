@@ -1,6 +1,6 @@
 <% @reviews.each do |review| %>
   <div>
-    <%= link_to review.title, place_review_path(review.place, review) %>
+    <%= link_to review.title, admin_place_review_path(review.place, review) %>
     <br />
     <span class="usertimestamp">
       Posted by <%= review.user.username %>

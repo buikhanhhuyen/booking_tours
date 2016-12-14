@@ -1,12 +1,14 @@
-<div class="center">
-  <%= form_for [review, @comment] do |f| %>
-    <div class="col-md-4">
-      <%= f.text_field :content, class: "form-control input-md",
-        required: true %>
-    </div>
-    <%= f.submit t("comment.cmt"), class: "btn btn-primary" %>
-  <% end %>
-</div>
+<% unless current_user.admin? %>
+  <div class="center">
+    <%= form_for [review, @comment] do |f| %>
+      <div class="col-md-4">
+        <%= f.text_field :content, class: "form-control input-md",
+          required: true %>
+      </div>
+      <%= f.submit t("comment.cmt"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>
 
 <% @comments.each do |comment| %>
   <div class="comments-list">
@@ -25,10 +27,12 @@
               data: {confirm: t("sure")}, class: "btn btn-danger" %>
           <% end %>
 
-          <button class="btn btn-primary" type="button" data-toggle="collapse"
-            data-target="#reply-<%= comment.id %>" aria-expanded="false"
-            aria-controls="reply-<%= comment.id %>"><%= t "comment.reply" %>
-          </button>
+          <% unless current_user.admin? %>
+            <button class="btn btn-primary" type="button" data-toggle="collapse"
+              data-target="#reply-<%= comment.id %>" aria-expanded="false"
+              aria-controls="reply-<%= comment.id %>"><%= t "comment.reply" %>
+            </button>
+          <% end %>
           <div class="collapse" id="reply-<%= comment.id %>">
             <div class="card card-block">
               <%= form_for [comment, @comment] do |f| %>

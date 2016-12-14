@@ -6,6 +6,6 @@ class Admin::CommentsController < ApplicationController
     else
       flash[:alert] = t "comment.delete_fail"
     end
-    redirect_to admin_review_path @review
+    redirect_to admin_reviews_path
   end
 end
