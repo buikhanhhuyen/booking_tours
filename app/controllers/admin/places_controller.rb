@@ -6,10 +6,6 @@ class Admin::PlacesController < ApplicationController
     @places = @search.result
   end
 
-  def show
-    @reviews = @place.reviews
-  end
-
   def new
     @place = Place.new
   end
@@ -20,7 +16,7 @@ class Admin::PlacesController < ApplicationController
       redirect_to admin_places_path
     else
       flash[:alert] = t "place.create_fail"
-      redirect_to admin_places_path
+      render :new
     end
   end
 

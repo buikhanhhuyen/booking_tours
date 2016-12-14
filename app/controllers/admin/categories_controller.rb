@@ -5,10 +5,6 @@ class Admin::CategoriesController < ApplicationController
     @categories = Category.all
   end
 
-  def show
-    @tour = @category.tours
-  end
-
   def new
     @category = Category.new
   end
@@ -19,7 +15,7 @@ class Admin::CategoriesController < ApplicationController
       redirect_to admin_categories_path
     else
       flash[:alert] = t "category.create_fail"
-      redirect_to admin_categories_path
+      render :new
     end
   end
 
