@@ -29,14 +29,14 @@ Rails.application.routes.draw do
   namespace :admin do
     root "static_pages#home", as: "static_pages"
     get "static_pages/:page" => "static_pages#show"
-    resources :categories
+    resources :categories, except: [:show]
     resources :tours do
       collection {post :search, to: "tours#index"}
     end
     resources :bookings, except: [:new, :create] do
       collection {post :search, to: "bookings#index"}
     end
-    resources :places do
+    resources :places, except: [:show] do
       collection {post :search, to: "places#index"}
       resources :reviews, only: [:show, :destroy]
     end
