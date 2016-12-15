@@ -21,8 +21,8 @@
       <tr>
         <td><%= tour.id %></td>
         <td><%= link_to tour.name, tour_path(tour) %></td>
-        <td><%= tour.start_place %></td>
-        <td><%= tour.end_place %></td>
+        <td><%= tour.start_place.name %></td>
+        <td><%= tour.end_place.name %></td>
         <td>
           <% if tour.vnd? %>
             <%= tour.price.round %> <% t "tour.vnd" %>

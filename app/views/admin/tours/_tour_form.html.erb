@@ -98,7 +98,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.accommodation" %> <span class="required">*</span>
+    <label class="col-md-4 control-label" for="tour_accommodation">
+      <%= t "tour.accommodation" %>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :accommodation, class: "form-control", required: true,
@@ -106,7 +107,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.meals" %> <span class="required">*</span>
+    <label class="col-md-4 control-label" for="tour_meals">
+      <%= t "tour.meals" %>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :meals, class: "form-control", required: true,
@@ -114,14 +116,18 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.transport" %> <span class="required">*</span>
+    <label class="col-md-4 control-label" for="tour_transport">
+      <%= t "tour.transport" %>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :transport, class: "form-control", required: true,
         placeholder: "Enter transport ..." %>
     </div>
-  </div><div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.service" %> <span class="required">*</span>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="tour_additional_services">
+      <%= t "tour.services" %>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :additional_services, class: "form-control",
