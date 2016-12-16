@@ -1,160 +1,154 @@
-<%= form_for [:admin, @tour] do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<%= form_for [:admin, @tour], html: {class: "form-horizontal form-label-left"} do |f| %>
   <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_name">
-      <%= t "tour.name" %>
+    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+      <%= render "shared/error_messages", object: f.object %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.name" %> <span class="required">*</span>
     </label>
-
-    <div class="col-md-8">
-      <%= f.text_field :name, class: "form-control input-md", required: true,
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <%= f.text_field :name, class: "form-control", required: true,
         placeholder: "Enter name ..." %>
-      <span class="help-block"><%= t "tour.enter_name" %></span>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="category_id">
-      <%= t "category.title" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "category.title" %> <span class="required">*</span>
     </label>
-    <div class="col-md-8">
-      <%= f.select :category_id, @categories.collect{|c| [c.title, c.id]} %>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <select class="select2_single form-control" tabindex="-1" id="tour_category_id" name="tour[category_id]">
+        <option></option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>"><%= category.title %></option>
+        <% end %>
+      </select>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="discount_id">
-      <%= t "discount.title" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "discount.title" %> <span class="required">*</span>
     </label>
-    <div class="col-md-8">
-      <%= f.select :discount_id, @discounts.collect{|d| [d.name, d.id]} %>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <select class="select2_single form-control" tabindex="-1" id="tour_discount_id" name="tour[discount_id]">
+        <option></option>
+        <% @discounts.each do |discount| %>
+          <option value="<%= discount.id %>"><%= discount.name %></option>
+        <% end %>
+      </select>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="start_place_id">
-      <%= t "tour.start_place" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.start_place" %> <span class="required">*</span>
     </label>
-    <div class="col-md-8">
-      <%= f.select :start_place_id, @places.collect{|p| [p.name, p.id]} %>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <select class="select2_single form-control" tabindex="-1" id="tour_start_place_id" name="tour[start_place_id]">
+        <option></option>
+        <% @places.each do |place| %>
+          <option value="<%= place.id %>"><%= place.name %></option>
+        <% end %>
+      </select>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="end_place_id">
-      <%= t "tour.end_place" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.end_place" %> <span class="required">*</span>
     </label>
-    <div class="col-md-8">
-      <%= f.select :end_place_id, @places.collect{|p| [p.name, p.id]} %>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <select class="select2_single form-control" tabindex="-1" id="tour_end_place_id" name="tour[end_place_id]">
+        <option></option>
+        <% @places.each do |place| %>
+          <option value="<%= place.id %>"><%= place.name %></option>
+        <% end %>
+      </select>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="price">
-      <%= t "tour.price" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.price" %> <span class="required">*</span>
     </label>
-
-    <div>
-      <div class="col-md-8">
-        <%= f.text_field :price, class: "form-control", required: true,
-          placeholder: "Enter price ..." %>
-      </div>
-      <select name="tour[currency]">
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <%= f.text_field :price, class: "form-control", required: true,
+        placeholder: "Enter price ..." %>
+    </div>
+    <div class="col-md-2">
+      <select name="tour[currency]", class="form-control">
         <option value="vnd"><%= t "tour.vnd" %></option>
         <option value="usd"><%= t "tour.usd" %></option>
       </select>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="start_date">
-      <%= t "tour.start_date" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Duration <span class="required">*</span>
     </label>
-    <div>
-      <div class="col-md-8">
-        <%= f.text_field :start_date, class: "form-control datetimepicker" %>
-      </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <%= f.text_field :start_date, class: "form-control datetimepicker", placeholder: "Start date ..." %>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <%= f.text_field :end_date, class: "form-control datetimepicker", placeholder: "End date ..." %>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="end_date">
-      <%= t "tour.end_date" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Number visitors <span class="required">*</span>
     </label>
-    <div>
-      <div class="col-md-8">
-        <%= f.text_field :end_date, class: "form-control datetimepicker" %>
-      </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <%= f.text_field :min_visitors, class: "form-control",
+        required: true, placeholder: "Min" %>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <%= f.text_field :max_visitors, class: "form-control",
+        required: true, placeholder: "Max" %>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_min_visitors">
-      <%= t "tour.min_visitors" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.accommodation" %> <span class="required">*</span>
     </label>
-
-    <div class="col-md-8">
-      <%= f.text_field :min_visitors, class: "form-control input-md",
-        required: true %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_min_visitors">
-      <%= t "tour.max_visitors" %>
-    </label>
-
-    <div class="col-md-8">
-      <%= f.text_field :max_visitors, class: "form-control input-md",
-      required: true %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_accommodation">
-      <%= t "tour.tour_accommodation" %>
-    </label>
-
-    <div class="col-md-8">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :accommodation, class: "form-control", required: true,
         placeholder: "Enter accommodation ..." %>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_meals">
-      <%= t "tour.tour_meals" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.meals" %> <span class="required">*</span>
     </label>
-
-    <div class="col-md-8">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :meals, class: "form-control", required: true,
         placeholder: "Enter meals ..." %>
     </div>
   </div>
-
   <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_transport">
-      <%= t "tour.tour_transport" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.transport" %> <span class="required">*</span>
     </label>
-
-    <div class="col-md-8">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :transport, class: "form-control", required: true,
         placeholder: "Enter transport ..." %>
     </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="tour_additional_services">
-      <%= t "tour.tour_services" %>
+  </div><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.service" %> <span class="required">*</span>
     </label>
-
-    <div class="col-md-8">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :additional_services, class: "form-control",
         required: true, placeholder: "Enter additional services ..." %>
     </div>
   </div>
-
-  <div class="text-center">
-    <%= f.submit t("save"), class: "btn btn-primary" %>
-    <%= link_to t("cancel"), admin_places_path, class: "btn btn-danger" %>
+  <div class="ln_solid"></div>
+  <div class="form-group">
+    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+      <%= f.submit t("save"), class: "btn btn-success" %>
+    <%= link_to t("cancel"), admin_places_path, class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
+<!-- Select2 -->
+  <script>
+    $(document).ready(function() {
+      $(".select2_single").select2({
+        placeholder: "Please select ...",
+        allowClear: true
+      });
+      $(".select2_group").select2({});
+      $(".select2_multiple").select2({
+        maximumSelectionLength: 4,
+        placeholder: "With Max Selection limit 4",
+        allowClear: true
+      });
+    });
+  </script>
+  <!-- /Select2 -->

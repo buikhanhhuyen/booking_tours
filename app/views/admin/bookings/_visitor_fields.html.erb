@@ -1,28 +1,36 @@
 <div id="visitor">
   <div class="form-group">
-    <%= f.label :name, t("visitor.name") %>
-    <%= f.text_field :name, class: "form-control" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.name") %> <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :gender, t("visitor.gender") %>
-    <%= f.select :gender, Visitor.genders %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.gender") %> <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <%= f.select :gender, Visitor.genders, class: "form-control" %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :birthday, t("visitor.birthday") %>
-    <%= f.text_field :birthday, class: "form-control datetimepicker",
-      value: "#{f.object.birthday.strftime("%d-%m-%Y") if f.object.birthday}" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.birthday") %> <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <%= f.text_field :birthday, class: "form-control datetimepicker",
+        value: "#{f.object.birthday.strftime("%d-%m-%Y") if f.object.birthday}" %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :phone_number, t("visitor.phone_number") %>
-    <%= f.text_field :phone_number, class: "form-control" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.email") %> <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :address, t("visitor.address") %>
-    <%= f.text_field :address, class: "form-control" %>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= link_to_remove_fields t(".remove"), f %>
+    </label>
   </div>
-  <div class="form-group">
-    <%= f.label :email, t("visitor.email") %>
-    <%= f.text_field :email, class: "form-control" %>
-  </div>
-  <%= link_to_remove_fields t(".remove"), f %>
 </div>
