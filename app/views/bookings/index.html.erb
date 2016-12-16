@@ -13,7 +13,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>All Bookings</h2>
+                  <h2><%= t "booking.all" %></h2>
                   <div class="clearfix"></div>
                 </div>
 
@@ -22,47 +22,48 @@
                     <table class="table table-striped jambo_table bulk_action">
                       <thead>
                         <tr class="headings">
-                          <th class="column-title">Booking </th>
-                          <th class="column-title">Booking Date </th>
-                          <th class="column-title">Tour </th>
-                          <th class="column-title">Price </th>
-                          <th class="column-title">Qty </th>
-                          <th class="column-title">Discount </th>
-                          <th class="column-title">Amount </th>
-                          <th class="column-title">Status </th>
+                          <th class="column-title"><%= t "booking.id" %></th>
+                          <th class="column-title"><%= t "booking.date" %></th>
+                          <th class="column-title"><%= t "tour.title" %></th>
+                          <th class="column-title"><%= t "tour.price" %></th>
+                          <th class="column-title"><%= t "visitor.qty" %></th>
+                          <th class="column-title"><%= t "discount.title" %></th>
+                          <th class="column-title"><%= t "booking.amount" %></th>
+                          <th class="column-title"><%= t "booking.status" %></th>
                           </th>
                         </tr>
                       </thead>
 
                       <tbody>
                         <% @bookings.each do |booking| %>
-                        <tr class="even pointer">
-                          <td class=" "><%= booking.id %></td>
-                          <td class=" "><%= booking.created_at.strftime("%d-%m-%Y") %></td>
-                          <td class=" "><%= booking.tour.name %></td>
-                          <td class="a-right a-right ">
-                            <% if booking.tour.vnd? %>
-                              <%= booking.tour.price.round %> <%= t "tour.vnd" %>
-                            <% else %>
-                              $<%= booking.tour.price %>
-                            <% end %>
-                          </td>
-                          <td class=" "><%= booking.visitors.count %></td>
-                          <td class=" ">
-                            <% if booking.tour.discount.nil? %>
-                              0%
-                            <% else %>
-                              <%= booking.tour.discount.percent %>%
-                            <% end %>
-                          </td>
-                          <td class=" ">
-                            <% if booking.tour.vnd? %>
-                              <%= booking.total_price.round %> <%= t "tour.vnd" %>
-                            <% else %>
-                              $<%= booking.total_price %>
-                            <% end %>
-                          </td>
-                          <td class=" "><%= booking.status %></td>
+                            <tr class="even pointer">
+                              <td class=" "><%= booking.id %></td>
+                              <td class=" "><%= booking.created_at.strftime("%d-%m-%Y") %></td>
+                              <td class=" "><%= link_to booking.tour.name, booking_path(booking) %></td>
+                              <td class="a-right a-right ">
+                                <% if booking.tour.vnd? %>
+                                  <%= booking.tour.price.round %> <%= t "tour.vnd" %>
+                                <% else %>
+                                  $<%= booking.tour.price %>
+                                <% end %>
+                              </td>
+                              <td class=" "><%= booking.visitors.count %></td>
+                              <td class=" ">
+                                <% if booking.tour.discount.nil? %>
+                                  0%
+                                <% else %>
+                                  <%= booking.tour.discount.percent %>%
+                                <% end %>
+                              </td>
+                              <td class=" ">
+                                <% if booking.tour.vnd? %>
+                                  <%= booking.total_price.round %> <%= t "tour.vnd" %>
+                                <% else %>
+                                  $<%= booking.total_price %>
+                                <% end %>
+                              </td>
+                              <td class=" "><%= link_to booking.status, new_booking_payment_path(booking) %></td>
+                            </tr>
                         <% end %>
                       </tbody>
                     </table>
