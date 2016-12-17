@@ -104,7 +104,9 @@
                         <%= image_tag "visa.png", alt: "Visa" %>
                         <%= image_tag "mastercard.png", alt: "Mastercard" %>
                         <%= image_tag "american-express.png", alt: "American Express" %>
-                        <%= image_tag "paypal.png", alt: "Paypal" %>
+                        <%= link_to booking_path(@booking, user_payment: "user_payment"), method: :patch do %>
+                          <%= image_tag "paypal.png", alt: "Paypal" %>
+                        <% end %>
                         <p class="text-muted well well-sm no-shadow" style="width: 500px; margin-top: 10px;">
                           Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
                         </p>

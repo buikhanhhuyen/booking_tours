@@ -3,18 +3,16 @@ class Payment < ApplicationRecord
 
   belongs_to :booking
 
-  def process_payment
-      byebug
-    customer = Stripe::Customer.create email: email
-    charge = Stripe::Charge.create customer: customer.id,
-      amount: booking.total_price,
-      currency: "usd"
-    self.charge_token = charge.id
-    self.customer_token = customer.id
-    byebug
-  end
-
-  def process_refund
-    Stripe::Refund.create charge: self.charge_token
+ def paypal_url return_path
+    values = {
+      business: "a@email.com",
+      return: "#{Rails.application.secrets.app_host}#{return_path}",
+      notify_url: "#{Rails.application.secrets.app_host}/update",
+      invoice: id,
+      cmd: "_xclick",
+      amount: amount,
+    }
+    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" +
+      values.to_query
   end
 end
