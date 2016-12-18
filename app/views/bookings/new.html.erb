@@ -5,8 +5,8 @@
     <h2>My Trip</h1>
     <div>
       <h4>Tour: <%= @tour.name %></h4>
-      <h4>Starts in <%= @tour.start_place %> on <%= @tour.start_date.strftime("%d-%m-%Y") %></h4>
-      <h4>Ends in <%= @tour.end_place %> on <%= @tour.end_date.strftime("%d-%m-%Y") %></h4>
+      <h4>Starts in <%= @tour.start_place.name %> on <%= @tour.start_date.strftime("%d-%m-%Y") %></h4>
+      <h4>Ends in <%= @tour.end_place.name %> on <%= @tour.end_date.strftime("%d-%m-%Y") %></h4>
     </div>
     <h3>Visitor Information</h3>
     <%= form_for [@tour, @booking] do |f| %>

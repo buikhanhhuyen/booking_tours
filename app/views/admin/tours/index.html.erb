@@ -30,8 +30,7 @@
                 <th><%= t "tour.price" %></th>
                 <th><%= t "tour.start_date" %></th>
                 <th><%= t "tour.end_date" %></th>
-                <th><%= t "tour.min_visitors" %></th>
-                <th><%= t "tour.max_visitors" %></th>
+                <th><%= t "tour.num" %></th>
                 <th><%= t "tour.transport" %></th>
                 <th><%= t "tour.action" %></th>
             </thead>
@@ -51,8 +50,7 @@
                   </td>
                   <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
                   <td><%= tour.end_date.strftime("%d-%m-%Y") %></td>
-                  <td><%= tour.min_visitors %></td>
-                  <td><%= tour.max_visitors %></td>
+                  <td><%= tour.min_visitors %> - <%= tour.max_visitors %></td>
                   <td><%= truncate(tour.transport, length: 100) %></td>
                   <td>
                     <%= link_to edit_admin_tour_path(tour), class: "btn btn-round btn-info btn-xs" do %>

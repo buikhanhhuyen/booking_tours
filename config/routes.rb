@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     collection {post :search, to: "tours#index"}
     resources :bookings, except: [:edit, :update, :index]
   end
-  resources :bookings, except: [:edit, :update, :destroy] do
-    resources :payments, except: [:edit, :destroy]
+  resources :bookings, except: [:edit, :destroy] do
+    resources :payments, only: [:new, :create, :update]
   end
   resources :reviews do
     resources :comments

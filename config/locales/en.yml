@@ -123,6 +123,7 @@ en:
     delete_success: "Delete tour successfully."
     delete_fail: "Can't delete tour."
     action: "Action"
+    num: "Number visitors"
   review:
     title: "Reviews"
     create_success: "Create review successfully."
@@ -157,6 +158,8 @@ en:
     status: "Status"
     total_price: "Total Price"
     all: "All Bookings"
+    date: "Booking Date"
+    amount: "Amount"
   visitor:
     number: "Number"
     id: "ID"
@@ -170,6 +173,7 @@ en:
     male: "Male"
     female: "Female"
     add: "Add vistor"
+    qty: "Qty"
   user:
     title: "Users"
     id: "ID"

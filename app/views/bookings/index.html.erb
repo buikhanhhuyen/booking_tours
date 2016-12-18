@@ -1,41 +1,92 @@
-<% provide :title, t("booking.all") %>
-<h1 class="text-center"><%= t "booking.all" %></h1><br>
+<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<link href="../build/css/custom.min.css" rel="stylesheet">
 
-<table class="table sortable table-bordered">
-  <thead>
-    <tr>
-      <th><%= t "booking.id" %></th>
-      <th><%= t "tour.name" %></th>
-      <th><%= t "tour.start_date" %></th>
-      <th><%= t "tour.end_date" %></th>
-      <th><%= t "tour.price" %></th>
-      <th><%= t "visitor.number" %></th>
-      <th><%= t "booking.total_price" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.id %></td>
-        <td><%= link_to booking.tour.name, tour_path(booking.tour) %></td>
-        <td><%= booking.tour.start_date.strftime("%d-%m-%Y") %></td>
-        <td><%= booking.tour.end_date.strftime("%d-%m-%Y") %></td>
-        <td>
-          <% if booking.tour.vnd? %>
-            <%= booking.tour.price.round %> <% t "tour.vnd" %>
-          <% else %>
-            <%= booking.tour.price.round(2) %> <% t "tour.usd" %>
-          <% end %>
-        </td>
-        <td><%= booking.visitors.count %></td>
-        <td>
-          <% if booking.tour.vnd? %>
-            <%= booking.total_price.round %> <%= t "tour.vnd" %>
-          <% else %>
-            <%= booking.total_price %> <%= t "tour.usd" %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="container body">
+    <div class="main_container">
+      <div class="right_col" role="main">
+        <div class="">
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2><%= t "booking.all" %></h2>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                  <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                      <thead>
+                        <tr class="headings">
+                          <th class="column-title"><%= t "booking.id" %></th>
+                          <th class="column-title"><%= t "booking.date" %></th>
+                          <th class="column-title"><%= t "tour.title" %></th>
+                          <th class="column-title"><%= t "tour.price" %></th>
+                          <th class="column-title"><%= t "visitor.qty" %></th>
+                          <th class="column-title"><%= t "discount.title" %></th>
+                          <th class="column-title"><%= t "booking.amount" %></th>
+                          <th class="column-title"><%= t "booking.status" %></th>
+                          </th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <% @bookings.each do |booking| %>
+                            <tr class="even pointer">
+                              <td class=" "><%= booking.id %></td>
+                              <td class=" "><%= booking.created_at.strftime("%d-%m-%Y") %></td>
+                              <td class=" "><%= link_to booking.tour.name, booking_path(booking) %></td>
+                              <td class="a-right a-right ">
+                                <% if booking.tour.vnd? %>
+                                  <%= booking.tour.price.round %> <%= t "tour.vnd" %>
+                                <% else %>
+                                  $<%= booking.tour.price %>
+                                <% end %>
+                              </td>
+                              <td class=" "><%= booking.visitors.count %></td>
+                              <td class=" ">
+                                <% if booking.tour.discount.nil? %>
+                                  0%
+                                <% else %>
+                                  <%= booking.tour.discount.percent %>%
+                                <% end %>
+                              </td>
+                              <td class=" ">
+                                <% if booking.tour.vnd? %>
+                                  <%= booking.total_price.round %> <%= t "tour.vnd" %>
+                                <% else %>
+                                  $<%= booking.total_price %>
+                                <% end %>
+                              </td>
+                              <td class=" "><%= link_to booking.status, new_booking_payment_path(booking) %></td>
+                            </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- FastClick -->
+  <script src="../vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="../vendors/nprogress/nprogress.js"></script>
+  <!-- iCheck -->
+  <script src="../vendors/iCheck/icheck.min.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="../build/js/custom.min.js"></script>

@@ -35,6 +35,18 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update
+    if params[:user_payment]
+      payment = Payment.create amount: @booking.total_price, booking_id: @booking.id
+      redirect_to payment.paypal_url [@booking]
+    else
+      @payment = Payment.find params[:invoice]
+      @payment.update_attributes status: status,
+        transaction_id: params[:txn_id], purchased_at: Time.now
+    end
+  end
+
+
   private
   def booking_params
     params.require(:booking).permit visitors_attributes: [:id, :name, :email,

@@ -33,7 +33,7 @@
                 <tr>
                   <td><%= place.id %></td>
                   <td><%= link_to place.name, admin_place_path(place) %></td>
-                  <td><%= place.description %></td>
+                  <td style="width:60%"><%= truncate(place.description, length: 200) %></td>
                   <td>
                     <%= link_to edit_admin_place_path(place), class: "btn btn-round btn-info btn-xs" do %>
                       <i class="fa fa-pencil-square-o "></i>  Edit
