@@ -1,4 +1,4 @@
-<div id="visitor">
+<div id="visitor" class="visitors">
   <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.name") %> <span class="required">*</span>
     </label>
@@ -9,7 +9,7 @@
   <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.gender") %> <span class="required">*</span>
     </label>
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-2 col-sm-6 col-xs-12">
       <%= f.select :gender, Visitor.genders, class: "form-control" %>
     </div>
   </div>
