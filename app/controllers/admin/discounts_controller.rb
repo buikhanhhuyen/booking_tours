@@ -1,6 +1,5 @@
 class Admin::DiscountsController < ApplicationController
   load_and_authorize_resource params_method: :discount_params
-  before_action :check_discount, except: [:new, :create]
 
   def index
     @search = Discount.search params[:q]
@@ -50,9 +49,5 @@ class Admin::DiscountsController < ApplicationController
   def discount_params
     params.require(:discount).permit :name, :percent, :description, :start_date,
       :end_date
-  end
-
-  def check_discount
-    @discount = Discount.fdiscount.find_by_id params[:id]
   end
 end

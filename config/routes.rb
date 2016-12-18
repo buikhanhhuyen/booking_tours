@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     collection {post :search, to: "places#index"}
     resources :reviews, except: :index
   end
-  resources :tours, except: :index do
+  resources :tours do
     collection {post :search, to: "tours#index"}
     resources :bookings, except: [:edit, :update, :index]
   end

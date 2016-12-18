@@ -52,14 +52,26 @@
                   <br />
                   <div class="">
                     <div class="product_price">
-                      <strong class="price">
-                        <% if @tour.currency == "vnd" %>
-                          <%= @tour.price.round %> <%= @tour.currency %>
-                        <% else %>
-                          $<%= @tour.price %>
-                        <% end %>
-                      </strong>
-                      <br>
+                      <p>
+                        <h3 class="price">
+                        <strong>Price: </strong>
+                          <% if @tour.currency == "vnd" %>
+                            <%= @tour.price.round %> <%= @tour.currency %>
+                          <% else %>
+                            $<%= @tour.price %>
+                          <% end %>
+                        </h3>
+                      </p>
+                      <% if @tour.discount.presence %>
+                        <p>
+                          <strong>Save: </strong>
+                          <% if @tour.currency == "vnd" %>
+                            <%= (@tour.discount.percent * @tour.price/100).round %> <%= @tour.currency %>
+                          <% else %>
+                            $<%= (@tour.price * @tour.discount.percent)/100 %>
+                          <% end %>
+                        </p>
+                      <% end %>
                     </div>
                   </div>
 

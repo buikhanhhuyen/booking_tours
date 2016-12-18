@@ -2,8 +2,6 @@ class Tour < ApplicationRecord
   enum :currency => [:vnd, :usd]
   enum :status => [:coming, :ongoing, :expried]
 
-  scope :ftour, ->  { where.not(status: :expried)}
-
   belongs_to :category
   belongs_to :discount
   belongs_to :start_place, class_name: 'Place', foreign_key: 'start_place_id'

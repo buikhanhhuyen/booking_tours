@@ -1,26 +1,51 @@
-<% provide :title, @place.name %>
-<div class="row">
-  <aside class="col-md-4">
-    <div>
-      <label><%= t "place.name" %></label>
-      <%= @place.name %>
-    </div>
-    <div>
-      <label><%= t "place.description" %></label>
-      <%= @place.description %>
-    </div>
-    <div>
-      <%= link_to "Add review", new_place_review_path(@place),
-        class: "btn btn-success glyphicon glyphicon-plus" %>
-    </div>
-  </aside>
+<link href="/css/admin_main.css" rel="stylesheet">
 
-  <div class="col-md-4">
-    <% if @place.reviews.any? %>
-      <h3><%= t "review.title" %> (<%= @place.reviews.count %>)</h3>
-        <ol class="reviews">
-          <%= render "reviews/index" %>
-        </ol>
-    <% end %>
+<div class="container body">
+  <div class="main_container">
+    <div class="right_col" role="main">
+
+      <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h1><strong><%= @place.name %></strong></h1>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                  <div class="product-image">
+                    <%= image_tag "tour.jpg", alt: "tour" %>
+                    <%= image_tag "london.jpg", alt: "tour" %>
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                  <blockquote>
+                    <p><%= @place.description %></p>
+                    </footer>
+                  </blockquote>
+                  <%= link_to "Add review", new_place_review_path(@place),
+                    class: "btn btn-success glyphicon glyphicon-plus" %>
+                  <% if @place.reviews.presence %>
+                    <div class="x_content">
+                      <div class="row">
+                        <% if @place.reviews.any? %>
+                          <h3><%= t "review.title" %> (<%= @place.reviews.count %>)</h3>
+                            <ol class="reviews">
+                              <%= render "reviews/index" %>
+                            </ol>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<script src="/js/admin_main.js"></script>
