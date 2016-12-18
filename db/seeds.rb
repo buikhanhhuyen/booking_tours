@@ -11,9 +11,34 @@ User.create! username: "admin", email: "admin@email.com",
 User.create! username: "user", email: "user@email.com",
   password: "123456", password_confirmation: "123456"
 
+(1..20).each do |i|
+  User.create! username: "user-#{i}", email: "user-#{i}@email.com",
+    password: "123456", password_confirmation: "123456"
+end
+
 Category.create! title: "Du lich trong nuoc", description: "day la description rat la dai"
 Category.create! title: "Du lich ngoai nuoc", description: "day la description rat la dai"
 Category.create! title: "Du lich sinh thai", description: "day la description rat la dai"
+
+Discount.create! name: "Happy Christmas", percent: "20",
+  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
+  start_date: "10/12/2016", end_date: "31/12/2016"
+
+Discount.create! name: "Happy New Year", percent: "30",
+  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
+  start_date: "25/12/2016", end_date: "25/01/2017"
+
+Discount.create! name: "Family for Year", percent: "35",
+  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
+  start_date: "15/01/2017", end_date: "15/02/2017"
+
+Discount.create! name: "Valentine", percent: "25",
+  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
+  start_date: "01/02/2017", end_date: "25/02/2017"
+
+Discount.create! name: "Happy xmas", percent: "25",
+  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
+  start_date: "10/12/2016", end_date: "10/01/2017"
 
 Place.create! name: "London", description: "The City of London is a city and county within London. It constituted most of London from its settlement by the Romans in the 1st century AD to the Middle Ages, but the agglomeration has since grown far beyond the City's borders. The City is now only a tiny part of the metropolis of London, though it remains a notable part of central London. Administratively, it forms one of the 33 local authority districts of Greater London; however, the City of London is not a London borough, a status reserved for the other 32 districts (including London's only other city, the City of Westminster)."
 Place.create! name: "Bangkok", description: "Bangkok is the capital and most populous city of Thailand. It is known in Thai as Krung Thep Maha Nakhon. The city occupies 1,568.7 square kilometres (605.7 sq mi) in the Chao Phraya River delta in Central Thailand, and has a population of over 8 million, or 12.6 percent of the country's population. Over 14 million people (22.2 percent) live within the surrounding Bangkok Metropolitan Region, making Bangkok an extreme primate city, significantly dwarfing Thailand's other urban centres in terms of importance. There are 581 high-rise buildings in the city, ranking number 5 in the world."
@@ -83,28 +108,3 @@ Tour.create! name: "One Life Adventures - Tokyo",
     Visas (if required)
     Flights back from Puerto Princesa to anywhere else in the Philippines
     Ziplining local payment (PHP500)"
-
-Discount.create! name: "Happy Christmas", percent: "20",
-  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
-  start_date: "10/12/2016", end_date: "31/12/2016"
-
-Discount.create! name: "Happy New Year", percent: "30",
-  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
-  start_date: "25/12/2016", end_date: "25/01/2017"
-
-Discount.create! name: "Family for Year", percent: "35",
-  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
-  start_date: "15/01/2017", end_date: "15/02/2017"
-
-Discount.create! name: "Valentine", percent: "25",
-  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
-  start_date: "01/02/2017", end_date: "25/02/2017"
-
-Discount.create! name: "Happy xmas", percent: "25",
-  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
-  start_date: "10/12/2016", end_date: "10/01/2017"
-
-(1..20).each do |i|
-  User.create! username: "user-#{i}", email: "user-#{i}@email.com",
-    password: "123456", password_confirmation: "123456"
-end

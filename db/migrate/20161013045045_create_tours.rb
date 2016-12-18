@@ -12,11 +12,10 @@ class CreateTours < ActiveRecord::Migration[5.0]
       t.integer :max_visitors
       t.integer :seat
       t.integer :status, default: 0
-      t.string :accommodation
-      t.string :meals
-      t.string :transport
-      t.string :additional_services
-      t.references :place, foreign_key: true
+      t.text :accommodation
+      t.text :meals
+      t.text :transport
+      t.text :additional_services
       t.references :category, foreign_key: true
       t.references :discount, foreign_key: true
 
