@@ -1,58 +1,79 @@
 <% provide :title, @tour.name %>
-<div class="row">
-  <div>
-    <label><%= t "tour.name" %></label>
-    <%= @tour.name %>
-  </div>
-  <div>
-    <label><%= t "tour.start_place" %></label>
-    <%= @tour.start_place.name %>
-  </div>
-  <div>
-    <label><%= t "tour.end_place" %></label>
-    <%= @tour.end_place.name %>
-  </div>
-  <div>
-    <label><%= t "tour.price" %></label>
-    <% if @tour.currency == "vnd" %>
-      <%= @tour.price.round %> <%= @tour.currency %>
-    <% else %>
-      <%= @tour.price %> <%= @tour.currency %>
-    <% end %>
-  </div>
-  <div>
-    <label><%= t "tour.start_date" %></label>
-    <%= @tour.start_date.strftime("%d-%m-%Y") %>
-  </div>
-  <div>
-    <label><%= t "tour.end_date" %></label>
-    <%= @tour.end_date.strftime("%d-%m-%Y") %>
-  </div>
-  <div>
-    <label><%= t "tour.min_visitors" %></label>
-    <%= @tour.min_visitors %>
-  </div>
-  <div>
-    <label><%= t "tour.max_visitors" %></label>
-    <%= @tour.max_visitors %>
-  </div>
-  <div>
-    <label><%= t "tour.accommodation" %></label>
-    <%= @tour.accommodation %>
-  </div>
-  <div>
-    <label><%= t "tour.meals" %></label>
-    <%= @tour.meals %>
-  </div>
-  <div>
-    <label><%= t "tour.transport" %></label>
-    <%= @tour.transport %>
-  </div>
-  <div>
-    <label><%= t "tour.services" %></label>
-    <%= @tour.additional_services %>
+
+<link href="/css/admin_main.css" rel="stylesheet">
+
+<div class="container body">
+  <div class="main_container">
+    <div class="right_col" role="main">
+
+      <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2><%= @tour.name %></h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                  <div class="product-image">
+                    <%= image_tag "tour.jpg", alt: "tour" %>
+                  </div>
+                  <div class="product_gallery">
+                    <a>
+                      <%= image_tag "1.jpg", alt: "tour" %>
+                    </a>
+                    <a>
+                      <%= image_tag "2.jpg", alt: "tour" %>
+                    </a>
+                    <a>
+                      <%= image_tag "3.jpg", alt: "tour" %>
+                    </a>
+                    <a>
+                      <%= image_tag "4.jpg", alt: "tour" %>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
+                  <h3 class="prod_title"><%= @tour.name %></h3>
+                  <h4><strong><%= @tour.start_place.name %> - <%= @tour.end_place.name %></strong></h4>
+                  <br />
+                  <strong><%= @tour.start_date.strftime("%d-%m-%Y") %> - <%= @tour.end_date.strftime("%d-%m-%Y") %></strong>
+                  <br />
+                  <br />
+                  <p><strong>Accommodation: </strong><%= @tour.accommodation %></p>
+                  <br />
+                  <p><strong>Meals: </strong><%= @tour.meals %></p>
+                  <br />
+                  <p><strong>Transport: </strong><%= @tour.transport %></p>
+                  <br />
+                  <p><strong>Additional services: </strong><%= @tour.additional_services %></p>
+                  <br />
+                  <div class="">
+                    <div class="product_price">
+                      <strong class="price">
+                        <% if @tour.currency == "vnd" %>
+                          <%= @tour.price.round %> <%= @tour.currency %>
+                        <% else %>
+                          $<%= @tour.price %>
+                        <% end %>
+                      </strong>
+                      <br>
+                    </div>
+                  </div>
+
+                  <div class="">
+                    <%= link_to t("booking.title"), new_tour_booking_path(@tour), class: "btn btn-default btn-lg" %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<%= link_to t("booking.title"), new_tour_booking_path(@tour),
-  class: "btn btn-primary" %>
+<script src="/js/admin_main.js"></script>

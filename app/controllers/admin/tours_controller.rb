@@ -1,5 +1,6 @@
 class Admin::ToursController < ApplicationController
   load_and_authorize_resource
+  before_action :check_tour, except: [:new, :create]
 
   def index
     @search = Tour.search params[:q]
@@ -64,5 +65,9 @@ class Admin::ToursController < ApplicationController
       :currency, :start_date, :end_date, :min_visitors, :max_visitors,
       :accommodation, :meals, :transport, :additional_services,
       :discount_id, :start_place_id, :end_place_id
+  end
+
+  def check_tour
+    @tour = Tour.ftour.find_by_id params[:id]
   end
 end
