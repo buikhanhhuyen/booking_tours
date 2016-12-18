@@ -40,6 +40,9 @@ class BookingsController < ApplicationController
       payment = Payment.create amount: @booking.total_price, booking_id: @booking.id
       redirect_to payment.paypal_url [@booking]
     else
+      @payment = Payment.find params[:invoice]
+      @payment.update_attributes status: status,
+        transaction_id: params[:txn_id], purchased_at: Time.now
     end
   end
 

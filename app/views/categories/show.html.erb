@@ -7,7 +7,7 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3> Category <small> include tours</small> </h3>
+              <h3> Category <small><%= @category.title %></small> </h3>
             </div>
           </div>
 
@@ -21,7 +21,6 @@
                 </div>
                 <div class="x_content">
                   <div class="row">
-                    <p>Media gallery design emelents</p>
                     <% @tours.each do |tour| %>
                       <div class="col-md-4">
                         <div class="thumbnail">

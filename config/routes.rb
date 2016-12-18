@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :bookings, except: [:edit, :update, :index]
   end
   resources :bookings, except: [:edit, :destroy] do
-    resources :payments
+    resources :payments, only: [:new, :create, :update]
   end
   resources :reviews do
     resources :comments

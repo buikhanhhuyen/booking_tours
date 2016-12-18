@@ -3130,7 +3130,7 @@ ul.project_files li a i {
   position: absolute;
   width: 100%;
   overflow: hidden;
-  top: 0;
+  top: 80px;
   left: 0
 }
 .view img {
