@@ -1,116 +1,131 @@
-<nav class="navbar navbar-default navbar-inverse hide" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed"
-          data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only"><%= t ".static_pages.header.nav" %></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <% if user_signed_in? && current_user.admin? %>
-          <%= link_to t("static_pages.header.logo"), admin_static_pages_path,
-            class: "navbar-brand" %>
-        <% else %>
-          <%= link_to t("static_pages.header.logo"), static_pages_path(:home),
-            class: "navbar-brand" %>
+<!-- HEADER -->
+<header>
+  <div id="header" class="clearfix">
+    <div class="container-cus">
+      <h1 id="logo">
+        <%= link_to root_path do %>
+          Tour Booking
         <% end %>
-      </div>
+      </h1>
+      <nav>
+          <div id="icon_menu" class="hidden-lg hidden-md"></div>
+          <div id="menu">
+            <ul class="mainmenu">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="has-child">
+                <%= link_to t("destination"), places_path %>
+                <ul class="child">
+                  <% @places.each do |place| %>
+                    <li><%= link_to place.name, place_path(place) %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <li class="has-child">
+                <%= link_to t("header.categories"), categories_path %>
+                <ul class="child">
+                  <% @categories.each do |category| %>
+                    <li>
+                      <%= link_to category.title, category %>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+              <li class="has-child">
+                <%= link_to t("discount-header"), discounts_path %>
+                <ul class="child">
+                  <% @discounts.each do |discount| %>
+                    <li><%= link_to discount.name, discount_path(discount) %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <li><%= link_to t("static_pages.contact.contact_title"),
+                static_pages_path(:contact) %></li>
+              <% if user_signed_in? %>
+                <li class="has-child">
+                  <a>
+                    <%= t "account" %> <b class="caret"></b>
+                  </a>
+                  <ul class="child">
+                    <li><%= link_to "Profile", current_user %></li>
+                    <li>
+                      <%= link_to "Edit", edit_user_registration_path %>
+                    </li>
+                    <li>
+                      <%= link_to t("static_pages.header.logout"),
+                        destroy_user_session_path, method: :delete %>
+                    </li>
+                  </ul>
+                </li>
+              <% else %>
+                <li class="lt-child">
+                  <%= link_to new_user_session_path do %>
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>Login
+                  <% end %>
+                  <%= link_to "Signup", new_user_registration_path,
+                    class: "btn btn-info" %>
 
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <%= link_to t("static_pages.contact.contact_title"),
-              static_pages_path(:contact) %></a>
-          </li>
-          <% if user_signed_in? %>
-            <li class="dropdown">
-              <%= link_to current_user.username, user_path(current_user) %>
-              <div class="dropdown-content">
-                <%= link_to t("static_pages.header.edit"),
-                  edit_user_registration_path %>
-                <%= link_to t("static_pages.header.logout"),
-                  destroy_user_session_path, method: :delete %>
-              </div>
-            </li>
-          <% else %>
-            <li><%= link_to t("static_pages.header.sign_up"),
-              new_user_registration_path %></li>
-            <li><%= link_to t("login.title"), new_user_session_path %></li>
-          <% end %>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div>
-  </div><!-- /.container-fluid -->
-</nav>
-
-<!-- header-starts -->
-<div class="page-header">
-  <div class="container">
-    <div class="page-header-info">
-      <!-- start h_menu4 -->
-        <div class="h_menu4">
-        <a class="toggleMenu" href="">Menu</a>
-        <ul class="nav p-nav">
-          <li class="active">
-            <%= link_to root_path do %>
-              <%= t "static_pages.home.title" %>
-            <% end %>
-          </li>
-          <li><%= link_to t("header.categories"), categories_path %>
-            <ul>
-              <% @categories.each do |category| %>
-                <li>
-                  <%= link_to category.title, category %>
+                <!--  <a class="btn btn-primary" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();"> Login</a>-->
+                  <!--<a class="btn btn-primary" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();"> Sigup</a>-->
                 </li>
               <% end %>
             </ul>
-          </li>
-          <li>
-            <%= link_to t("destination"), places_path %>
-            <ul>
-              <% @places.each do |place| %>
-                <li><%= link_to place.name, place_path(place) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li>
-            <%= link_to t("discount-header"), discounts_path %>
-            <ul>
-              <% @discounts.each do |discount| %>
-                <li><%= link_to discount.name, discount_path(discount) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li>
-            <a>Hot deal</a>
-          </li>
-          <li><%= link_to t("static_pages.contact.contact_title"),
-              static_pages_path(:contact) %></li>
-          <% if user_signed_in? %>
-            <li><%= link_to current_user.username, user_path(current_user) %></a>
-              <ul>
-                <li>
-                  <%= link_to t("static_pages.header.edit"),
-                    edit_user_registration_path %>
-                </li>
-                <li>
-                  <%= link_to t("static_pages.header.logout"),
-                    destroy_user_session_path, method: :delete %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to t("static_pages.header.sign_up"),
-              new_user_registration_path %></li>
-            <li><%= link_to t("login.title"), new_user_session_path %></li>
-          <% end %>
-        </ul>
-      </div>
-      <!-- end h_menu4 -->
+          </div>
+      </nav>
     </div>
   </div>
-</div>
-<!-- header-ends -->
+</header>
+<!-- ./HEADER -->
+
+
+<script type="text/javascript">
+        // js icon menu start
+  $("#icon_menu").click(function() {
+      $("#menu").stop().slideToggle();
+  })
+
+      //  SCRIPT SCROLL
+  jQuery(window).mousemove(function(event){
+    var Y = $(this).scrollTop();
+    mouseY = event.pageY - Y
+    if(mouseY <= 15){
+        $('#header').removeClass('nav-up');
+    }
+  });
+
+
+  var didScroll;
+  var lastScrollTop = 0;
+  var delta = 5;
+  var navbarHeight = $('#header').outerHeight();
+
+  $(window).scroll(function(event){
+    didScroll = true;
+  });
+
+  setInterval(function() {
+    if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+    }
+  }, 250);
+
+  function hasScrolled() {
+    var st = $(this).scrollTop();
+      // Make sure they scroll more than delta
+    if(Math.abs(lastScrollTop - st) <= delta)
+        return;
+    if (st > lastScrollTop && st > navbarHeight){
+        // Scroll Down
+        $('#header').addClass('nav-up');
+    } else {
+        // Scroll Up
+        if(st + $(window).height() < $(document).height()) {
+            $('#header').removeClass('nav-up');
+        }
+    }
+    lastScrollTop = st;
+  };
+
+
+
+</script>

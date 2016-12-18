@@ -10,23 +10,6 @@
       "data-turbolinks-track": "reload" %>
   </head>
 
-  <% if user_signed_in? && current_user.admin? %>
-  <body>
-    <%= render "admin/layouts/header" %>
-    <%= render "admin/layouts/bar_menu" %>
-    <div class="container">
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-      <div class="admin-ctn">
-        <%= yield %>
-      </div>
-    </div>
-  </body>
-  <% else %>
   <body class="login">
     <% if current_page?(root_path) %>
       <%= render "static_pages/home_page" %>
@@ -41,8 +24,16 @@
         <%= yield %>
       </div>
     <% else %>
-      <%= yield %>
+      <link rel="stylesheet" type="text/css" href="/css/users/custom.css">
+      <%= render "layouts/header" %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %> text-center">
+          <strong><%= message %></strong>
+        </div>
+      <% end %>
+      <div class="container-cus">
+        <%= yield %>
+      </div>
     <% end %>
   </body>
-  <% end %>
 </html>
