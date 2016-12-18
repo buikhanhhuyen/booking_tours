@@ -12,36 +12,36 @@
 
 ActiveRecord::Schema.define(version: 20161104033958) do
 
-  create_table "activities", force: :cascade do |t|
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "action_type"
     t.integer  "user_id"
     t.string   "activable_type"
     t.integer  "activable_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["activable_type", "activable_id"], name: "index_activities_on_activable_type_and_activable_id"
-    t.index ["user_id"], name: "index_activities_on_user_id"
+    t.index ["activable_type", "activable_id"], name: "index_activities_on_activable_type_and_activable_id", using: :btree
+    t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
   end
 
-  create_table "bookings", force: :cascade do |t|
-    t.integer  "status",      default: 0
-    t.float    "total_price"
+  create_table "bookings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "status",                 default: 0
+    t.float    "total_price", limit: 24
     t.integer  "user_id"
     t.integer  "tour_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.index ["tour_id"], name: "index_bookings_on_tour_id"
-    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["tour_id"], name: "index_bookings_on_tour_id", using: :btree
+    t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "ckeditor_assets", force: :cascade do |t|
+  create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
     t.integer  "data_file_size"
@@ -52,92 +52,90 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.integer  "height"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
-    t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
+    t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+    t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "content"
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",           limit: 65535
     t.integer  "parent_comment_id"
     t.integer  "user_id"
     t.integer  "review_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "commentable_id"
     t.string   "commentable_type"
-    t.index ["review_id"], name: "index_comments_on_review_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["review_id"], name: "index_comments_on_review_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  create_table "discounts", force: :cascade do |t|
+  create_table "discounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "percent"
-    t.text     "description"
+    t.text     "description", limit: 65535
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "status",      default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "status",                    default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
-  create_table "payments", force: :cascade do |t|
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "description"
-    t.float    "amount"
+    t.float    "amount",         limit: 24
     t.string   "email"
     t.string   "customer_token"
     t.string   "charge_token"
     t.integer  "status"
     t.integer  "booking_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["booking_id"], name: "index_payments_on_booking_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["booking_id"], name: "index_payments_on_booking_id", using: :btree
   end
 
-  create_table "places", force: :cascade do |t|
+  create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.text     "content"
+    t.text     "content",    limit: 65535
     t.integer  "user_id"
     t.integer  "place_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["place_id"], name: "index_reviews_on_place_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["place_id"], name: "index_reviews_on_place_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
-  create_table "tours", force: :cascade do |t|
+  create_table "tours", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "start_place_id"
     t.integer  "end_place_id"
-    t.float    "price"
+    t.float    "price",               limit: 24
     t.integer  "currency"
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "min_visitors"
     t.integer  "max_visitors"
     t.integer  "seat"
-    t.integer  "status",              default: 0
-    t.string   "accommodation"
-    t.string   "meals"
-    t.string   "transport"
-    t.string   "additional_services"
-    t.integer  "place_id"
+    t.integer  "status",                            default: 0
+    t.text     "accommodation",       limit: 65535
+    t.text     "meals",               limit: 65535
+    t.text     "transport",           limit: 65535
+    t.text     "additional_services", limit: 65535
     t.integer  "category_id"
     t.integer  "discount_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.index ["category_id"], name: "index_tours_on_category_id"
-    t.index ["discount_id"], name: "index_tours_on_discount_id"
-    t.index ["place_id"], name: "index_tours_on_place_id"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.index ["category_id"], name: "index_tours_on_category_id", using: :btree
+    t.index ["discount_id"], name: "index_tours_on_discount_id", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
     t.integer  "role",                   default: 1
     t.string   "address"
@@ -154,11 +152,11 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "visitors", force: :cascade do |t|
+  create_table "visitors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "birthday"
     t.string   "email"
@@ -166,7 +164,18 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.integer  "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_visitors_on_booking_id"
+    t.index ["booking_id"], name: "index_visitors_on_booking_id", using: :btree
   end
 
+  add_foreign_key "activities", "users"
+  add_foreign_key "bookings", "tours"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "comments", "reviews"
+  add_foreign_key "comments", "users"
+  add_foreign_key "payments", "bookings"
+  add_foreign_key "reviews", "places"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "tours", "categories"
+  add_foreign_key "tours", "discounts"
+  add_foreign_key "visitors", "bookings"
 end

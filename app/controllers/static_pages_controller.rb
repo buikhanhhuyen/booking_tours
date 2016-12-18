@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
   end
 
   def get_random
-    @places = Place.order("RANDOM()").limit(5)
-    @discounts = Discount.order("RANDOM()").limit(5)
+    @places = Place.order("RAND()").limit(5)
+    @discounts = Discount.order("RAND()").limit(5)
   end
 end
