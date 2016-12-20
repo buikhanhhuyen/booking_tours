@@ -21,6 +21,7 @@ gem "date_validator"
 gem "font-awesome-sass", "~> 4.7.0"
 gem "stripe"
 gem "whenever", :require => false
+gem 'faker', '~> 1.6', '>= 1.6.3'
 
 group :development, :test do
   gem "byebug", platform: :mri
