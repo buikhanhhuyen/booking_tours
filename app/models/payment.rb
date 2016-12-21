@@ -10,7 +10,7 @@ class Payment < ApplicationRecord
       notify_url: "#{Rails.application.secrets.app_host}/update",
       invoice: id,
       cmd: "_xclick",
-      amount: amount,
+      amount: @booking.total_price
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end

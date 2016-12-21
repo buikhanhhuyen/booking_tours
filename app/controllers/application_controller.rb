@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def before_show
     @categories = Category.all
     @places = Place.order("RAND()").limit(5)
-    @tours = Tour.all
+    @tours = Tour.order(created_at: :desc).limit(10)
     @discounts = Discount.all
   end
 

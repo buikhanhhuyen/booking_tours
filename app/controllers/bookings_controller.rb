@@ -38,6 +38,7 @@ class BookingsController < ApplicationController
   def update
     if params[:user_payment]
       payment = Payment.create amount: @booking.total_price, booking_id: @booking.id
+      payment.paypal_url [@booking]
       redirect_to payment.paypal_url [@booking]
     else
       @payment = Payment.find params[:invoice]

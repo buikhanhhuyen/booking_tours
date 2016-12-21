@@ -11,14 +11,15 @@ User.create! username: "admin", email: "admin@email.com",
 User.create! username: "user", email: "user@email.com",
   password: "123456", password_confirmation: "123456"
 
-(1..10000).each do |i|
+(1..100).each do |i|
   User.create! username: "user-#{i}", email: "user-#{i}@email.com",
     password: "123456", password_confirmation: "123456"
 end
 
-Category.create! title: "Du lich trong nuoc", description: "day la description rat la dai"
-Category.create! title: "Du lich ngoai nuoc", description: "day la description rat la dai"
-Category.create! title: "Du lich sinh thai", description: "day la description rat la dai"
+Category.create! title: "Domestic Travel", description: Faker::Lorem.paragraph
+Category.create! title: "Foreign Travel", description: Faker::Lorem.paragraph
+Category.create! title: "Short Date Tour", description: Faker::Lorem.paragraph
+Category.create! title: "Long Date Tour", description: Faker::Lorem.paragraph
 
 Discount.create! name: "Happy Christmas", percent: "20",
   description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu",
@@ -56,7 +57,7 @@ Place.create! name: "Da Lat", description: "The City of London is a city and cou
 }
 
 Tour.create! name: "Europe Escape - 12 Days",
-  category_id: "1", start_place_id: rand(60) + 1, end_place_id: rand(60) + 1, price: "1275",
+  category_id: "1", start_place_id: rand(30) + 1, end_place_id: rand(30) + 1, price: "1275",
   currency: "usd", start_date: "22/12/2016", end_date: "03/01/2017", discount_id: "1",
   min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
   accommodation: "11 nights' accommodation in twin rooms",
