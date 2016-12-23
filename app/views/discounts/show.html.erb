@@ -1,13 +1,12 @@
 <link href="/css/admin_main.css" rel="stylesheet">
 
-
 <div class="container body">
   <div class="main_container">
     <div class="right_col" role="main">
       <div class="">
         <div class="page-title">
           <div class="title_left">
-            <h3>Discount</h3>
+            <h3><%= t "user_discounts.saleoff" %></h3>
           </div>
         </div>
 
@@ -17,8 +16,9 @@
           <div class="col-md-12">
             <div class="x_panel">
               <div class="x_title">
-                <h2><%= @discount.name %> - <strong><%= @discount.percent %>%</strong></h2>
-
+                <h1><strong><%= @discount.name %> - <%= @discount.percent %>%</strong></h1>
+                <br />
+                <h4 class="text-center"><%= @discount.start_date.strftime("%d/%m/%Y") %> - <%= @discount.end_date.strftime("%d/%m/%Y") %></h4>
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
@@ -36,9 +36,9 @@
                               <div class="image view view-first">
                                 <%= image_tag "media.jpg", alt: "image", style: "width: 100%; height: 100%; display: block;" %>
                                 <div class="mask">
-                                  <p><%= tour.name %></p>
-                                  <div class="tools tools-bottom">
-                                    <%= link_to "Read more", tour_path(tour), class: "btn btn-primary" %>
+                                  <p style="font-size:18px;"><strong><%= tour.name %></strong></p>
+                                  <div class="tools tools-bottom" style="margin-top:10px;">
+                                    <%= link_to t("user_discounts.read_more"), tour_path(tour), class: "btn btn-primary" %>
                                   </div>
                                 </div>
                               </div>

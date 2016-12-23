@@ -12,10 +12,10 @@ class Admin::PlacesController < ApplicationController
 
   def create
     if @place.save
-      flash[:notice] = t "place.create_success"
+      flash[:notice] = t "admin_places.create_success"
       redirect_to admin_places_path
     else
-      flash[:alert] = t "place.create_fail"
+      flash[:alert] = t "admin_places.create_fail"
       render :new
     end
   end
@@ -25,20 +25,20 @@ class Admin::PlacesController < ApplicationController
 
   def update
     if @place.update_attributes place_params
-      flash[:notice] = t "place.update_success"
+      flash[:notice] = t "admin_places.update_success"
       redirect_to admin_places_path
     else
-      flash[:alert] = t "place.update_fail"
+      flash[:alert] = t "admin_places.update_fail"
       render :edit
     end
   end
 
   def destroy
     if @place.destroy
-      flash[:notice] = t "place.delete_success"
+      flash[:notice] = t "admin_places.delete_success"
       redirect_to admin_places_path
     else
-      flash[:alert] = t "place.delete_fail"
+      flash[:alert] = t "admin_places.delete_fail"
       redirect_to admin_places_path
     end
   end

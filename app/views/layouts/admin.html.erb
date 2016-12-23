@@ -28,6 +28,12 @@
         <div class="right_col" role="main">
           <!-- top tiles -->
           <div class="row">
+            <% if notice %>
+              <p class="alert alert-success" style="margin-top:60px;"><%= notice %></p>
+            <% end %>
+            <% if alert %>
+              <p class="alert alert-danger" style="margin-top:60px;"><%= alert %></p>
+            <% end %>
             <%= yield %>
           </div>
         </div>
@@ -36,7 +42,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <p>© 2016 My Tour. All Rights Reserved | Design by TourMaker </p>
           </div>
           <div class="clearfix"></div>
         </footer>

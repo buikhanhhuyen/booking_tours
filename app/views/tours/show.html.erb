@@ -36,7 +36,7 @@
                   </div>
                 </div>
                 <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
-                  <h3 class="prod_title"><%= @tour.name %></h3>
+                  <h3 class="prod_title"><%= @tour.name %> (còn <%= @left %> chỗ)</h3>
                   <h4><strong><%= @tour.start_place.name %> - <%= @tour.end_place.name %></strong></h4>
                   <br />
                   <strong><%= @tour.start_date.strftime("%d-%m-%Y") %> - <%= @tour.end_date.strftime("%d-%m-%Y") %></strong>

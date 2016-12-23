@@ -15,7 +15,7 @@
               </div>
               <div class="x_content">
                 <div class="col-md-7 col-sm-7 col-xs-12">
-                  <div class="product-image">
+                  <div class="product-image" style="margin-left:100px;">
                     <%= image_tag "tour.jpg", alt: "tour" %>
                     <%= image_tag "london.jpg", alt: "tour" %>
                   </div>
@@ -25,7 +25,7 @@
                     <p><%= @place.description %></p>
                     </footer>
                   </blockquote>
-                  <%= link_to "Add review", new_place_review_path(@place),
+                  <%= link_to t("user_actions.review"), new_place_review_path(@place),
                     class: "btn btn-success glyphicon glyphicon-plus" %>
                   <% if @place.reviews.presence %>
                     <div class="x_content">

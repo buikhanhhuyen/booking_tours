@@ -1,12 +1,12 @@
-
 <link href="/css/admin_main.css" rel="stylesheet">
 
 <%= search_form_for @search, url: search_places_path, method: :post  do |f| %>
-  <div class="field">
-    <%= f.label :name_cont, t("name_cont") %>
-    <%= f.text_field :name_cont %>
+  <div class="row" style="margin-left:50px;">
+    <div class="field">
+      <%= f.text_field :name_cont %>
+      <div class="action"><%= f.submit t "search" %></div>
+    </div>
   </div>
-  <div class="action"><%= f.submit t "search" %></div>
 <% end %>
 
 <div class="container body">
@@ -15,7 +15,7 @@
       <div class="">
         <div class="page-title">
           <div class="title_left">
-            <h3> All Destinations </h3>
+            <h3 class="text-center"><%= t "user_places.all" %></h3>
           </div>
         </div>
 
@@ -30,14 +30,14 @@
               <div class="x_content">
                 <div class="row">
                   <% @places.each do |place| %>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                       <div class="thumbnail">
                         <div class="image view view-first">
-                          <%= image_tag "media.jpg", alt: "image", style: "width: 100%; height: 100%; display: block;" %>
+                          <%= image_tag "banner_6.jpg", alt: "image", style: "width: 100%; height: 100%; display: block;" %>
                           <div class="mask">
-                            <h1><strong><%= place.name %></strong></h1>
+                            <h1 style="color:white; font-size:20px;"><strong><%= place.name %></strong></h1>
                             <div class="tools tools-bottom">
-                              <%= link_to "Read more", place_path(place), class: "btn btn-primary" %>
+                              <%= link_to t("user_places.read_more"), place_path(place), class: "btn btn-success" %>
                             </div>
                           </div>
                         </div>

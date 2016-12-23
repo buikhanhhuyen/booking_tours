@@ -8,11 +8,13 @@
 
 User.create! username: "admin", email: "admin@email.com",
   password: "123456", password_confirmation: "123456", role: :admin
-User.create! username: "user", email: "user@email.com",
+User.create! username: "user", email: "user@email.com", address: "434, Tran Khat Chan, Ha Noi",
+  phone_number: "0951235458",
   password: "123456", password_confirmation: "123456"
 
-(1..100).each do |i|
-  User.create! username: "user-#{i}", email: "user-#{i}@email.com",
+(1..50).each do |i|
+  User.create! username: "user-#{i}", email: "user-#{i}@email.com", address: Faker::Address.street_address,
+    phone_number: Faker::PhoneNumber.phone_number,
     password: "123456", password_confirmation: "123456"
 end
 
@@ -57,8 +59,8 @@ Place.create! name: "Da Lat", description: "The City of London is a city and cou
 }
 
 Tour.create! name: "Europe Escape - 12 Days",
-  category_id: "1", start_place_id: rand(30) + 1, end_place_id: rand(30) + 1, price: "1275",
-  currency: "usd", start_date: "22/12/2016", end_date: "03/01/2017", discount_id: "1",
+  category_id: "1", start_place_id: rand(29) + 1, end_place_id: rand(29) + 1, price: "1275",
+  currency: "usd", start_date: "30/12/2016", end_date: "06/01/2017", discount_id: "1",
   min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
   accommodation: "11 nights' accommodation in twin rooms",
   transport: "Modern air conditioned coach with reclining seats, TV for showing DVDs, and toilet",
@@ -69,7 +71,7 @@ Tour.create! name: "Europe Escape - 12 Days",
     Free Expat Explore tour souvenir"
 
 Tour.create! name: "Trip on Vietnam",
-  category_id: "1", start_place_id: rand(11) + 1, end_place_id: rand(11) + 1, price: "3576",
+  category_id: "1", start_place_id: rand(29) + 1, end_place_id: rand(29) + 1, price: "3576",
   currency: "usd", start_date: "03/02/2017", end_date: "10/02/2017", discount_id: "4",
   min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
   accommodation: "11 nights' accommodation in twin rooms",
@@ -81,8 +83,8 @@ Tour.create! name: "Trip on Vietnam",
     Free Expat Explore tour souvenir"
 
 Tour.create! name: "Japan Advanture",
-  category_id: "1", start_place_id: rand(11) + 1, end_place_id: rand(11) + 1, price: "1759",
-  currency: "usd", start_date: "22/12/2016", end_date: "03/01/2017",
+  category_id: "1", start_place_id: rand(29) + 1, end_place_id: rand(29) + 1, price: "1759",
+  currency: "usd", start_date: "30/12/2016", end_date: "07/01/2017",
   min_visitors: "5", max_visitors: "12", meals: "11 breakfast, 6 dinners",
   accommodation: "11 nights' accommodation in twin rooms",
   transport: "Modern air conditioned coach with reclining seats, TV for showing DVDs, and toilet",
@@ -93,8 +95,8 @@ Tour.create! name: "Japan Advanture",
     Free Expat Explore tour souvenir"
 
 Tour.create! name: "One Life Adventures - Tokyo",
-  category_id: "1", start_place_id: rand(11) + 1, end_place_id: rand(11) + 1,
-  price: "2507", currency: "usd", start_date: "22/12/2016", end_date: "05/01/2017",
+  category_id: "1", start_place_id: rand(29) + 1, end_place_id: rand(29) + 1,
+  price: "2507", currency: "usd", start_date: "30/12/2016", end_date: "07/01/2017",
   min_visitors: "7", max_visitors: "15", discount_id: "5",
   meals: "Most breakfasts + 3 lunches + 3 dinners
     * The island hopping trip in El Nido also includes beer and rum",
@@ -114,7 +116,7 @@ Tour.create! name: "One Life Adventures - Tokyo",
 
 20.times {
   Tour.create! name: Faker::Name.title,
-    category_id: rand(3) + 1, start_place_id: rand(60) + 1, end_place_id: rand(60) + 1, price: rand(500..1000),
+    category_id: rand(3) + 1, start_place_id: rand(29) + 1, end_place_id: rand(29) + 1, price: rand(500..2000),
     currency: :usd, start_date: Faker::Time.between(DateTime.now + 2, DateTime.now + 4), end_date: Faker::Time.between(DateTime.now + 9, DateTime.now + 12), discount_id: rand(4) + 1,
     min_visitors: rand(3) + 5, max_visitors: rand(8) + 5, meals: Faker::Lorem.paragraph,
     accommodation: Faker::Lorem.paragraph,

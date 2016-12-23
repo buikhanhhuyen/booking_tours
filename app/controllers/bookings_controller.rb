@@ -20,6 +20,12 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.build booking_params
     @booking.tour_id = params[:tour_id]
     @tour = Tour.find_by_id params[:tour_id]
+    @visitors = @tour.bookings.collect {|b| b.visitors }
+    left = @tour.max_visitors - @visitors.count
+    if @booking.visitors.count > left
+      flash[:alert] = t "user_bookings.sold_out"
+      render :new
+    end
     if @booking.save
       if @tour.discount
         total_price = (@tour.price)*(100 - @tour.discount.percent)*(@booking.visitors.count)/100
@@ -27,10 +33,10 @@ class BookingsController < ApplicationController
         total_price = (@tour.price)*(@booking.visitors.count)
       end
       @booking.update_attributes total_price: total_price
-      flash[:notice] = t "booking.create_success"
+      flash[:notice] = t "user_bookings.create_success"
       redirect_to new_booking_payment_path(@booking)
     else
-      flash[:alert] = t "booking.create_fail"
+      flash[:alert] = t "user_bookings.create_fail"
       render :new
     end
   end

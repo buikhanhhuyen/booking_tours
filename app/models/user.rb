@@ -9,4 +9,7 @@ class User < ApplicationRecord
   has_many :activities
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :validatable
+
+  validates_presence_of :username, :email, :password, :address, :phone_number
+  validates_uniqueness_of :email
 end

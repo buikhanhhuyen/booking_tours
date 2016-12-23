@@ -9,5 +9,7 @@ class ToursController < ApplicationController
   end
 
   def show
+    @visitors = @tour.bookings.collect {|b| b.visitors }
+    @left = @tour.max_visitors - @visitors.count
   end
 end

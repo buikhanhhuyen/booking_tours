@@ -1,31 +1,58 @@
+<link href="/css/admin_main.css" rel="stylesheet">
+<script src="/js/admin_main.js"></script>
+
 <% provide :title, @discount.name %>
-<div class="row">
-  <aside class="col-md-4">
+<div class="row" style="margin-left:20px;">
+  <aside class="col-md-6">
     <div>
-      <label><%= t "discount.name" %></label>
+      <label><%= t "discount.name" %>: </label>
       <%= @discount.name %>
     </div>
     <div>
-      <label><%= t "discount.percent" %></label>
+      <label><%= t "discount.percent" %>: </label>
       <%= @discount.percent %>
     </div>
     <div>
-      <label><%= t "tour.start_date" %></label>
+      <label><%= t "tour.start_date" %>: </label>
       <%= @discount.start_date.strftime("%d-%m-%Y") %>
     </div>
     <div>
-      <label><%= t "tour.end_date" %></label>
+      <label><%= t "tour.end_date" %>: </label>
       <%= @discount.end_date.strftime("%d-%m-%Y") %>
     </div>
     <div>
-      <label><%= t "discount.description" %></label>
+      <label><%= t "discount.description" %>: </label>
       <%= @discount.description %>
     </div>
-  </aside>
+    <br />
   <div>
     <%= link_to t("edit"), edit_admin_discount_path(@discount),
       class: "btn btn-primary" %>
     <%= link_to t("delete"), [:admin, @discount], method: :delete,
       data: {confirm: t("sure")}, class: "btn btn-danger" %>
   </div>
+  <br />
+  </aside>
+  <% if @discount.tours.presence %>
+    <div class="x_content">
+      <div class="row">
+        <% @discount.tours.each do |tour| %>
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <div class="image view view-first">
+                <%= image_tag "banner_6.jpg", alt: "image",
+                  style: "width: 100%; height: 100%; display: block;" %>
+                <div class="mask">
+                  <p><strong><%= tour.name %></strong></p>
+                  <div class="tools tools-bottom">
+                    <%= link_to "Read more", admin_tour_path(tour), class: "btn btn-primary" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

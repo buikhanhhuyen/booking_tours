@@ -1,4 +1,56 @@
+#navbar .cl-effect-16 ul li.has-child:hover > ul.child {
+    opacity: 1;
+    visibility: visible;
+}
+#navbar .cl-effect-16 ul li.has-child:before {
+    display: block;
+    content: "";
+    height: 6px;
+    width: 10px;
+    margin-top: -2px;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    display: none;
+}
+#navbar .cl-effect-16 ul li.has-child .child {
+    background: #fff;
+    right: 0;
+    min-width: 180px;
+    position: absolute;
+    top: 100%;
+    z-index: 999;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 0px 0;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+}
+#navbar .cl-effect-16 ul li.has-child .child li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px #eee solid;
+    font-weight: bold;
+    float: none;
+}
 
+#navbar .cl-effect-16 ul li.has-child .child li a {
+    color: #3b3b3b;
+    font-weight: 500;
+    text-transform: none;
+}
+
+#navbar .cl-effect-16 ul li.has-child .child li a:hover {
+    color: #0094da;
+}
 
 
 

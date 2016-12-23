@@ -15,10 +15,10 @@ class Admin::DiscountsController < ApplicationController
 
   def create
     if @discount.save
-      flash[:notice] = t "discount.create_success"
+      flash[:notice] = t "admin_discounts.create_success"
       redirect_to admin_discounts_path
     else
-      flash[:alert] = t "discount.create_fail"
+      flash[:alert] = t "admin_discounts.create_fail"
       render :new
     end
   end
@@ -28,19 +28,19 @@ class Admin::DiscountsController < ApplicationController
 
   def update
     if @discount.update_attributes discount_params
-      flash[:notice] = t "discount.update_success"
+      flash[:notice] = t "admin_discounts.update_success"
       redirect_to admin_discounts_path
     else
-      flash[:alert] = t "discount.update_fail"
+      flash[:alert] = t "admin_discounts.update_fail"
       render :edit
     end
   end
 
   def destroy
     if @discount.destroy
-      flash[:notice] = t "discount.delete_success"
+      flash[:notice] = t "admin_discounts.delete_success"
     else
-      flash[:alert] = t "discount.delete_fail"
+      flash[:alert] = t "admin_discounts.delete_fail"
     end
     redirect_to admin_discounts_path
   end

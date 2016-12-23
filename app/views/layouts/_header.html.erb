@@ -4,22 +4,14 @@
     <div class="container-cus">
       <div class="logo wow slideInLeft" data-wow-delay="0.3s">
         <%= link_to root_path do %>
-          <%= image_tag "logo.png", alt: "logo" %>
+          <%= image_tag "logo.png", alt: "logo", style: "margin-left:20px;"%>
         <% end %>
       </div>
       <div id="menu">
         <ul class="mainmenu">
-          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to t("header.home"), root_path %></li>
           <li class="has-child">
-            <%= link_to t("destination"), places_path %>
-            <ul class="child">
-              <% Place.order("RAND()").limit(5).each do |place| %>
-                <li><%= link_to place.name, place_path(place) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li class="has-child">
-            <%= link_to t("header.categories"), categories_path %>
+            <%= link_to t("header.categories"), root_path %>
             <ul class="child">
               <% @categories.each do |category| %>
                 <li>
@@ -29,27 +21,35 @@
             </ul>
           </li>
           <li class="has-child">
-            <%= link_to t("discount-header"), discounts_path %>
+            <%= link_to t("header.destinations"), places_path %>
+            <ul class="child">
+              <% Place.order("RAND()").limit(5).each do |place| %>
+                <li><%= link_to place.name, place_path(place) %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="has-child">
+            <%= link_to t("header.discounts"), discounts_path %>
             <ul class="child">
               <% @discounts.each do |discount| %>
                 <li><%= link_to discount.name, discount_path(discount) %></li>
               <% end %>
             </ul>
           </li>
-          <li><%= link_to t("static_pages.contact.contact_title"),
+          <li><%= link_to t("header.contact_us"),
             static_pages_path(:contact) %></li>
           <% if user_signed_in? %>
             <li class="has-child">
               <a>
-                <%= t "account" %> <b class="caret"></b>
+                <%= current_user.username %> <b class="caret"></b>
               </a>
               <ul class="child">
-                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to t("header.profile"), current_user %></li>
                 <li>
-                  <%= link_to "Edit", edit_user_registration_path %>
+                  <%= link_to t("edit"), edit_user_registration_path %>
                 </li>
                 <li>
-                  <%= link_to t("static_pages.header.logout"),
+                  <%= link_to t("header.logout"),
                     destroy_user_session_path, method: :delete %>
                 </li>
               </ul>
@@ -57,7 +57,7 @@
           <% else %>
             <li class="lt-child">
               <%= link_to new_user_session_path do %>
-                <i class="fa fa-sign-in" aria-hidden="true"></i>Login
+                <i class="fa fa-sign-in" aria-hidden="true"></i><%= t "header.login" %>
               <% end %>
             </li>
           <% end %>

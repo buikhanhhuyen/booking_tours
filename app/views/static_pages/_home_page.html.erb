@@ -9,7 +9,7 @@
 <link href='//fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
 <!--google fonts-->
 <!-- animated-css -->
-<link href="css/animate1.css" rel="stylesheet" type="text/css" media="all">
+<!-- <link href="css/animate1.css" rel="stylesheet" type="text/css" media="all"> -->
 <script src="js/wow.min.js"></script>
 <script>
   new WOW().init();
@@ -66,28 +66,38 @@
             </button>
             <div class="logo wow slideInLeft" data-wow-delay="0.3s">
               <%= link_to root_path do %>
-                <%= image_tag "logo.png", alt: "logo" %>
+                <%= image_tag "logo.png", alt: "logo", style: "margin-left:20px;" %>
               <% end %>
             </div>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <nav class="cl-effect-16" id="cl-effect-16">
               <ul class="nav navbar-nav">
-                <li><%= link_to t("home.home"), root_path, class: "active" %></li>
+                <li><%= link_to t("header.home"), root_path, class: "active" %></li>
+                <li class="has-child">
+                  <%= link_to t("header.categories"), root_path %>
+                  <ul class="child">
+                    <% @categories.each do |category| %>
+                      <li>
+                        <%= link_to category.title, category %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
                 <li><%= link_to t("home.top_tours"), tours_path %></li>
-                <li><%= link_to t("home.destinations"), places_path %></li>
-                <li><%= link_to t("home.discounts"), discounts_path %></li>
-                <li><%= link_to t("home.about"), static_pages_path(:contact) %></li>
+                <li><%= link_to t("header.destinations"), places_path %></li>
+                <li><%= link_to t("header.discounts"), discounts_path %></li>
+                <li><%= link_to t("header.contact_us"), static_pages_path(:contact) %></li>
                 <% if user_signed_in? %>
                   <li class="has-child">
-                    <a><%= t "account" %></a>
+                    <%= link_to current_user.username, current_user %>
                     <ul class="child">
-                      <li><%= link_to "Profile", current_user %></li>
+                      <li><%= link_to t("header.profile"), current_user %></li>
                       <li>
-                        <%= link_to "Edit", edit_user_registration_path %>
+                        <%= link_to t("edit"), edit_user_registration_path %>
                       </li>
                       <li>
-                        <%= link_to t("static_pages.header.logout"),
+                        <%= link_to t("header.logout"),
                           destroy_user_session_path, method: :delete %>
                       </li>
                     </ul>
@@ -95,7 +105,7 @@
                 <% else %>
                   <li class="lt-child">
                     <%= link_to new_user_session_path do %>
-                      <i class="fa fa-sign-in" aria-hidden="true"></i>Login
+                      <i class="fa fa-sign-in" aria-hidden="true"></i><%= t "header.login" %>
                     <% end %>
                   </li>
                 <% end %>
@@ -116,7 +126,7 @@
     <div class="banner-main wow zoomIn" data-wow-delay="0.3s">
       <h2>MY TOURS</h2>
       <h6>We Make Awesome Tours</h6>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+      <p><%= t "company.intro" %></p>
     </div>
   </div>
 </div>
@@ -125,54 +135,54 @@
 <div class="information">
   <div class="container">
     <div class="information-main">
-        <div class="information-grid five-star wow slideInLeft" data-wow-delay="0.3s">
-          <div class="col-md-4 hotel-info">
-            <div class="info-right">
-              <h4>Star Hotel</h4>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum.</p>
-            </div>
-            <div class="clearfix"> </div>
-          </div>
-          <div class="col-md-4 hotel-info">
-            <div class="info-right">
-              <h4>Services</h4>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum.</p>
-            </div>
-            <div class="clearfix"> </div>
-          </div>
-          <div class="col-md-4 hotel-info">
-            <div class="info-right">
-              <h4>Secure</h4>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum.</p>
-            </div>
-            <div class="clearfix"> </div>
+      <div class="information-grid five-star wow slideInLeft" data-wow-delay="0.3s">
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Thể loại</h4>
+            <p><%= t "company.phongphu" %></p>
           </div>
           <div class="clearfix"> </div>
         </div>
-        <div class="information-grid wow slideInRight" data-wow-delay="0.3s">
-          <div class="col-md-4 hotel-info">
-            <div class="info-right">
-              <h4>Food</h4>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum.</p>
-            </div>
-            <div class="clearfix"> </div>
-          </div>
-          <div class="col-md-4 hotel-info">
-            <div class="info-right">
-              <h4>Hotel</h4>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum.</p>
-            </div>
-            <div class="clearfix"> </div>
-          </div>
-          <div class="col-md-4 hotel-info">
-            <div class="info-right">
-              <h4>Bell</h4>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum.</p>
-            </div>
-            <div class="clearfix"> </div>
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Dịch vụ</h4>
+            <p><%= t "company.services" %></p>
           </div>
           <div class="clearfix"> </div>
         </div>
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>An toàn</h4>
+            <p><%= t "company.secure" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+      <div class="information-grid wow slideInRight" data-wow-delay="0.3s">
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Giá cả</h4>
+            <p><%= t "company.price" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Khách sạn</h4>
+            <p><%= t "company.hotel" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Lữ hành</h4>
+            <p><%= t "company.travel" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
       <div class="clearfix"> </div>
     </div>
   </div>
@@ -183,8 +193,8 @@
   <div class="container">
     <div class="leaves-main wow zoomIn" data-wow-delay="0.3s">
       <h1>Find Your Tour Today</h1>
-      <h6>100% Friendly services</h6>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown.</p>
+      <h6>Chăm sóc khách hàng 24/7</h6>
+      <p>Còn chần chừ gì mà không đặt ngay tour</p>
       <%= link_to t("home.tour"), tours_path %>
     </div>
   </div>
@@ -195,7 +205,7 @@
   <div class="container">
     <div class="home-main">
       <div class="home-top">
-        <h3>Our Discounts</h3>
+        <h3>Chương trình khuyến mại đang diễn ra</h3>
       </div>
       <div  id="effect-5" class="branch-btm">
         <div class="col-md-12">
@@ -218,7 +228,7 @@
   <div class="container">
     <div class="home-main">
       <div class="home-top">
-        <h3>Latest  Tours</h3>
+        <h3>Tour du lịch mới nhất</h3>
       </div>
       <div  id="effect-5" class="branch-btm">
         <div class="col-md-12">
@@ -241,43 +251,36 @@
     <div class="footer-main">
       <div class="col-md-3 ftr-grid wow zoomIn" data-wow-delay="0.3s">
         <div class="ftr-logo">
-        <img src="images/ftr-logo.png"  alt="">
+          <%= image_tag "logo.png", alt: "" %>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        <a href="single.html" class="ftr-btn">Read More</a>
+        <p>Sứ mệnh của chúng tôi là sự hài lòng của du khách</p>
       </div>
       <div class="col-md-3 ftr-grid ftr-mid wow zoomIn" data-wow-delay="0.3s">
-         <h3>Address</h3>
+         <h3><%= t "company.address" %></h3>
          <span class="ftr-line flm"> </span>
-        <p>Eye Associates Of Virginia?</p>
-        <p>5875 Bremo Road </p>
-        <p>Richmond, VA(Virginia) 23226 </p>
-        <p>(804) 287-4216 </p>
-        <p>Alice Merriman</p>
-
+        <strong><%= t "company.name" %></strong>
+        <p><%= t "company.stress" %></p>
+        <p><%= t "company.city" %></p>
+        <p><%= t "company.hotline" %></p>
+        <p><%= t "company.email" %></p>
       </div>
       <div class="col-md-3 ftr-grid ftr-rit wow zoomIn" data-wow-delay="0.3s">
-         <h3>Contact Us</h3>
+         <h3><%= t "header.contact_us" %></h3>
          <form>
           <input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
           <input type="submit" value="Send" />
          </form>
-          <ul class="ftr-icons">
-          <li><a href="#"><span class="fa"> </span></a></li>
-          <li><a href="#"><span class="tw"> </span></a></li>
-          <li><a href="#"><span class="link"> </span></a></li>
-          <li><a href="#"><span class="gmail"> </span></a></li>
-         </ul>
       </div>
       <div class="col-md-3 ftr-grid ftr-last-gd ftr-rit wow zoomIn" data-wow-delay="0.3s">
          <h3>Quick Link</h3>
-          <ul class="ftr-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services </a></li>
-          <li><a href="room.html">Rooms</a></li>
-          <li><a href="contact.html">Contact</a></li>
-         </ul>
+        <ul class="ftr-nav">
+          <li><%= link_to t("header.home"), root_path, class: "active" %></li>
+          <li><%= link_to t("header.categories"), root_path %></li>
+          <li><%= link_to t("home.top_tours"), tours_path %></li>
+          <li><%= link_to t("header.destinations"), places_path %></li>
+          <li><%= link_to t("header.discounts"), discounts_path %></li>
+          <li><%= link_to t("header.contact_us"), static_pages_path(:contact) %></li>
+       </ul>
       </div>
       <div class="clearfix"> </div>
     </div>
@@ -287,8 +290,8 @@
 <!--copy rights start here-->
 <div class="copy-right">
   <div class="container">
-     <div class="copy-rights-main wow zoomIn" data-wow-delay="0.3s">
-          <p>© 2016 Mr Hotel. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-       </div>
+    <div class="copy-rights-main wow zoomIn" data-wow-delay="0.3s">
+      <p>© 2016 My Tour. All Rights Reserved | Design by TourMaker </p>
     </div>
+  </div>
 </div>

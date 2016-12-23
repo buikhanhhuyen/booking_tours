@@ -1,32 +1,44 @@
-<% provide :title, t("static_pages.home.title") %>
+<% provide :title, t("admin_home.title") %>
 <!-- top tiles -->
 <div class="row tile_count">
   <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-    <div class="count green"><%= User.all.count %></div>
+    <span class="count_top">
+      <i class="fa fa-user"></i> <%= t "admin_home.total_users" %>
+    </span>
+    <div class="count green"><%= User.where.not(role: :admin).count %></div>
   </div>
   <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-clock-o"></i> Total Categories</span>
+    <span class="count_top">
+      <i class="fa fa-clock-o"></i> <%= t "admin_home.total_categories" %>
+    </span>
     <div class="count"><%= Category.all.count %></div>
   </div>
   <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Places</span>
+    <span class="count_top">
+      <i class="fa fa-user"></i> <%= t "admin_home.total_places" %>
+    </span>
     <div class="count green"><%= Place.all.count %></div>
   </div>
   <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Tours</span>
+    <span class="count_top">
+      <i class="fa fa-user"></i> <%= t "admin_home.total_tours" %>
+    </span>
     <div class="count"><%= Tour.all.count %></div>
   </div>
   <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Bookings</span>
+    <span class="count_top">
+      <i class="fa fa-user"></i> <%= t "admin_home.total_bookings" %>
+    </span>
     <div class="count"><%= Booking.all.count %></div>
   </div>
   <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Discounts</span>
+    <span class="count_top">
+      <i class="fa fa-user"></i> <%= t "admin_home.total_discounts" %>
+    </span>
     <div class="count"><%= Discount.all.count %></div>
   </div>
 </div>
 <div class="row" style="margin-top: 15%;">
-  <h1 class="text-center">Welcome to admin's dashbourd.</h1>
+  <h1 class="text-center"><%= t "admin_home.welcome" %></h1>
 </div>
 <!-- /top tiles -->

@@ -1,0 +1,41 @@
+<% provide :title, @booking.tour.name %>
+<h1 class="text-center"><%= t "admin_bookings.infor" %></h1><br>
+<div class="row" style="margin-left: 20px;">
+  <div>
+    <label><%= t "admin_bookings.id" %>: </label>
+    <%= @booking.id %>
+  </div>
+
+  <div>
+    <label><%= t "admin_bookings.user" %>: </label>
+    <%= @booking.user.username %> - <%= @booking.user.phone_number %>
+  </div>
+
+  <div>
+    <label><%= t "admin_bookings.status" %>: </label>
+    <%= @booking.status %>
+  </div>
+
+  <div>
+    <label><%= t "admin_bookings.tour" %>: </label>
+    <%= @booking.tour.name %>
+  </div>
+
+  <div>
+    <label><%= t "admin_bookings.discount" %>: </label>
+    <%= @booking.tour.discount.name %> (-<%= @booking.tour.discount.percent %>%)
+  </div>
+
+  <div>
+    <label><%= t "admin_visitors.title" %>: </label>
+    <%= render "index_visitors" %>
+  </div>
+  <div>
+    <label><%= t "admin_visitors.total_price" %>: </label>
+    <% if @booking.tour.vnd? %>
+      <%= @booking.total_price.round %> <%= t "vnd" %>
+    <% else %>
+      <%= t "usd" %><%= @booking.total_price %>
+    <% end %>
+  </div>
+</div>

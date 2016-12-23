@@ -1,20 +1,22 @@
 <% @reviews.each do |review| %>
   <div>
-    <%= link_to review.title, place_review_path(review.place, review) %>
+    <h4 style="padding-top:15px; margin-left: 20px;"><strong><%= link_to review.title, place_review_path(review.place, review) %></strong></h4>
     <br />
     <span class="usertimestamp">
-      Posted by <%= review.user.username %>
-        <%= time_ago_in_words(review.created_at) %> ago.
+      (Posted by <%= review.user.username %>
+        <%= time_ago_in_words(review.created_at) %> ago)
     </span>
     <span class="content">
       <%= review.content.html_safe %>
     </span>
     <br />
-    <div>
-      <%= link_to t("delete"), [review.place, review], method: :delete,
-        data: {confirm: t("sure")}, class: "btn btn-danger" %>
-      <%= link_to t("edit"), edit_place_review_path(review.place, review),
-        class: "btn btn-primary" %>
+    <div class="form-group">
+      <% if can? [:destroy, :edit], review %>
+        <%= link_to t("user_actions.edit"), edit_place_review_path(review.place, review),
+          class: "btn btn-primary" %>
+        <%= link_to t("user_actions.delete"), [review.place, review], method: :delete,
+          data: {confirm: t("sure")}, class: "btn btn-danger" %>
+      <% end %>
     </div>
   </div>
 <% end %>

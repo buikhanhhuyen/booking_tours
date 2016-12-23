@@ -1,20 +1,23 @@
 <div id="visitor" class="visitors">
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.name") %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_visitors.name" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_field :name, class: "form-control", required: true %>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.gender") %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_visitors.gender" %> <span class="required">*</span>
     </label>
     <div class="col-md-2 col-sm-6 col-xs-12">
       <%= f.select :gender, Visitor.genders, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.birthday") %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_visitors.birthday" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_field :birthday, class: "form-control datetimepicker",
@@ -22,7 +25,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t("visitor.email") %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_visitors.email" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_field :email, class: "form-control" %>
@@ -30,7 +34,7 @@
   </div>
   <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-      <%= link_to_remove_fields t(".remove"), f %>
+      <%= link_to_remove_fields t("admin_manage.delete"), f %>
     </label>
   </div>
 </div>

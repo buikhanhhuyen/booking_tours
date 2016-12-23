@@ -19,13 +19,13 @@ gem "paperclip"
 gem "ransack"
 gem "date_validator"
 gem "font-awesome-sass", "~> 4.7.0"
-gem "stripe"
 gem "whenever", :require => false
-gem 'faker', '~> 1.6', '>= 1.6.3'
+gem "faker", "~> 1.6", ">= 1.6.3"
+gem "paypal-sdk-merchant"
 
 group :development, :test do
   gem "byebug", platform: :mri
-  gem 'mysql2', '>= 0.3.13', '< 0.5'
+  gem "mysql2", ">= 0.3.13", "< 0.5"
 end
 
 group :development do

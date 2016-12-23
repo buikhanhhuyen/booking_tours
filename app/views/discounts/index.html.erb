@@ -13,7 +13,7 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
-                <h2>All Discounts</h2>
+                <h2><strong><%= t "user_discounts.all" %></strong></h2>
                 <div class="clearfix"></div>
               </div>
 
@@ -29,24 +29,23 @@
                           </div>
                         </div>
                         <div class="title">
-                          <h1><%= discount.name %></h1>
-                          <h2>Save about $25</h2>
-                          <span>Monthly</span>
+                          <h1><strong><%= discount.name %></strong></h1>
+                          <h4 style="padding-top:10px;"><%= t "user_discounts.title" %></h4>
                         </div>
-                        <div class="x_content">
+                        <div class="x_content" style="color:black;">
                           <div class="">
-                            <div class="pricing_features">
+                            <div class="pricing_features" style="background:#e1ecf7">
                               <ul class="list-unstyled text-left">
-                                <li><i class="fa fa-check text-success"></i> Save: <strong><%= discount.percent %>%</strong></li>
-                                <li><i class="fa fa-check text-success"></i> <strong>Description: </strong><%= truncate(discount.description, length: 100) %></li>
-                                <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                <li><i class="fa fa-times text-danger"></i> <strong>Allowed</strong> to be exclusing per sale</li>
+                                <li class="text-center" style="color:blue"><strong><%= discount.start_date.strftime("%d/%m/%Y") %> - <%= discount.end_date.strftime("%d/%m/%Y") %></strong></li>
+                                <li><i class="fa fa-check text-success"></i><%= t "user_discounts.saleoff" %>: <strong><%= discount.percent %>%</strong></li>
+                                <li><i class="fa fa-check text-success"></i> <strong><%= t "user_discounts.description" %>: </strong><%= truncate(discount.description, length: 100) %></li>
+                                <li><i class="fa fa-check text-success"></i><%= t "user_discounts.all_time" %><strong> <%= t "user_discounts.update" %></strong></li>
+                                <li><i class="fa fa-times text-danger"></i> <strong><%= t "user_discounts.noo" %></strong> <%= t "user_discounts.fee" %></li>
                               </ul>
                             </div>
                           </div>
                           <div class="pricing_footer">
-                            <%= link_to "View details", discount_path(discount), class: "btn btn-primary btn-block" %>
+                            <%= link_to t("user_discounts.view_detail"), discount_path(discount), class: "btn btn-primary btn-block" %>
                           </div>
                         </div>
                       </div>
