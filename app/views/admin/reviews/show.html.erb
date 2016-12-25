@@ -1,5 +1,16 @@
-<div>
-  <strong><%= @review.title %></strong>
-  <%= @review.content.html_safe %>
+<div style="margin-left:50px; font-size:20px;">
+  <h4><strong><%= @review.title %></strong></h4>
+  <span class="content">
+    <%= @review.content.html_safe %>
+  </span>
+  <span class="usertimestamp" style="font-size:12px;">
+    Posted by <%= @review.user.username %>
+      <%= time_ago_in_words(@review.created_at) %> ago.
+  </span>
+  <br />
+  <span>
+    <%= link_to t("delete"), [:admin, @review.place, @review], method: :delete,
+      data: {confirm: t("sure")}, class: "btn btn-danger" %>
+  </span>
 </div>
 <%= render "admin/comments/index", review: @review %>

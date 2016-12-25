@@ -5,7 +5,7 @@
         <%= f.text_field :content, class: "form-control input-md",
           required: true %>
       </div>
-      <%= f.submit t("comment.cmt"), class: "btn btn-primary" %>
+      <%= f.submit t("user_actions.comment"), class: "btn btn-primary" %>
     <% end %>
   </div>
 <% end %>
@@ -13,24 +13,23 @@
 <% @comments.each do |comment| %>
   <div class="comments-list">
     <div class="comment-main-level">
-      <div class="comment-box">
-        <div class="comment-head">
+      <div class="comment-box" style="color:black;">
+        <div class="comment-head" style="background:#d1e5f9;">
           <h6 class="comment-name by-author"><%= comment.user.username %></h6>
-          <span><%= time_ago_in_words(comment.created_at) %> ago.</span>
+          <small><%= time_ago_in_words(comment.created_at) %> ago.</small>
         </div>
         <div class="comment-content">
           <strong><%= comment.content %></strong>
         </div>
         <div>
           <% if can? :destroy, comment %>
-            <%= link_to t("delete"), [comment.review, comment], method: :delete,
+            <%= link_to t("user_actions.delete"), [comment.review, comment], method: :delete,
               data: {confirm: t("sure")}, class: "btn btn-danger" %>
           <% end %>
-
           <% unless current_user.admin? %>
             <button class="btn btn-primary" type="button" data-toggle="collapse"
               data-target="#reply-<%= comment.id %>" aria-expanded="false"
-              aria-controls="reply-<%= comment.id %>"><%= t "comment.reply" %>
+              aria-controls="reply-<%= comment.id %>"><%= t "user_actions.reply" %>
             </button>
           <% end %>
           <div class="collapse" id="reply-<%= comment.id %>">
@@ -40,7 +39,7 @@
                   <%= f.text_field :content, class: "form-control input-md",
                     required: true %>
                 </div>
-                <%= f.submit t("comment.reply"), class: "btn btn-primary" %>
+                <%= f.submit t("user_actions.reply"), class: "btn btn-primary" %>
               <% end %>
             </div>
           </div>
@@ -48,7 +47,7 @@
           <% if can? :edit, comment %>
             <button class="btn btn-success" type="button" data-toggle="collapse"
               data-target="#edit-comment-<%= comment.id %>" aria-expanded="false"
-              aria-controls="edit-comment-<%= comment.id %>"><%= t ".edit" %>
+              aria-controls="edit-comment-<%= comment.id %>"><%= t "user_actions.edit" %>
             </button>
             <div class="collapse" id="edit-comment-<%= comment.id %>">
               <div class="card card-block">
@@ -57,7 +56,7 @@
                     <%= f.text_field :content, class: "form-control input-md",
                       required: true %>
                   </div>
-                  <%= f.submit t("edit"), class: "btn btn-primary" %>
+                  <%= f.submit t("user_actions.edit"), class: "btn btn-primary" %>
                 <% end %>
               </div>
             </div>
@@ -77,7 +76,7 @@
           <div class="comment-content">
             <strong><%= cmt.content %></strong><br />
             <% if can? :destroy, cmt %>
-              <%= link_to t("delete"), [comment, cmt], method: :delete,
+              <%= link_to t("user_actions.delete"), [comment, cmt], method: :delete,
                 data: {confirm: t("sure")}, class: "btn btn-danger"%>
             <% end %>
           </div>

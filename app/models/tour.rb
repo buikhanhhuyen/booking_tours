@@ -1,6 +1,6 @@
 class Tour < ApplicationRecord
   enum :currency => [:vnd, :usd]
-  enum :status => [:ongoing, :expried]
+  enum :status => [:coming, :ongoing, :expried]
 
   belongs_to :category
   belongs_to :discount
@@ -18,11 +18,4 @@ class Tour < ApplicationRecord
   validates :start_place_id, presence: true
   validates :end_place_id, presence: true
   validates :category_id, presence: true
-  # validate :check_discount
-
-  # def check_discount
-  #   if self.start_date < self.discount.start_date || self.end_date > self.discount.end_date
-  #     errors.add :discount, message: "Tour must be happened on duration of discount"
-  #   end
-  # end
 end

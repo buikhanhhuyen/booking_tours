@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       flash[:alert] = t "user.delete_fail"
-      redirect_to root_url
+      redirect_to :back
     end
   end
 end

@@ -2,88 +2,84 @@
 <header>
   <div id="header" class="clearfix">
     <div class="container-cus">
-      <h1 id="logo">
+      <div class="logo wow slideInLeft" data-wow-delay="0.3s">
         <%= link_to root_path do %>
-          Tour Booking
+          <%= image_tag "logo.png", alt: "logo", style: "margin-left:20px;"%>
         <% end %>
-      </h1>
-      <nav>
-          <div id="icon_menu" class="hidden-lg hidden-md"></div>
-          <div id="menu">
-            <ul class="mainmenu">
-              <li><%= link_to "Home", root_path %></li>
-              <li class="has-child">
-                <%= link_to t("destination"), places_path %>
-                <ul class="child">
-                  <% @places.each do |place| %>
-                    <li><%= link_to place.name, place_path(place) %></li>
-                  <% end %>
-                </ul>
-              </li>
-              <li class="has-child">
-                <%= link_to t("header.categories"), categories_path %>
-                <ul class="child">
-                  <% @categories.each do |category| %>
-                    <li>
-                      <%= link_to category.title, category %>
-                    </li>
-                  <% end %>
-                </ul>
-              </li>
-              <li class="has-child">
-                <%= link_to t("discount-header"), discounts_path %>
-                <ul class="child">
-                  <% @discounts.each do |discount| %>
-                    <li><%= link_to discount.name, discount_path(discount) %></li>
-                  <% end %>
-                </ul>
-              </li>
-              <li><%= link_to t("static_pages.contact.contact_title"),
-                static_pages_path(:contact) %></li>
-              <% if user_signed_in? %>
-                <li class="has-child">
-                  <a>
-                    <%= t "account" %> <b class="caret"></b>
-                  </a>
-                  <ul class="child">
-                    <li><%= link_to "Profile", current_user %></li>
-                    <li>
-                      <%= link_to "Edit", edit_user_registration_path %>
-                    </li>
-                    <li>
-                      <%= link_to t("static_pages.header.logout"),
-                        destroy_user_session_path, method: :delete %>
-                    </li>
-                  </ul>
-                </li>
-              <% else %>
-                <li class="lt-child">
-                  <%= link_to new_user_session_path do %>
-                    <i class="fa fa-sign-in" aria-hidden="true"></i>Login
-                  <% end %>
+      </div>
+      <div id="menu">
+        <ul class="mainmenu">
+          <li><%= link_to t("header.home"), root_path %></li>
+          <li class="has-child">
+            <%= link_to t("header.categories"), root_path %>
+            <ul class="child">
+              <% @categories.each do |category| %>
+                <li>
+                  <%= link_to category.title, category %>
                 </li>
               <% end %>
             </ul>
-          </div>
-      </nav>
+          </li>
+          <li class="has-child">
+            <%= link_to t("header.destinations"), places_path %>
+            <ul class="child">
+              <% Place.order("RAND()").limit(5).each do |place| %>
+                <li><%= link_to place.name, place_path(place) %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="has-child">
+            <%= link_to t("header.discounts"), discounts_path %>
+            <ul class="child">
+              <% @discounts.each do |discount| %>
+                <li><%= link_to discount.name, discount_path(discount) %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li><%= link_to t("header.contact_us"),
+            static_pages_path(:contact) %></li>
+          <% if user_signed_in? %>
+            <li class="has-child">
+              <a>
+                <%= current_user.username %> <b class="caret"></b>
+              </a>
+              <ul class="child">
+                <li><%= link_to t("header.profile"), current_user %></li>
+                <li>
+                  <%= link_to t("edit"), edit_user_registration_path %>
+                </li>
+                <li>
+                  <%= link_to t("header.logout"),
+                    destroy_user_session_path, method: :delete %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="lt-child">
+              <%= link_to new_user_session_path do %>
+                <i class="fa fa-sign-in" aria-hidden="true"></i><%= t "header.login" %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </header>
 <!-- ./HEADER -->
 
-
 <script type="text/javascript">
-        // js icon menu start
+    // js icon menu start
   $("#icon_menu").click(function() {
-      $("#menu").stop().slideToggle();
+    $("#menu").stop().slideToggle();
   })
 
-      //  SCRIPT SCROLL
+    //  SCRIPT SCROLL
   jQuery(window).mousemove(function(event){
     var Y = $(this).scrollTop();
     mouseY = event.pageY - Y
     if(mouseY <= 15){
-        $('#header').removeClass('nav-up');
+      $('#header').removeClass('nav-up');
     }
   });
 
@@ -99,8 +95,8 @@
 
   setInterval(function() {
     if (didScroll) {
-        hasScrolled();
-        didScroll = false;
+      hasScrolled();
+      didScroll = false;
     }
   }, 250);
 
@@ -108,19 +104,16 @@
     var st = $(this).scrollTop();
       // Make sure they scroll more than delta
     if(Math.abs(lastScrollTop - st) <= delta)
-        return;
+      return;
     if (st > lastScrollTop && st > navbarHeight){
-        // Scroll Down
-        $('#header').addClass('nav-up');
+      // Scroll Down
+      $('#header').addClass('nav-up');
     } else {
-        // Scroll Up
-        if(st + $(window).height() < $(document).height()) {
-            $('#header').removeClass('nav-up');
-        }
+      // Scroll Up
+      if(st + $(window).height() < $(document).height()) {
+          $('#header').removeClass('nav-up');
+      }
     }
     lastScrollTop = st;
   };
-
-
-
 </script>

@@ -1,347 +1,297 @@
-<!-- header-starts -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/jquery-1.11.0.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="css/style1.css" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--Google Fonts-->
+<link href='//fonts.googleapis.com/css?family=Hind:400,300' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
+<!--google fonts-->
+<!-- animated-css -->
+<!-- <link href="css/animate1.css" rel="stylesheet" type="text/css" media="all"> -->
+<script src="js/wow.min.js"></script>
+<script>
+  new WOW().init();
+</script>
+<!-- animated-css -->
+<script src="js/modernizr.js"></script>
+<script>
+  $(document).ready(function(){
+    if (Modernizr.touch) {
+      // show the close overlay button
+      $(".close-overlay").removeClass("hidden");
+      // handle the adding of hover class when clicked
+      $(".branch-gd").click(function(e){
+        if (!$(this).hasClass("hover")) {
+          $(this).addClass("hover");
+        }
+      });
+      // handle the closing of the overlay
+      $(".close-overlay").click(function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if ($(this).closest(".branch-gd").hasClass("hover")) {
+          $(this).closest(".branch-gd").removeClass("hover");
+        }
+      });
+  } else {
+    // handle the mouseenter functionality
+    $(".branch-gd").mouseenter(function(){
+      $(this).addClass("hover");
+    })
+    // handle the mouseleave functionality
+    .mouseleave(function(){
+      $(this).removeClass("hover");
+      });
+    }
+  });
+</script>
+<script src="js/bootstrap.min.js"></script>
+
+<!--header start here-->
+  <!-- NAVBAR
+    ================================================== -->
 <div class="header">
-  <div class="container">
-    <div class="header-info">
-      <div class="header-info-head text-center">
-        <a href="index.html"><h1><%= t "base_title" %></h1></a>
-        <h2><%= t "static_pages.home.welcome" %></h2>
-      </div>
-      <div class="top-search">
-        <%= search_form_for @search, url: search_tours_path, method: :post  do |f| %>
-          <%= f.text_field :name_cont, class: "text", value: "Search tour ...",
-          onfocus: "this.value = '';", onblur:"if (this.value == '') {this.value = 'Tour or place ...';}" %>
-        <% end %>
-      </div>
-      <div class="clearfix"></div>
-      <!-- start h_menu4 -->
-        <div class="h_menu4">
-        <a class="toggleMenu" href="">Menu</a>
-        <ul class="nav">
-          <li class="active">
-            <%= link_to t("static_pages.home.title"), root_path %>
-          </li>
-          <li>
-            <%= link_to t("static_pages.header.categories"), categories_path %>
-            <ul>
-              <% @categories.each do |category| %>
-                <li><%= link_to category.title, category_path(category) %></li>
+  <div class="fixed-header">
+    <div class="navbar-wrapper">
+      <div class="container">
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="logo wow slideInLeft" data-wow-delay="0.3s">
+              <%= link_to root_path do %>
+                <%= image_tag "logo.png", alt: "logo", style: "margin-left:20px;" %>
               <% end %>
-            </ul>
-          </li>
-          <li>
-            <%= link_to t("destination"), places_path %>
-            <ul>
-              <% @places.each do |place| %>
-                <li><%= link_to place.name, place_path(place) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li>
-            <%= link_to t("discount-header"), discounts_path %>
-            <ul>
-              <% @discounts.each do |discount| %>
-                <li><%= link_to discount.name, discount_path(discount) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li><%= link_to t("static_pages.contact.title"), static_pages_path(:contact) %></li>
-          <% if user_signed_in? %>
-            <li><%= link_to current_user.username, user_path(current_user) %></a>
-              <ul>
-                <li>
-                  <%= link_to t("static_pages.header.edit"),
-                    edit_user_registration_path %>
-                </li>
-                <li>
-                  <%= link_to t("static_pages.header.logout"),
-                    destroy_user_session_path, method: :delete %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to t("login.title"), new_user_session_path %></li>
-          <% end %>
-        </ul>
-      </div>
-      <!-- end h_menu4 -->
-    </div>
-  </div>
-</div>
-<!-- header-ends -->
-<!-- content-section-starts -->
-<div class="content-section">
-  <div class="services-section">
-    <div class="services-section-left">
-      <h3>Hot Iclands</h3>
-      <h5>From $990</h5>
-      <h3>Duis autem, Mirum Nulla ipsum</h3>
-    </div>
-    <div class="services-section-right">
-      <div class="services-section-image">
-        <%= image_tag "serviceimg.jpg" %>
-      </div>
-      <div class="services-section-right-text">
-        <p><%= image_tag "quotes.png", alt: "" %>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-        <p class="end-q">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-        <%= image_tag "quot.png", alt: "" %></p>
-        <a href="#">John Smith</a>
-        <span>Traveller</span>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-  <div class="call-us text-center">
-    <h3><i class="phone"></i>Call Us : +1 500 2587 6589 , +1 600 2547 5873</h3>
-  </div>
-  <div class="planning-section">
-    <div class="container">
-      <div class="col-md-8 planning-section-left">
-        <h3>Travel Planning Tips</h3>
-        <h4>& Advice for Everyone</h4>
-        <div class="sap_tabs">
-           <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-            <ul class="resp-tabs-list">
-              <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Restaurants</span></li>
-              <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Hotels</span></li>
-              <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Destinations</span></li>
-              <div class="clearfix"></div>
-            </ul>
-            <div class="resp-tabs-container">
-                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-                <ul class="tab_img">
-                  <li>
-                  <div class="view view-first">
-                    <%= image_tag "pic1.jpg", class: "img-responsive", alt: "" %>
-                     <div class="info1"> </div>
-                     <div class="mask"></div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="view view-first">
-                      <%= image_tag "pic6.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="last">
-                    <div class="view view-first">
-                      <%= image_tag "pic3.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <div class="clearfix"></div>
-                </ul>
-                 </div>
-                 <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-                <ul class="tab_img">
-                  <li>
-                    <div class="view view-first">
-                      <%= image_tag "pic8.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="view view-first">
-                      <%= image_tag "pic7.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="last">
-                    <div class="view view-first">
-                      <%= image_tag "pic9.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <div class="clearfix"></div>
-                </ul>
-                 </div>
-                 <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-                <ul class="tab_img">
-                  <li>
-                  <div class="view view-first">
-                      <%= image_tag "pic10.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="view view-first">
-                      <%= image_tag "pic2.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="last">
-                    <div class="view view-first">
-                      <%= image_tag "pic12.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <div class="clearfix"></div>
-                </ul>
-                 </div>
-                 <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
-                <ul class="tab_img">
-                  <li>
-                  <div class="view view-first">
-                      <%= image_tag "pic10.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="view view-first">
-                      <%= image_tag "pic2.jpg", class: "img-responsive", alt: "" %>
-                      <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="view view-first">
-                      <%= image_tag "pic9.jpg", class: "img-responsive", alt: "" %>
-                     <div class="mask">
-                        <div class="info1"> </div>
-                      </div>
-                      <div class="tab_desc">
-                        <h5>Thailand</h5>
-                        <span>From $990</span>
-                        <a href="#">Book Now</a>
-                      </div>
-                    </div>
-                  </li>
-                  <div class="clearfix"></div>
-                </ul>
-              </div>
             </div>
           </div>
-        </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <nav class="cl-effect-16" id="cl-effect-16">
+              <ul class="nav navbar-nav">
+                <li><%= link_to t("header.home"), root_path, class: "active" %></li>
+                <li class="has-child">
+                  <%= link_to t("header.categories"), root_path %>
+                  <ul class="child">
+                    <% @categories.each do |category| %>
+                      <li>
+                        <%= link_to category.title, category %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+                <li><%= link_to t("home.top_tours"), tours_path %></li>
+                <li><%= link_to t("header.destinations"), places_path %></li>
+                <li><%= link_to t("header.discounts"), discounts_path %></li>
+                <li><%= link_to t("header.contact_us"), static_pages_path(:contact) %></li>
+                <% if user_signed_in? %>
+                  <li class="has-child">
+                    <%= link_to current_user.username, current_user %>
+                    <ul class="child">
+                      <li><%= link_to t("header.profile"), current_user %></li>
+                      <li>
+                        <%= link_to t("edit"), edit_user_registration_path %>
+                      </li>
+                      <li>
+                        <%= link_to t("header.logout"),
+                          destroy_user_session_path, method: :delete %>
+                      </li>
+                    </ul>
+                  </li>
+                <% else %>
+                  <li class="lt-child">
+                    <%= link_to new_user_session_path do %>
+                      <i class="fa fa-sign-in" aria-hidden="true"></i><%= t "header.login" %>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+          <div class="clearfix"> </div>
+        </nav>
       </div>
-      <div class="col-md-4 planning-section-right">
-        <div class="planning-section-right-grid">
-          <div class="yup-text">
-            <h3>lorem Ipsum Restaurants</h3>
-          </div>
-          <div class="image">
-            <%= image_tag "yup.jpg", alt: "" %>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-        <div class="planning-section-right-grid2">
-          <div class="couple-text">
-            <h3>lorem Ipsum Honey moons</h3>
-          </div>
-          <div class="couple-image">
-            <%= image_tag "couple.png", alt: "" %>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-        <h4>Newsletter :</h4>
-        <div class="news-search-box">
-          <form>
-            <input type="text" class="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-            <input type="submit" value>
-          </form>
-          <div class="clearfix"></div>
-        </div>
-      </div>
-      <div class="clearfix"></div>
+      <div class="clearfix"> </div>
     </div>
-  </div>
-  <div class="mail text-center">
-    <h3><i class="msg"></i>Email : mail@demolink.org</h3>
-  </div>
-  <div class="main-map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d396369.7968760607!2d-94.5757195!3d39.091919000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c0f75eafe99997%3A0x558525e66aaa51a2!2sKansas+City%2C+MO%2C+USA!5e0!3m2!1sen!2sin!4v1416895090472"  frameborder="0" style="border:0"></iframe>
-  </div>
-  <div class="mail text-center">
-    <h3><i class="location"></i>7854 Mirum place, Lorem 54.</h3>
-  </div>
-  <div class="contact-section">
-    <div class="container">
-      <input type="text" class="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
-      <input type="text" class="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}">
-      <input type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-      <textarea value="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
-      <input type="submit" value="Send">
+   </div>
+</div>
+<!--header end here-->
+<!--banner  start hwew-->
+<div class="banner">
+  <div class="container">
+    <div class="banner-main wow zoomIn" data-wow-delay="0.3s">
+      <h2>MY TOURS</h2>
+      <h6>We Make Awesome Tours</h6>
+      <p><%= t "company.intro" %></p>
     </div>
   </div>
 </div>
-<!-- content-section-ends -->
-<!-- footer-section-starts -->
-<div class="hp-footer">
-  <div class="copy-rights text-center">
-    <p>&copy; 2014 Design by <a href="http://w3layouts.com" target="target_blank">W3layouts</a></p>
+<!--BANNER END HERE-->
+<!--information start here-->
+<div class="information">
+  <div class="container">
+    <div class="information-main">
+      <div class="information-grid five-star wow slideInLeft" data-wow-delay="0.3s">
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Thể loại</h4>
+            <p><%= t "company.phongphu" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Dịch vụ</h4>
+            <p><%= t "company.services" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>An toàn</h4>
+            <p><%= t "company.secure" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+      <div class="information-grid wow slideInRight" data-wow-delay="0.3s">
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Giá cả</h4>
+            <p><%= t "company.price" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Khách sạn</h4>
+            <p><%= t "company.hotel" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="col-md-4 hotel-info">
+          <div class="info-right">
+            <h4>Lữ hành</h4>
+            <p><%= t "company.travel" %></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
   </div>
 </div>
-<!-- footer-section-ends -->
+<!--information end here-->
+<!--leaves start here-->
+<div class="leaves">
+  <div class="container">
+    <div class="leaves-main wow zoomIn" data-wow-delay="0.3s">
+      <h1>Find Your Tour Today</h1>
+      <h6>Chăm sóc khách hàng 24/7</h6>
+      <p>Còn chần chừ gì mà không đặt ngay tour</p>
+      <%= link_to t("home.tour"), tours_path %>
+    </div>
+  </div>
+</div>
+<!--leaves end here-->
+<!--branches start here-->
+<div class="home-block">
+  <div class="container">
+    <div class="home-main">
+      <div class="home-top">
+        <h3>Chương trình khuyến mại đang diễn ra</h3>
+      </div>
+      <div  id="effect-5" class="branch-btm">
+        <div class="col-md-12">
+          <% @discounts.each do |discount| %>
+            <div class="col-md-4">
+              <%= image_tag "london.jpg", alt: "discount", class: "img-responsive" %>
+              <%= link_to discount.name, discount_path(discount)  %>
+              </div>
+            <% end %>
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>
+<!--branches end here-->
+
+<!--homegrids start here-->
+<div class="home-block">
+  <div class="container">
+    <div class="home-main">
+      <div class="home-top">
+        <h3>Tour du lịch mới nhất</h3>
+      </div>
+      <div  id="effect-5" class="branch-btm">
+        <div class="col-md-12">
+          <% @tours.each do |tour| %>
+            <div class="col-md-4">
+              <%= image_tag "london.jpg", alt: "discount", class: "img-responsive" %>
+              <%= link_to tour.name, tour  %>
+              </div>
+            <% end %>
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>
+<!--home grid end here-->
+<!--footer start here-->
+<div class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="col-md-3 ftr-grid wow zoomIn" data-wow-delay="0.3s">
+        <div class="ftr-logo">
+          <%= image_tag "logo.png", alt: "" %>
+        </div>
+        <p>Sứ mệnh của chúng tôi là sự hài lòng của du khách</p>
+      </div>
+      <div class="col-md-3 ftr-grid ftr-mid wow zoomIn" data-wow-delay="0.3s">
+         <h3><%= t "company.address" %></h3>
+         <span class="ftr-line flm"> </span>
+        <strong><%= t "company.name" %></strong>
+        <p><%= t "company.stress" %></p>
+        <p><%= t "company.city" %></p>
+        <p><%= t "company.hotline" %></p>
+        <p><%= t "company.email" %></p>
+      </div>
+      <div class="col-md-3 ftr-grid ftr-rit wow zoomIn" data-wow-delay="0.3s">
+         <h3><%= t "header.contact_us" %></h3>
+         <form>
+          <input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+          <input type="submit" value="Send" />
+         </form>
+      </div>
+      <div class="col-md-3 ftr-grid ftr-last-gd ftr-rit wow zoomIn" data-wow-delay="0.3s">
+         <h3>Quick Link</h3>
+        <ul class="ftr-nav">
+          <li><%= link_to t("header.home"), root_path, class: "active" %></li>
+          <li><%= link_to t("header.categories"), root_path %></li>
+          <li><%= link_to t("home.top_tours"), tours_path %></li>
+          <li><%= link_to t("header.destinations"), places_path %></li>
+          <li><%= link_to t("header.discounts"), discounts_path %></li>
+          <li><%= link_to t("header.contact_us"), static_pages_path(:contact) %></li>
+       </ul>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>
+<!--footer end here-->
+<!--copy rights start here-->
+<div class="copy-right">
+  <div class="container">
+    <div class="copy-rights-main wow zoomIn" data-wow-delay="0.3s">
+      <p>© 2016 My Tour. All Rights Reserved | Design by TourMaker </p>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     collection {post :search, to: "places#index"}
     resources :reviews, except: :index
   end
-  resources :tours, except: :index do
+  resources :tours do
     collection {post :search, to: "tours#index"}
     resources :bookings, except: [:edit, :update, :index]
   end
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :discounts, only: [:show, :index]
-  resources :categories, only: [:show, :index]
+  resources :categories, only: :show
   resources :payments, only: [:show, :index]
 
   namespace :admin do

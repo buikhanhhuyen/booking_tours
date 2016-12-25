@@ -1,8 +1,8 @@
-<% provide :title, t("category.title") %>
+<% provide :title, t("admin_categories.base_title") %>
 <div class="">
   <div class="page-title">
     <div class="title_left">
-      <h3>Categories Management</h3>
+      <h3><% t "admin_categories.base_title" %></h3>
     </div>
   </div>
   <div class="clearfix"></div>
@@ -10,7 +10,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Edit Category</h2>
+          <h2><%= t "admin_categories.edit" %></h2>
           <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
@@ -26,30 +26,31 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Title <span class="required">*</span>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                <%= t "admin_categories.title" %><span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <%= f.text_field :title, class: "form-control col-md-7 col-xs-12", required: true,
-                  placeholder: "Enter title ..." %>
+                  placeholder: "Nhập tên danh mục tour du lịch ..." %>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Description <span class="required">*</span>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                <%= t "admin_categories.description" %><span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <%= f.text_area :description, class: "form-control", required: true,
-                  placeholder: "Enter description ..."%>
+                  placeholder: "Nhập mô tả danh mục tour du lịch ..."%>
               </div>
             </div>
 
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                <%= link_to t("cancel"), admin_categories_path, class: "btn btn-primary" %>
                 <%= f.submit t("save"), class: "btn btn-success" %>
+                <%= link_to t("cancel"), admin_categories_path, class: "btn btn-primary" %>
               </div>
             </div>
-
           <% end %>
         </div>
       </div>

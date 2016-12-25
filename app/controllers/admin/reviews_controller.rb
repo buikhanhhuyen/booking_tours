@@ -11,9 +11,9 @@ class Admin::ReviewsController < ApplicationController
   def destroy
     @place = @review.place
     if @review.delete
-      flash[:notice] = t "review.delete_success"
+      flash[:notice] = t "admin_reviews.delete_success"
     else
-      flash[:alert] = t "review.delete_fail"
+      flash[:alert] = t "admin_reviews.delete_fail"
     end
     redirect_to :back
   end

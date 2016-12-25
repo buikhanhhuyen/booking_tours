@@ -1,5 +1,6 @@
 <% provide :title, t("tour.title") %>
-<h1 class="text-center"><%= t "tour.title" %></h1><br>
+<link href="/css/admin_main.css" rel="stylesheet">
+
 
 <%= search_form_for @search, url: search_tours_path, method: :post do |f| %>
   <%= f.condition_fields do |c| %>
@@ -15,47 +16,48 @@
   <div class="actions"><%= f.submit t "search" %></div>
 <% end %>
 
-<table class="table sortable table-bordered">
-  <thead>
-    <tr>
-      <th><%= t "tour.id" %></th>
-      <th><%= t "tour.name" %></th>
-      <th><%= t "tour.start_place" %></th>
-      <th><%= t "tour.end_place" %></th>
-      <th><%= t "tour.price" %></th>
-      <th><%= t "tour.start_date" %></th>
-      <th><%= t "tour.end_date" %></th>
-      <th><%= t "tour.min_visitors" %></th>
-      <th><%= t "tour.max_visitors" %></th>
-      <th><%= t "tour.accommodation" %></th>
-      <th><%= t "tour.meals" %></th>
-      <th><%= t "tour.transport" %></th>
-      <th><%= t "tour.services" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tours.each do |tour| %>
-      <tr>
-        <td><%= tour.id %></td>
-        <td><%= link_to tour.name, tour_path(tour) %></td>
-        <td><%= tour.start_place.name %></td>
-        <td><%= tour.end_place.name %></td>
-        <td>
-          <% if tour.vnd? %>
-            <%= tour.price.round %> <% t "tour.vnd" %>
-          <% else %>
-            <%= tour.price.round(2) %> <% t "tour.usd" %>
-          <% end %>
-        </td>
-        <td><%= tour.start_date.strftime("%d-%m-%Y") %></td>
-        <td><%= tour.end_date.strftime("%d-%m-%Y") %></td>
-        <td><%= tour.min_visitors %></td>
-        <td><%= tour.max_visitors %></td>
-        <td><%= truncate(tour.accommodation, length: 100) %></td>
-        <td><%= tour.meals %></td>
-        <td><%= truncate(tour.transport, length: 100) %></td>
-        <td><%= truncate(tour.additional_services, length: 100) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container body">
+  <div class="main_container">
+    <div class="right_col" role="main">
+      <div class="">
+        <div class="page-title">
+          <div class="title_left">
+            <h3> All Tours</h3>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="row">
+                  <% @tours.each do |tour| %>
+                    <div class="col-md-4">
+                      <div class="thumbnail">
+                        <div class="image view view-first">
+                          <%= image_tag "media.jpg", alt: "image", style: "width: 100%; height: 100%; display: block;" %>
+                          <div class="mask">
+                            <p><%= tour.name %></p>
+                            <div class="tools tools-bottom">
+                              <%= link_to "Read more", tour_path(tour), class: "btn btn-primary" %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/admin_main.js"></script>

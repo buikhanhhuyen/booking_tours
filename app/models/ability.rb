@@ -20,14 +20,14 @@ class Ability
       can [:show, :index], Place
       can [:show, :index, :search], Tour
       can [:show, :index], Discount
-      can [:show, :index], Category
+      can :show, Category
       can :manage, Payment
     else
       can [:show, :index], Place
       can [:show, :index, :search], Tour
       can :show, Review
       can [:show, :index], Discount
-      can [:show, :index], Category
+      can :show, Category
     end
   end
 end

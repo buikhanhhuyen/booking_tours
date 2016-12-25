@@ -1,17 +1,61 @@
-<% provide :title, @discount.name %>
-<div class="row">
-  <aside class="col-md-4">
-    <div>
-      <label><%= t "discount.name" %></label>
-      <%= @discount.name %>
+<link href="/css/admin_main.css" rel="stylesheet">
+
+<div class="container body">
+  <div class="main_container">
+    <div class="right_col" role="main">
+      <div class="">
+        <div class="page-title">
+          <div class="title_left">
+            <h3><%= t "user_discounts.saleoff" %></h3>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h1><strong><%= @discount.name %> - <%= @discount.percent %>%</strong></h1>
+                <br />
+                <h4 class="text-center"><%= @discount.start_date.strftime("%d/%m/%Y") %> - <%= @discount.end_date.strftime("%d/%m/%Y") %></h4>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                  <blockquote>
+                    <p><%= @discount.description %></p>
+                    </footer>
+                  </blockquote>
+                  <% if !@discount.tours.nil? %>
+                    <div class="x_content">
+                      <div class="row">
+                        <% @discount.tours.each do |tour| %>
+                          <div class="col-md-4">
+                            <div class="thumbnail">
+                              <div class="image view view-first">
+                                <%= image_tag "media.jpg", alt: "image", style: "width: 100%; height: 100%; display: block;" %>
+                                <div class="mask">
+                                  <p style="font-size:18px;"><strong><%= tour.name %></strong></p>
+                                  <div class="tools tools-bottom" style="margin-top:10px;">
+                                    <%= link_to t("user_discounts.read_more"), tour_path(tour), class: "btn btn-primary" %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <label><%= t "discount.percent" %></label>
-      <%= @discount.percent %>
-    </div>
-    <div>
-      <label><%= t "discount.description" %></label>
-      <%= @discount.description %>
-    </div>
-  </aside>
+  </div>
 </div>
+
+<script src="/js/admin_main.js"></script>

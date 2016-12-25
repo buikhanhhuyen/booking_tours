@@ -1,29 +1,58 @@
-<% provide :title, t("place.title") %>
-<h1 class="text-center"><%= t "place.title" %></h1><br>
+<link href="/css/admin_main.css" rel="stylesheet">
 
 <%= search_form_for @search, url: search_places_path, method: :post  do |f| %>
-  <div class="field">
-    <%= f.label :name_cont, t("name_cont") %>
-    <%= f.text_field :name_cont %>
+  <div class="row" style="margin-left:50px;">
+    <div class="field">
+      <%= f.text_field :name_cont %>
+      <div class="action"><%= f.submit t "search" %></div>
+    </div>
   </div>
-  <div class="action"><%= f.submit t "search" %></div>
 <% end %>
 
-<table class="table sortable table-bordered">
-  <thead>
-    <tr>
-      <th><%= t "place.id" %></th>
-      <th><%= t "place.name" %></th>
-      <th><%= t "place.description" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @places.each do |place| %>
-      <tr>
-        <td><%= place.id %></td>
-        <td><%= link_to place.name, place_path(place) %></td>
-        <td><%= place.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container body">
+  <div class="main_container">
+    <div class="right_col" role="main">
+      <div class="">
+        <div class="page-title">
+          <div class="title_left">
+            <h3 class="text-center"><%= t "user_places.all" %></h3>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="row">
+                  <% @places.each do |place| %>
+                    <div class="col-md-4">
+                      <div class="thumbnail">
+                        <div class="image view view-first">
+                          <%= image_tag "banner_6.jpg", alt: "image", style: "width: 100%; height: 100%; display: block;" %>
+                          <div class="mask">
+                            <h1 style="color:white; font-size:20px;"><strong><%= place.name %></strong></h1>
+                            <div class="tools tools-bottom">
+                              <%= link_to t("user_places.read_more"), place_path(place), class: "btn btn-success" %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/admin_main.js"></script>
+
+

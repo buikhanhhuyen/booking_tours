@@ -1,13 +1,11 @@
 <table class="table sortable table-bordered">
   <thead>
     <tr>
-      <th><%= t "visitor.id" %></th>
-      <th><%= t "visitor.name" %></th>
-      <th><%= t "visitor.gender" %></th>
-      <th><%= t "visitor.birthday" %></th>
-      <th><%= t "visitor.phone_number" %></th>
-      <th><%= t "visitor.address" %></th>
-      <th><%= t "visitor.email" %></th>
+      <th><%= t "admin_visitors.id" %></th>
+      <th><%= t "admin_visitors.name" %></th>
+      <th><%= t "admin_visitors.gender" %></th>
+      <th><%= t "admin_visitors.birthday" %></th>
+      <th><%= t "admin_visitors.email" %></th>
     </tr>
   </thead>
   <tbody>
@@ -17,12 +15,12 @@
         <td><%= visitor.name %></td>
         <td>
           <% if visitor.gender == false %>
-            <%= t "visitor.male" %>
+            <%= t "admin_visitors.male" %>
           <% else %>
-            <%= t "visitor.female" %>
+            <%= t "admin_visitors.female" %>
           <% end %>
         </td>
-        <td><%= visitor.birthday.strftime("%d-%m-%Y") %></td>
+        <td><%= visitor.birthday.strftime("%d/%m/%Y") %></td>
         <td><%= visitor.email %></td>
       </tr>
     <% end %>

@@ -1,8 +1,4 @@
-<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-<link href="../build/css/custom.min.css" rel="stylesheet">
+<link href="/css/admin_main.css" rel="stylesheet">
 
   <div class="container body">
     <div class="main_container">
@@ -13,7 +9,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2><%= t "booking.all" %></h2>
+                  <h2><%= t "user_bookings.all" %></h2>
                   <div class="clearfix"></div>
                 </div>
 
@@ -22,14 +18,14 @@
                     <table class="table table-striped jambo_table bulk_action">
                       <thead>
                         <tr class="headings">
-                          <th class="column-title"><%= t "booking.id" %></th>
-                          <th class="column-title"><%= t "booking.date" %></th>
-                          <th class="column-title"><%= t "tour.title" %></th>
-                          <th class="column-title"><%= t "tour.price" %></th>
-                          <th class="column-title"><%= t "visitor.qty" %></th>
-                          <th class="column-title"><%= t "discount.title" %></th>
-                          <th class="column-title"><%= t "booking.amount" %></th>
-                          <th class="column-title"><%= t "booking.status" %></th>
+                          <th class="column-title"><%= t "user_bookings.id" %></th>
+                          <th class="column-title"><%= t "user_bookings.date" %></th>
+                          <th class="column-title"><%= t "user_bookings.tour" %></th>
+                          <th class="column-title"><%= t "user_bookings.price" %></th>
+                          <th class="column-title"><%= t "user_bookings.qty" %></th>
+                          <th class="column-title"><%= t "user_bookings.discount" %></th>
+                          <th class="column-title"><%= t "user_bookings.amount" %></th>
+                          <th class="column-title"><%= t "user_bookings.status" %></th>
                           </th>
                         </tr>
                       </thead>
@@ -38,13 +34,13 @@
                         <% @bookings.each do |booking| %>
                             <tr class="even pointer">
                               <td class=" "><%= booking.id %></td>
-                              <td class=" "><%= booking.created_at.strftime("%d-%m-%Y") %></td>
+                              <td class=" "><%= booking.created_at.strftime("%d/%m/%Y") %></td>
                               <td class=" "><%= link_to booking.tour.name, booking_path(booking) %></td>
                               <td class="a-right a-right ">
                                 <% if booking.tour.vnd? %>
-                                  <%= booking.tour.price.round %> <%= t "tour.vnd" %>
+                                  <%= booking.tour.price.round %> <%= t "vnd" %>
                                 <% else %>
-                                  $<%= booking.tour.price %>
+                                  <%= t "usd" %><%= booking.tour.price %>
                                 <% end %>
                               </td>
                               <td class=" "><%= booking.visitors.count %></td>
@@ -57,9 +53,9 @@
                               </td>
                               <td class=" ">
                                 <% if booking.tour.vnd? %>
-                                  <%= booking.total_price.round %> <%= t "tour.vnd" %>
+                                  <%= booking.total_price.round %> <%= t "vnd" %>
                                 <% else %>
-                                  $<%= booking.total_price %>
+                                  <%= t "usd" %><%= booking.total_price %>
                                 <% end %>
                               </td>
                               <td class=" "><%= link_to booking.status, new_booking_payment_path(booking) %></td>
@@ -77,16 +73,5 @@
     </div>
   </div>
 
-  <!-- jQuery -->
-  <script src="../vendors/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- FastClick -->
-  <script src="../vendors/fastclick/lib/fastclick.js"></script>
-  <!-- NProgress -->
-  <script src="../vendors/nprogress/nprogress.js"></script>
-  <!-- iCheck -->
-  <script src="../vendors/iCheck/icheck.min.js"></script>
 
-  <!-- Custom Theme Scripts -->
-  <script src="../build/js/custom.min.js"></script>
+  <script src="/js/admin_main.js"></script>

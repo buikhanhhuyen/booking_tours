@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   layout :select_layout
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:alert] = "You don't have permissions to be here"
-    redirect_to root_url
+    flash[:alert] = t "ability"
+    redirect_to :back
   end
 
   def set_search
@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
 
   def before_show
     @categories = Category.all
-    @places = Place.all
-    @tours = Tour.all
-    @discounts = Discount.all
+    @places = Place.order("RAND()").limit(5)
+    @tours = Tour.order(created_at: :desc).limit(10)
+    @discounts = Discount.order(created_at: :desc).limit(10)
   end
 
   def select_layout

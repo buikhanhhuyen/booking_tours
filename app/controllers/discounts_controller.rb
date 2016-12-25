@@ -5,5 +5,6 @@ class DiscountsController < ApplicationController
   end
 
   def show
+    @tours = @discount.tours
   end
 end

@@ -1,22 +1,43 @@
 <% provide :title, t("booking.title") %>
-<h1><%= t "booking.title" %></h1>
+
+<link href="/css/admin_main.css" rel="stylesheet">
+
 <div class="row">
-  <div class="col-md-6 col-md-offset-3" id="booking_form">
-    <h2>My Trip</h1>
-    <div>
-      <h4>Tour: <%= @tour.name %></h4>
-      <h4>Starts in <%= @tour.start_place.name %> on <%= @tour.start_date.strftime("%d-%m-%Y") %></h4>
-      <h4>Ends in <%= @tour.end_place.name %> on <%= @tour.end_date.strftime("%d-%m-%Y") %></h4>
+  <div class="col-md-12 col-sm-3 col-xs-9 text-center">
+  <div class="x_content" id="booking_form">
+
+    <h1><strong><%= t "slogan" %></strong></h1>
+    <div style="padding-top:30px;">
+      <h4><%= t "user_bookings.tour" %>: <%= @tour.name %></h4>
+      <h4><%= t "user_bookings.start" %> <strong><%= @tour.start_date.strftime("%d-%m-%Y") %></strong> <%= t "user_bookings.onn" %> <strong><%= @tour.start_place.name %></strong></h4>
+      <h4><%= t "user_bookings.end" %> <strong><%= @tour.end_date.strftime("%d-%m-%Y") %></strong> <%= t "user_bookings.onn" %> <strong><%= @tour.end_place.name %></strong></h4>
     </div>
-    <h3>Visitor Information</h3>
-    <%= form_for [@tour, @booking] do |f| %>
-      <%= render "shared/error_messages", object: @booking %>
+    <h3><%= t "user_visitors.title" %></h3>
+    <%= form_for [@tour, @booking], html: {class: "form-horizontal form-label-left"} do |f| %>
+      <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+          <%= render "shared/error_messages", object: @booking %>
+        </div>
+      </div>
 
       <%= f.fields_for :visitors do |builder| %>
         <%= render "visitor_fields", :f => builder %>
       <% end %>
-      <p><%= link_to_add_fields t("visitor.add"), f, :visitors %></p>
-      <p><%= f.submit t("submit") %></p>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+          <%= link_to_add_fields t("user_actions.add"), f, :visitors %>
+        </label>
+      </div>
+      <div class="ln_solid"></div>
+      <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+          <%= f.submit t("submit"), class: "btn btn-success" %>
+          <%= link_to t("cancel"), tour_path(@tour), class: "btn btn-primary" %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
+</div>
+
+<script src="/js/admin_main.js"></script>

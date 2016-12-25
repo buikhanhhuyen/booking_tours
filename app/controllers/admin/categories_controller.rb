@@ -11,10 +11,10 @@ class Admin::CategoriesController < ApplicationController
 
   def create
     if @category.save
-      flash[:notice] = t "category.create_success"
+      flash[:notice] = t "admin_categories.create_success"
       redirect_to admin_categories_path
     else
-      flash[:alert] = t "category.create_fail"
+      flash[:alert] = t "admin_categories.create_fail"
       render :new
     end
   end
@@ -24,20 +24,20 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     if @category.update_attributes category_params
-      flash[:notice] = t "category.update_success"
+      flash[:notice] = t "admin_categories.update_success"
       redirect_to admin_categories_path
     else
-      flash[:alert] = t "category.update_fail"
+      flash[:alert] = t "admin_categories.update_fail"
       render :edit
     end
   end
 
   def destroy
     if @category.destroy
-      flash[:notice] = t "category.delete_success"
+      flash[:notice] = t "admin_categories.delete_success"
       redirect_to admin_categories_path
     else
-      flash[:alert] = t "category.delete_fail"
+      flash[:alert] = t "admin_categories.delete_fail"
       redirect_to admin_categories_path
     end
   end
