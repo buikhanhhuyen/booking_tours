@@ -25,16 +25,16 @@
         <li role="presentation" class="dropdown">
           <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-bell-o"></i>
-            <span class="badge bg-green"><%= @notifications.count %></span>
+            <span class="badge bg-green"><%= @header_notifications.count %></span>
           </a>
           <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-            <% @notifications.each do |noti|%>
+            <% @header_notifications.each do |noti|%>
               <% if noti.notifiable_type == "Review" %>
                 <li>
                   <a>
                     <span>
-                      <span><%= noti.user %></span>
-                      <span class="time">3 mins ago</span>
+                      <span><%= noti.user.username %></span>
+                      <span class="time"><%= time_ago_in_words(noti.created_at) %> trước.</span>
                     </span>
                     <span class="message">
                       Da them bai nhan xet ve dia diem: <%= Place.find_by_id(noti.notifiable_id).name %>
@@ -45,8 +45,8 @@
                 <li>
                   <a>
                     <span>
-                      <span><%= noti.user %></span>
-                      <span class="time">3 mins ago</span>
+                      <span><%= noti.user.username %></span>
+                      <span class="time"><%= time_ago_in_words(noti.created_at) %> trước.</span>
                     </span>
                     <span class="message">
                       Da dat tour: <%= Tour.find_by_id(noti.notifiable_id).name %>

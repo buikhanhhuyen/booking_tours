@@ -3,5 +3,6 @@ class Admin::NotificationsController < ApplicationController
 
   def index
     @notifications = Notification.all
+    Notification.where(seen: false).update_all(seen: true)
   end
 end
