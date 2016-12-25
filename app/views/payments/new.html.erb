@@ -128,7 +128,7 @@
                               <th><%= t "user_payments.discount" %>: </th>
                               <td><strong>
                                 <% if @booking.tour.vnd? %>
-                                  <%= ((@booking.tour/100) * @booking.tour.discount.percent * @booking.visitors.count).round %> <%= t "vnd" %>
+                                  <%= ((@booking.tour.price/100) * @booking.tour.discount.percent * @booking.visitors.count).round %> <%= t "vnd" %>
                                 <% else %>
                                   <%= t "usd" %><%= (@booking.tour.price/100) * @booking.tour.discount.percent * @booking.visitors.count %>
                                 <% end %></strong>

@@ -5,16 +5,18 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.name" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.name" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_field :name, class: "form-control", required: true,
-        placeholder: "Enter name ..." %>
+        placeholder: "Vui lòng nhập tên tour du lịch..." %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "category.title" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_categories.title" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <select class="select2_single form-control" tabindex="-1" id="tour_category_id" name="tour[category_id]">
@@ -26,7 +28,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "discount.title" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_bookings.discount" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <select class="select2_single form-control" tabindex="-1" id="tour_discount_id" name="tour[discount_id]">
@@ -38,7 +41,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.start_place" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.start_place" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <select class="select2_single form-control" tabindex="-1" id="tour_start_place_id" name="tour[start_place_id]">
@@ -50,7 +54,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.end_place" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.end_place" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <select class="select2_single form-control" tabindex="-1" id="tour_end_place_id" name="tour[end_place_id]">
@@ -62,79 +67,88 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.price" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.price" %> <span class="required">*</span>
     </label>
     <div class="col-md-4 col-sm-6 col-xs-12">
       <%= f.text_field :price, class: "form-control", required: true,
-        placeholder: "Enter price ..." %>
+        placeholder: "Vui lòng nhập giá tiền..." %>
     </div>
     <div class="col-md-2">
       <select name="tour[currency]", class="form-control">
-        <option value="vnd"><%= t "tour.vnd" %></option>
-        <option value="usd"><%= t "tour.usd" %></option>
+        <option value="vnd">VNĐ</option>
+        <option value="usd">USD</option>
       </select>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Duration <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.date" %><span class="required">*</span>
     </label>
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <%= f.text_field :start_date, class: "form-control datetimepicker", placeholder: "Start date ...",
+      <%= f.text_field :start_date, class: "form-control datetimepicker",
+        placeholder: "Ngày bắt đầu...",
         value: "#{f.object.start_date.strftime("%d-%m-%Y") if f.object.start_date}" %>
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <%= f.text_field :end_date, class: "form-control datetimepicker", placeholder: "End date ...",
+      <%= f.text_field :end_date, class: "form-control datetimepicker",
+        placeholder: "Ngày kết thúc...",
         value: "#{f.object.end_date.strftime("%d-%m-%Y") if f.object.end_date}" %>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Number visitors <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.num" %> <span class="required">*</span>
     </label>
     <div class="col-md-3 col-sm-6 col-xs-12">
       <%= f.text_field :min_visitors, class: "form-control",
-        required: true, placeholder: "Min visitors..." %>
+        required: true, placeholder: "SL tối thiểu" %>
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
       <%= f.text_field :max_visitors, class: "form-control",
-        required: true, placeholder: "Max visitors..." %>
+        required: true, placeholder: "SL tối đa" %>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.accommodation" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.accommodation" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :accommodation, class: "form-control", required: true,
-        placeholder: "Enter accommodation ..." %>
+        placeholder: "Vui lòng nhập thông tin chỗ ở..." %>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.meals" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.meals" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :meals, class: "form-control", required: true,
-        placeholder: "Enter meals ..." %>
+        placeholder: "Vui lòng nhập thông tin bữa ăn..." %>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.transport" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.transport" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :transport, class: "form-control", required: true,
-        placeholder: "Enter transport ..." %>
+        placeholder: "Vui lòng nhập thông tin phương tiện đi lại..." %>
     </div>
   </div><div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= t "tour.service" %> <span class="required">*</span>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+      <%= t "admin_tours.service" %> <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <%= f.text_area :additional_services, class: "form-control",
-        required: true, placeholder: "Enter additional services ..." %>
+        required: true, placeholder: "Vui lòng nhập thông tin dịch vụ đi kèm..." %>
     </div>
   </div>
   <div class="ln_solid"></div>
   <div class="form-group">
     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
       <%= f.submit t("save"), class: "btn btn-success" %>
-    <%= link_to t("cancel"), admin_places_path, class: "btn btn-primary" %>
+    <%= link_to t("cancel"), admin_tours_path, class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>
