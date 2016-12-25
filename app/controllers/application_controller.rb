@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
     @places = Place.order("RAND()").limit(5)
     @tours = Tour.order(created_at: :desc).limit(10)
     @discounts = Discount.order(created_at: :desc).limit(10)
+    @notifications = Notification.order(created_at: :desc).where(seen: false)
   end
 
   def select_layout

@@ -33,6 +33,7 @@ class BookingsController < ApplicationController
         total_price = (@tour.price)*(@booking.visitors.count)
       end
       @booking.update_attributes total_price: total_price
+      Notification.create user: current_user, notifiable_type: "Booking", notifiable_id: @booking.id
       flash[:notice] = t "user_bookings.create_success"
       redirect_to new_booking_payment_path(@booking)
     else
