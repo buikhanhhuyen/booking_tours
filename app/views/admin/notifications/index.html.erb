@@ -29,12 +29,12 @@
               <% @notifications.each do |noti|%>
                 <% if noti.notifiable_type == "Review" %>
                   <tr>
-                    <td><%= noti.user %> da them bai nhan xet ve dia diem: <%= Place.find_by_id(noti.notifiable_id).name %></td>
+                    <td><strong><%= noti.user.username %></strong> da them bai nhan xet ve dia diem: <%= Place.find_by_id(noti.notifiable_id).name %></td>
                     <td><%= noti.created_at %></td>
                   </tr>
                 <% elsif noti.notifiable_type == "Booking" %>
                   <tr>
-                    <td><%= noti.user %> da dat tour: <%= Tour.find_by_id(noti.notifiable_id).name %></td>
+                    <td><strong><%= noti.user.username %></strong> da dat tour: <%= Tour.find_by_id(noti.notifiable_id).name %></td>
                     <td><%= noti.created_at %></td>
                   </tr>
                 <% end %>
