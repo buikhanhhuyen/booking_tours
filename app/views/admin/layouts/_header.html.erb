@@ -22,6 +22,49 @@
             </li>
           </ul>
         </li>
+        <li role="presentation" class="dropdown">
+          <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-bell-o"></i>
+            <span class="badge bg-green"><%= @notifications.count %></span>
+          </a>
+          <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+            <% @notifications.each do |noti|%>
+              <% if noti.notifiable_type == "Review" %>
+                <li>
+                  <a>
+                    <span>
+                      <span><%= noti.user %></span>
+                      <span class="time">3 mins ago</span>
+                    </span>
+                    <span class="message">
+                      Da them bai nhan xet ve dia diem: <%= Place.find_by_id(noti.notifiable_id).name %>
+                    </span>
+                  </a>
+                </li>
+              <% elsif noti.notifiable_type == "Booking" %>
+                <li>
+                  <a>
+                    <span>
+                      <span><%= noti.user %></span>
+                      <span class="time">3 mins ago</span>
+                    </span>
+                    <span class="message">
+                      Da dat tour: <%= Tour.find_by_id(noti.notifiable_id).name %>
+                    </span>
+                  </a>
+                </li>
+              <% end %>
+            <% end %>
+            <li>
+              <div class="text-center">
+                <a>
+                  <strong>Xem tat ca thong bao</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>

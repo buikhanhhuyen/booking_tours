@@ -50,5 +50,6 @@ Rails.application.routes.draw do
       collection {post :search, to: "discounts#index"}
     end
     resources :payments,  only: [:show, :index]
+    resources :notifications, only: :index
   end
 end

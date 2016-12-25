@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.build review_params
     if @review.save
+      Notification.create user: current_user, notifiable_type: "Review", notifiable_id: @review.id
       flash[:notice] = t "review.create_success"
       redirect_to place_path @review.place
     else

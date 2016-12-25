@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104033958) do
+ActiveRecord::Schema.define(version: 20161225105309) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "action_type"
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(version: 20161104033958) do
     t.integer  "status",                    default: 0
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+  end
+
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.boolean  "seen"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -172,6 +182,7 @@ ActiveRecord::Schema.define(version: 20161104033958) do
   add_foreign_key "bookings", "users"
   add_foreign_key "comments", "reviews"
   add_foreign_key "comments", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "payments", "bookings"
   add_foreign_key "reviews", "places"
   add_foreign_key "reviews", "users"

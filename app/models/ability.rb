@@ -11,6 +11,7 @@ class Ability
       can :manage, User
       can :manage, Discount
       can :manage, Payment
+      can :manage, Notification
     elsif user.member?
       can :manage, Comment, :user_id => user.id
       can [:show, :destroy], User, :id => user.id
