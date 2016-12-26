@@ -59,7 +59,7 @@ Discount.create! name: "Happy New Year", percent: "25",
   start_date: "25/12/2016", end_date: "25/01/2017"
 
 Discount.create! name: "Family for Year", percent: "35",
-  description: Faker::Lorem.paragraph,
+  description: "Cùng với không khí chào đón năm mới 2017, My Tour đặc biệt đưa ra chương trình khuyến mại - Happy New Year - với chiết khấu lên tới 25% và không phụ thu các dịch vụ giá trị gia tăng. Hãy đặt tour ngay hôm nay để tận hưởng không khí năm mới sum vầy cùng gia đình và người thân.",
   start_date: "15/01/2017", end_date: "15/02/2017"
 
 Discount.create! name: "Valentine", percent: "15",
@@ -139,7 +139,7 @@ Tour.create! name: "TP Hồ Chí Minh - Đà Nẵng",
 
 Tour.create! name: "TP Hồ Chí Minh - Bangkok",
   category_id: "2", start_place_id: "2", end_place_id: "4", price: "25000000",
-  currency: "vnd", start_date: "15/03/2017", end_date: "20/03/2017", discount_id: "",
+  currency: "vnd", start_date: "15/03/2017", end_date: "20/03/2017", discount_id: "4",
   min_visitors: "7", max_visitors: "15", meals: "Bữa ăn kèm theo chương trình (2 bữa: sáng và tối)",
   accommodation: "Nghỉ tại nhà khách, khách sạn 3 sao",
   transport: "Ôtô đưa đón giữa các địa điểm.",

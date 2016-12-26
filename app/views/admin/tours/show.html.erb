@@ -1,63 +1,64 @@
 <% provide :title, @tour.name %>
-<div class="row">
+<div class="row" style="margin-left:50px;">
+  <h2><strong><%= t "admin_tours.detail" %></strong></h2>
   <div>
-    <label><%= t "tour.name" %></label>
+    <label><%= t "admin_tours.name" %>: </label>
     <%= @tour.name %>
   </div>
   <div>
-    <label><%= t "tour.start_place" %></label>
+    <label><%= t "admin_tours.start_place" %>: </label>
     <%= @tour.start_place.name %>
   </div>
   <div>
-    <label><%= t "tour.end_place" %></label>
+    <label><%= t "admin_tours.end_place" %>: </label>
     <%= @tour.end_place.name %>
   </div>
   <div>
-    <label><%= t "tour.price" %></label>
+    <label><%= t "admin_tours.price" %>: </label>
     <% if @tour.vnd? %>
-      <%= @tour.price.round %> <%= @tour.currency %>
+      <%= @tour.price.round %> <%= t "vnd" %>
     <% else %>
-      <%= @tour.price %> <%= @tour.currency %>
+      <%= t "usd" %><%= @tour.price %>
     <% end %>
   </div>
   <div>
-    <label><%= t "tour.start_date" %></label>
+    <label><%= t "admin_tours.start_date" %>: </label>
     <%= @tour.start_date.strftime("%d-%m-%Y") %>
   </div>
   <div>
-    <label><%= t "tour.end_date" %></label>
+    <label><%= t "admin_tours.end_date" %>: </label>
     <%= @tour.end_date.strftime("%d-%m-%Y") %>
   </div>
   <div>
-    <label><%= t "tour.min_visitors" %></label>
+    <label><%= t "admin_tours.min" %>: </label>
     <%= @tour.min_visitors %>
   </div>
   <div>
-    <label><%= t "tour.max_visitors" %></label>
+    <label><%= t "admin_tours.max" %>: </label>
     <%= @tour.max_visitors %>
   </div>
   <div>
-    <label><%= t "category.title" %></label>
+    <label><%= t "admin_categories.title" %>: </label>
     <%= @tour.category.title %>
   </div>
   <% if @tour.discount %>
-    <label><%= t "discount.title" %></label>
+    <label><%= t "admin_bookings.discount" %>: </label>
     <%= @tour.discount.name %> - <%= @tour.discount.percent %>%
   <% end %>
   <div>
-    <label><%= t "tour.accommodation" %></label>
+    <label><%= t "admin_tours.accommodation" %>: </label>
     <%= @tour.accommodation %>
   </div>
   <div>
-    <label><%= t "tour.meals" %></label>
+    <label><%= t "admin_tours.meals" %>: </label>
     <%= @tour.meals %>
   </div>
   <div>
-    <label><%= t "tour.transport" %></label>
+    <label><%= t "admin_tours.transport" %>: </label>
     <%= @tour.transport %>
   </div>
   <div>
-    <label><%= t "tour.services" %></label>
+    <label><%= t "admin_tours.service" %>: </label>
     <%= @tour.additional_services %>
   </div>
   <div>

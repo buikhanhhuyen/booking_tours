@@ -15,10 +15,10 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build review_params
     if @review.save
       Notification.create user: current_user, notifiable_type: "Review", notifiable_id: @review.id
-      flash[:notice] = t "review.create_success"
+      flash[:notice] = t "user_reviews.create_success"
       redirect_to place_path @review.place
     else
-      flash[:alert] = t "review.create_fail"
+      flash[:alert] = t "user_reviews.create_fail"
       @place = Place.find_by_id params[:place_id]
       render :new
     end
@@ -30,10 +30,10 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update_attributes review_params
-      flash[:notice] = t "review.update_success"
+      flash[:notice] = t "user_reviews.update_success"
       redirect_to place_path @review.place
     else
-      flash[:alert] = t "review.update_fail"
+      flash[:alert] = t "user_reviews.update_fail"
       render :edit
     end
   end
@@ -41,9 +41,9 @@ class ReviewsController < ApplicationController
   def destroy
     @place = @review.place
     if @review.delete
-      flash[:notice] = t "review.delete_success"
+      flash[:notice] = t "user_reviews.delete_success"
     else
-      flash[:alert] = t "review.delete_fail"
+      flash[:alert] = t "user_reviews.delete_fail"
     end
     redirect_to place_path @place
   end

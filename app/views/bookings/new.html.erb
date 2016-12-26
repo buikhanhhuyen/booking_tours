@@ -9,8 +9,8 @@
     <h1><strong><%= t "slogan" %></strong></h1>
     <div style="padding-top:30px;">
       <h4><%= t "user_bookings.tour" %>: <%= @tour.name %></h4>
-      <h4><%= t "user_bookings.start" %> <strong><%= @tour.start_date.strftime("%d-%m-%Y") %></strong> <%= t "user_bookings.onn" %> <strong><%= @tour.start_place.name %></strong></h4>
-      <h4><%= t "user_bookings.end" %> <strong><%= @tour.end_date.strftime("%d-%m-%Y") %></strong> <%= t "user_bookings.onn" %> <strong><%= @tour.end_place.name %></strong></h4>
+      <h4><%= t "user_bookings.start" %> <strong><%= @tour.start_date.strftime("%d-%m-%Y") %></strong> <%= t "user_bookings.tai" %> <strong><%= @tour.start_place.name %></strong></h4>
+      <h4><%= t "user_bookings.end" %> <strong><%= @tour.end_date.strftime("%d-%m-%Y") %></strong> <%= t "user_bookings.tai" %> <strong><%= @tour.end_place.name %></strong></h4>
     </div>
     <h3><%= t "user_visitors.title" %></h3>
     <%= form_for [@tour, @booking], html: {class: "form-horizontal form-label-left"} do |f| %>

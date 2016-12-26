@@ -42,33 +42,33 @@
                   <strong><%= @tour.start_date.strftime("%d-%m-%Y") %> - <%= @tour.end_date.strftime("%d-%m-%Y") %></strong>
                   <br />
                   <br />
-                  <p><strong>Accommodation: </strong><%= @tour.accommodation %></p>
+                  <p><strong><%= t "user_tours.accommodation" %>: </strong><%= @tour.accommodation %></p>
                   <br />
-                  <p><strong>Meals: </strong><%= @tour.meals %></p>
+                  <p><strong><%= t "user_tours.meals" %>: </strong><%= @tour.meals %></p>
                   <br />
-                  <p><strong>Transport: </strong><%= @tour.transport %></p>
+                  <p><strong><%= t "user_tours.transport" %>: </strong><%= @tour.transport %></p>
                   <br />
-                  <p><strong>Additional services: </strong><%= @tour.additional_services %></p>
+                  <p><strong><%= t "user_tours.service" %>: </strong><%= @tour.additional_services %></p>
                   <br />
                   <div class="">
                     <div class="product_price">
                       <p>
                         <h3 class="price">
-                        <strong>Price: </strong>
+                        <strong><%= t "user_tours.price" %>: </strong>
                           <% if @tour.currency == "vnd" %>
-                            <%= @tour.price.round %> <%= @tour.currency %>
+                            <%= @tour.price.round %> <%= t "vnd" %>
                           <% else %>
-                            $<%= @tour.price %>
+                            <%= t "usd" %><%= @tour.price %>
                           <% end %>
                         </h3>
                       </p>
                       <% if @tour.discount.presence %>
                         <p>
-                          <strong>Save: </strong>
+                          <strong><%= t "user_tours.save" %>: </strong>
                           <% if @tour.currency == "vnd" %>
-                            <%= (@tour.discount.percent * @tour.price/100).round %> <%= @tour.currency %>
+                            <%= (@tour.discount.percent * @tour.price/100).round %> <%= t "vnd" %>
                           <% else %>
-                            $<%= (@tour.price * @tour.discount.percent)/100 %>
+                            <%= t "usd" %><%= (@tour.price * @tour.discount.percent)/100 %>
                           <% end %>
                         </p>
                       <% end %>
@@ -76,9 +76,8 @@
                   </div>
 
                   <div class="">
-                    <%= link_to t("booking.title"), new_tour_booking_path(@tour), class: "btn btn-default btn-lg" %>
+                    <%= link_to t("user_tours.book"), new_tour_booking_path(@tour), class: "btn btn-default btn-lg" %>
                   </div>
-
                 </div>
               </div>
             </div>

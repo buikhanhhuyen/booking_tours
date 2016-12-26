@@ -20,10 +20,10 @@ class CommentsController < ApplicationController
     @comment.review_id = params[:review_id]
     @review = Review.find_by_id params[:review_id]
     if @comment.save
-      flash[:notice] = t "comment.create_success"
+      flash[:notice] = t "user_comments.create_success"
       redirect_to :back
     else
-      flash[:alert] = t "comment.create_fail"
+      flash[:alert] = t "user_comments.create_fail"
       render :new
     end
   end
@@ -34,10 +34,10 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update_attributes comment_params
-      flash[:notice] = t "comment.update_success"
+      flash[:notice] = t "user_comments.update_success"
       redirect_to :back
     else
-      flash[:alert] = t "comment.update_fail"
+      flash[:alert] = t "user_comments.update_fail"
       render :edit
     end
   end
@@ -46,9 +46,9 @@ class CommentsController < ApplicationController
     @comment.review_id = params[:review_id]
     @review = Review.find_by_id params[:review_id]
     if @comment.destroy
-      flash[:notice] = t "comment.delete_success"
+      flash[:notice] = t "user_comments.delete_success"
     else
-      flash[:alert] = t "comment.delete_fail"
+      flash[:alert] = t "user_comments.delete_fail"
     end
     redirect_to :back
   end
